@@ -8,6 +8,8 @@ export default function StoryCard({
    withExcerpt = true,
    imageSize = "md",
    partnerLogo,
+   whiteText = false,
+   contentStyles = {},
 }) {
    const authors = story?.authors;
    const timeToRead = story?.time_to_read;
@@ -29,7 +31,7 @@ export default function StoryCard({
    };
 
    return (
-      <div className="content flex flex-col justify-between h-fit">
+      <div className="content flex flex-col justify-between h-fit items-stretch w-full">
          {/* Image */}
          {withImage ? (
             <div className="mb-[15px]">
@@ -38,23 +40,35 @@ export default function StoryCard({
                   alt={story?.post_title}
                   height={heightSizes[imageSize]}
                   width={widthSizes[imageSize]}
-                  className="rounded-md"
+                  className="rounded-md h-[90px]"
                />
             </div>
          ) : null}
-         <div>
+         <div style={contentStyles}>
             <CategoryBadge logo={partnerLogo} category={story?.category} />
-            <h2 className="text-heading font-bold text-2xl my-[5px]">
+            <h2
+               className={`${
+                  whiteText ? "text-white" : "text-heading"
+               } font-bold text-2xl my-[5px] w-full`}
+            >
                {story?.post_title}
             </h2>
             {withExcerpt ? (
-               <p className="font-serif text-lg text-content">
+               <p
+                  className={`${
+                     whiteText ? "text-white" : "text-content"
+                  } font-serif text-lg text-content`}
+               >
                   {story?.post_excerpt}
                </p>
             ) : null}
          </div>
          {/* Bottom info Author, time ago and minutes read */}
-         <div className="text-sm text-smalltext mt-[5px]">
+         <div
+            className={`${
+               whiteText ? "text-white" : "text-smalltext"
+            } text-sm mt-[5px]`}
+         >
             <p>
                <span className="text-capitalize">
                   {authors[0]?.data?.display_name}

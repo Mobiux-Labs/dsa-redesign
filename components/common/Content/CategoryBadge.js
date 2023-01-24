@@ -1,5 +1,4 @@
 export default function CategoryBadge({ category, greyed = false, logo }) {
-   console.log(logo);
    return greyed ? (
       <div className="uppercase text-sm text-darkgray px-[5px] py-[3px] rounded-md w-fit bg-graybadgebg">
          {category.title}

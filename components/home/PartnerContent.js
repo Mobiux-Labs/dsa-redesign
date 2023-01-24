@@ -3,7 +3,6 @@ import StoryCard from "../common/Content/StoryCard";
 
 export default function PartnerContent({ stories }) {
    const mainStory = stories[0];
-   console.log(mainStory?.partner_logo);
    return (
       <div className="mt-[100px]">
          <h2 className="text-heading text-3xl font-bold mb-[45px]">
