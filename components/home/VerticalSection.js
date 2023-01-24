@@ -1,3 +1,4 @@
+import { useCompactTheme } from "@/utils/context";
 import { SeeMoreButton } from "../common/Buttons";
 import StoryCard from "../common/Content/StoryCard";
 
@@ -8,6 +9,7 @@ export default function VerticalSection({
    rightTitle,
    imageSize,
 }) {
+   const [compactTheme] = useCompactTheme();
    return (
       <div className="grid z-10 grid-cols-3 relative">
          {/* Headlings */}
@@ -20,6 +22,7 @@ export default function VerticalSection({
             leftStories={leftStories}
             rightStories={rightStories}
             imageSize={imageSize}
+            compactTheme={compactTheme}
          />
          {/* divider */}
          <div className="absolute top-0 left-0 h-full w-full grid grid-cols-3">
@@ -38,14 +41,20 @@ export default function VerticalSection({
    );
 }
 
-function Content({ leftStories, rightStories, imageSize }) {
+function Content({ leftStories, rightStories, imageSize, compactTheme }) {
    function shouldHaveImage(i, row) {
       if ((i == 0 || i == 1) && row == 0) return true;
       return false;
    }
    return (
       <>
-         <div className="grid grid-cols-3 gap-x-[60px] col-span-3 row-span-3 mb-[40px]">
+         <div
+            className={`grid grid-cols-3 col-span-3 row-span-3 ${
+               compactTheme
+                  ? "gap-x-[40px] gap-y-[30px] mb-[30px]"
+                  : "gap-x-[60px] mb-[40px]"
+            }`}
+         >
             {leftStories.slice(0, 2).map((story, i) => (
                <div className="h-fit">
                   <StoryCard
@@ -67,7 +76,13 @@ function Content({ leftStories, rightStories, imageSize }) {
                </div>
             ))}
          </div>
-         <div className="grid grid-cols-3 gap-x-[60px] col-span-3 row-span-3 mb-[40px]">
+         <div
+            className={`grid grid-cols-3 col-span-3 row-span-3 ${
+               compactTheme
+                  ? "gap-x-[40px] gap-y-[30px] mb-[30px]"
+                  : "gap-x-[60px] mb-[40px]"
+            }`}
+         >
             {leftStories.slice(2, 4).map((story, i) => (
                <div className="h-fit">
                   <StoryCard
@@ -89,7 +104,13 @@ function Content({ leftStories, rightStories, imageSize }) {
                </div>
             ))}
          </div>
-         <div className="grid grid-cols-3 gap-x-[60px] col-span-3 row-span-3">
+         <div
+            className={`grid grid-cols-3 col-span-3 row-span-3 ${
+               compactTheme
+                  ? "gap-x-[40px] gap-y-[30px] mb-[30px]"
+                  : "gap-x-[60px] mb-[40px]"
+            }`}
+         >
             {leftStories.slice(4, 6).map((story, i) => (
                <div className="h-fit">
                   <StoryCard
@@ -111,6 +132,36 @@ function Content({ leftStories, rightStories, imageSize }) {
                </div>
             ))}
          </div>
+         {compactTheme ? (
+            <div
+               className={`grid grid-cols-3 col-span-3 row-span-3 ${
+                  compactTheme
+                     ? "gap-x-[40px] gap-y-[30px] mb-[30px]"
+                     : "gap-x-[60px] mb-[40px]"
+               }`}
+            >
+               {leftStories.slice(6, 8).map((story, i) => (
+                  <div className="h-fit">
+                     <StoryCard
+                        key={story.id}
+                        story={story}
+                        imageSize={imageSize}
+                        withImage={shouldHaveImage(i, 2)}
+                     />
+                  </div>
+               ))}
+               {rightStories.slice(3, 4).map((story, i) => (
+                  <div className="h-fit">
+                     <StoryCard
+                        key={story.id}
+                        story={story}
+                        imageSize={imageSize}
+                        withImage={shouldHaveImage(i, 2)}
+                     />
+                  </div>
+               ))}
+            </div>
+         ) : null}
       </>
    );
 }

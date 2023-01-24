@@ -1,3 +1,4 @@
+import { useCompactTheme } from "@/utils/context";
 import Image from "next/image";
 import Sidebar from "../common/Ads/Sidebar";
 import CategoryBadge from "../common/Content/CategoryBadge";
@@ -19,16 +20,23 @@ export default function TopZone({ headlines }) {
 }
 
 function LeftSection({ headlines }) {
+   const [compactTheme] = useCompactTheme();
    const mainStory = headlines[0];
    return (
       <div className="grid col-span-3 grid-cols-2 border-1 border-solid border-r-[1px] border-lightgray pr-[20px] h-fit">
          <MainStoryCard story={mainStory} />
 
          {/* 3 rows of 2 columns */}
-         <div className="grid grid-cols-2 gap-x-[49px] gap-y-[40px] col-span-2 pr-[50px] mt-[40px]">
+         <div
+            className={`grid col-span-2 pr-[50px] ${
+               compactTheme
+                  ? "gap-x-13 gap-y-20 mt-20 grid-cols-3"
+                  : "gap-x-50 gap-y-40 mt-40 grid-cols-2"
+            }`}
+         >
             {
                // Skip the first story since it's already displayed in the main story card
-               headlines.slice(1, 7).map((story) => (
+               headlines.slice(1, compactTheme ? 10 : 7).map((story) => (
                   <StoryCard story={story} />
                ))
             }

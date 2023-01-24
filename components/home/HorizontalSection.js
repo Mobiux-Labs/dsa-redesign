@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import StoryCard from "../common/Content/StoryCard";
 import Image from "next/image";
+import { useCompactTheme } from "@/utils/context";
 
 export default function HorizontalSection({
    stories,
@@ -15,10 +16,14 @@ export default function HorizontalSection({
    imageOnEveryStory = false,
 }) {
    const swiperRef = useRef(null);
-
+   const [compactTheme] = useCompactTheme();
    useEffect(() => {}, []);
    return (
-      <div className="bg-blue pt-[88px] pb-[116px] relative">
+      <div
+         className={`bg-blue relative ${
+            compactTheme ? "pt-60 pb-80" : "pt-[88px] pb-[116px]"
+         }`}
+      >
          <h2 className=" px-[120px] mb-[45px] text-3xl font-bold text-white capitalize">
             {title}{" "}
          </h2>

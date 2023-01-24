@@ -7,9 +7,9 @@ import { Navigation } from "swiper";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import { useCompactTheme } from "@/utils/context";
 
 export default function SectionBar({}) {
-   const [value, setValue] = useState(false);
    const swiperRef = useRef(null);
 
    return (
@@ -62,7 +62,7 @@ function RegionSelector({}) {
             <button
                id="dropdownDefaultButton"
                data-dropdown-toggle="regions-dropdown"
-               className="flex items-center"
+               className="flex items-center whitespace-nowrap"
             >
                Select Region
                <span>
@@ -108,21 +108,30 @@ function SectionButton({ imgSrc, name, link, slug }) {
          onClick={() => handleCategoryClick()}
       >
          <img src={`icons/${imgSrc}`} alt={name} className="h-[16px]" />
-         <span className="mr-[8px] mt-[12px]">{name}</span>
+         <span className="mr-[8px] mt-[12px] whitespace-nowrap">{name}</span>
       </div>
    );
 }
 
 function ThemeSwitchButton() {
+   const [compactTheme, setCompactTheme] = useCompactTheme();
    return (
       <div className="theme-switch-btn flex items-center flex-col">
          <div>
             <label className="relative inline-flex items-center cursor-pointer">
-               <input type="checkbox" value="" className="sr-only peer" />
+               <input
+                  type="checkbox"
+                  value=""
+                  className="sr-only peer"
+                  checked={compactTheme}
+                  onChange={() => setCompactTheme(!compactTheme)}
+               />
                <div className="w-[30px] h-[16px] bg-gray rounded-full peer peer-focus:ring-1 peer-focus:ring-blue-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[3px] after:bg-white after:rounded-full after:h-[12px] after:w-[12px] after:transition-all peer-checked:bg-blue"></div>
             </label>
          </div>
-         <span>Default</span>
+         <p className="w-full whitespace-nowrap">
+            {compactTheme ? "Compact" : "Easy reading"}
+         </p>
       </div>
    );
 }
