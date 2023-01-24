@@ -1,8 +1,5 @@
-import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
-import "@splidejs/react-splide/css";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useSwiper } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";

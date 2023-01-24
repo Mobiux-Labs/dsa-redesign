@@ -28,7 +28,6 @@ export default function Home(props) {
             title={"Private Equity"}
          />
          <div className="mt-[100px]"></div>
-         {/* 3 vertical sections */}
          <div className="px-[120px]">
             <VerticalSection
                leftTitle={"Unicorns"}

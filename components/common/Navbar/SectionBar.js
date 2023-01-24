@@ -1,9 +1,16 @@
 import { useState } from "react";
 import { sections } from "@/constants";
 import { createHeader } from "@/utils/network";
+import { useEffect, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
 
 export default function SectionBar({}) {
    const [value, setValue] = useState(false);
+   const swiperRef = useRef(null);
 
    return (
       <div className="px-[120px] py-[20px] bg-[#35a7e90d] flex items-center text-darkgray relative">
@@ -13,17 +20,34 @@ export default function SectionBar({}) {
          {/* Region selector */}
          <RegionSelector />
          {/* Scrollable sections buttons */}
-         {sections.slice(0, 7).map((section) => (
-            <SectionButton
-               key={section.title}
-               imgSrc={section.icon}
-               name={section.title}
-               link={section.link}
-               slug={section.slug}
-            />
-         ))}
+         <Swiper
+            className="mySwiper"
+            modules={[Navigation]}
+            onBeforeInit={(swiper) => {
+               swiperRef.current = swiper;
+            }}
+            draggable={false}
+            slidesPerView={"auto"}
+         >
+            {sections.map((section) => (
+               <SwiperSlide
+                  style={{ width: "fit-content", paddingRight: "40px" }}
+               >
+                  <SectionButton
+                     key={section.title}
+                     imgSrc={section.icon}
+                     name={section.title}
+                     link={section.link}
+                     slug={section.slug}
+                  />
+               </SwiperSlide>
+            ))}
+         </Swiper>
          {/* Right Arrow to scroll the buttons */}
-         <button className="absolute right-[120px]">
+         <button
+            className="absolute right-[120px] z-10"
+            onClick={() => swiperRef.current?.slideNext()}
+         >
             <img src="icons/right-arrow.svg" alt="" />
          </button>
       </div>
@@ -80,16 +104,11 @@ function SectionButton({ imgSrc, name, link, slug }) {
 
    return (
       <div
-         className="cursor-pointer flex flex-col mr-[45px]"
+         className="cursor-pointer h-full flex items-center justify-center flex-col"
          onClick={() => handleCategoryClick()}
       >
          <img src={`icons/${imgSrc}`} alt={name} className="h-[16px]" />
-         <div className="flex items-center mt-[12px]">
-            <span className="mr-[8px]">{name}</span>
-            <span>
-               <img src="icons/star.svg" alt="" />
-            </span>
-         </div>
+         <span className="mr-[8px] mt-[12px]">{name}</span>
       </div>
    );
 }
