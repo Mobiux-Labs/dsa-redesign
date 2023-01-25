@@ -1,6 +1,6 @@
 import Layout from "@/components/common/Layout/Layout";
 import TopZone from "@/components/home/TopZone";
-import { checkIfLoggedInAndSubscribed } from "@/utils/user";
+import { getUserSession } from "@/utils/user";
 import { getHomePageHeadlines } from "@/utils/api-calls";
 import HomePageSection from "@/components/home/SectionZone";
 import TopTopicsSection from "@/components/home/TopTopicsSection";
@@ -8,15 +8,21 @@ import CarouselBanner from "@/components/home/CarouselBanner";
 import VerticalSection from "@/components/home/VerticalSection";
 import PartnerContent from "@/components/home/PartnerContent";
 import HorizontalSection from "@/components/home/HorizontalSection";
+import { useSession } from "@/utils/context";
+import { useEffect } from "react";
 
 export default function Home(props) {
+   const [session, setSession] = useSession();
+   useEffect(() => {
+      setSession(props.session);
+   }, []);
    return (
       <Layout>
          <div className="px-[120px]">
             <TopZone headlines={props.data} />
             <div className="mt-[100px]"></div>
             <HomePageSection
-               stories={props.data.venture_capital}
+               stories={props.data["venture-capital"]}
                title={"Venture Capital"}
                rightSection={<TopTopicsSection />}
             />
@@ -24,7 +30,7 @@ export default function Home(props) {
          </div>
          <div className="mt-[100px]"></div>
          <HorizontalSection
-            stories={props.data.private_equity}
+            stories={props.data["private-equity"]}
             title={"Private Equity"}
          />
          <div className="mt-[100px]"></div>
@@ -33,7 +39,7 @@ export default function Home(props) {
                leftTitle={"Unicorns"}
                rightTitle={"Deals"}
                leftStories={props.data.unicorns}
-               rightStories={props.data.deals}
+               rightStories={props.data["deal-investment"]}
                imageSize={"sm"}
             />
          </div>
@@ -46,18 +52,19 @@ export default function Home(props) {
          />
          {/* Partner content stories */}
          <div className="px-[120px]">
-            <PartnerContent stories={props.data.partner_content} />
+            <PartnerContent stories={props.data["partner_content"]} />
          </div>
       </Layout>
    );
 }
 
 export async function getServerSideProps({ req, res }) {
-   // const session = await checkIfLoggedInAndSubscribed(req);
+   const session = await getUserSession(req);
    const data = await getHomePageHeadlines(req);
    return {
       props: {
          data,
+         session,
       },
    };
 }

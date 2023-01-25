@@ -8,7 +8,9 @@ export default function Layout({ children }) {
    return (
       <>
          <LeaderboardAd />
-         <Navbar />
+         <div className="sticky top-0 z-[100]">
+            <Navbar />
+         </div>
          <SectionBar />
          <div className="py-[66px]">{children}</div>
          <Footer />

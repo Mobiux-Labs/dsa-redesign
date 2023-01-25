@@ -4,16 +4,19 @@ import { createHeader } from "@/utils/network";
 import { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
-// Import Swiper styles
+import useSWR from "swr";
 import "swiper/css";
 import "swiper/css/navigation";
-import { useCompactTheme } from "@/utils/context";
+import { useCompactTheme, useSession } from "@/utils/context";
+import { fetcher } from "@/utils/helper";
 
 export default function SectionBar({}) {
    const swiperRef = useRef(null);
-
+   const [session] = useSession();
+   const [refresh, setRefresh] = useState(0);
+   const { data, error } = useSWR(`/subs/?refresh=${refresh}`, fetcher);
    return (
-      <div className="px-[120px] py-[20px] bg-[#35a7e90d] flex items-center text-darkgray relative">
+      <div className="px-[120px] py-[20px] bg-[#35a7e90d] flex items-center text-darkgray">
          <ThemeSwitchButton />
          {/* Divider */}
          <div className="bg-lightgray h-[38px] w-[1px] ml-[25px]"></div>
@@ -39,6 +42,9 @@ export default function SectionBar({}) {
                      name={section.title}
                      link={section.link}
                      slug={section.slug}
+                     setRefresh={setRefresh}
+                     refresh={refresh}
+                     isFavourite={data?.user_favourites?.includes(section.slug)}
                   />
                </SwiperSlide>
             ))}
@@ -86,7 +92,15 @@ function RegionSelector({}) {
    );
 }
 
-function SectionButton({ imgSrc, name, link, slug }) {
+function SectionButton({
+   imgSrc,
+   name,
+   link,
+   slug,
+   isFavourite = false,
+   setRefresh,
+   refresh,
+}) {
    async function handleCategoryClick() {
       const res = await fetch(`/api/subs/favourite/`, {
          method: "POST",
@@ -98,8 +112,11 @@ function SectionButton({ imgSrc, name, link, slug }) {
             email: "roshin@mobiux.in",
          }),
       });
-      const data = await res.json();
-      console.log(data);
+      if (res.status === 200) {
+         setRefresh(refresh + 1);
+         const data = await res.json();
+         console.log(data);
+      }
    }
 
    return (
@@ -108,7 +125,13 @@ function SectionButton({ imgSrc, name, link, slug }) {
          onClick={() => handleCategoryClick()}
       >
          <img src={`icons/${imgSrc}`} alt={name} className="h-[16px]" />
-         <span className="mr-[8px] mt-[12px] whitespace-nowrap">{name}</span>
+         <span
+            className={`mr-[8px] mt-[12px] whitespace-nowrap ${
+               isFavourite ? "text-blue" : ""
+            }`}
+         >
+            {name}
+         </span>
       </div>
    );
 }

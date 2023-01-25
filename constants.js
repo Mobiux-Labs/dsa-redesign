@@ -81,7 +81,7 @@ export const sections = [
    },
    {
       title: "Real Estate",
-      slug: "real-estate",
+      slug: "real-estate-and-infrastructure",
       zone: "homepage-block-real-estate",
       link: "/section/real-estate",
       icon: "real-estate.svg",
@@ -98,3 +98,31 @@ export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 export const username = process.env.NEXT_PUBLIC_USERNAME;
 export const password = process.env.NEXT_PUBLIC_PASSWORD;
 export const wpApiUrl = process.env.NEXT_PUBLIC_WP_API;
+export const backendUrl = process.env.NEXT_PUBLIC_BACKEND_API;
+
+export const newsletters = {
+   data_vantage: {
+      name: "Data Vantage",
+      slug: "data_vantage",
+      description:
+         "This is a web version of our twice-weekly, data-led newsletter Data Vantage. You can subscribe to it by filling in your email address below.",
+   },
+   vantage_point: {
+      name: "Vantage Point",
+      slug: "vantage_point",
+      description:
+         "This is the web version of our Vantage Point newsletter. Authored by Angus Mackintosh, it highlights the top trends across SE Asia’s digital economy. Get this newsletter delivered to your inbox every Monday, by filling in your email address below.",
+   },
+   // Daily brief is not operational yet
+   daily_breif: {
+      name: "Daily Brief",
+      slug: "daily_brief",
+      description: "",
+   },
+   week_that_was: {
+      name: "The Week That Was",
+      slug: "week_that_was",
+      description:
+         "You are reading the web version of The Week That Was, a Sunday newsletter in which our editors recap the most significant developments from the past seven days. You can subscribe to it by filling out your email address below",
+   },
+};
