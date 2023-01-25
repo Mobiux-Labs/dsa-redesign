@@ -11,9 +11,9 @@ export default function MainStoryCard({ story }) {
    const [compactTheme] = useCompactTheme();
    const router = useRouter();
    return (
-      <div className="col-span-2 grid grid-cols-3">
+      <div className="flex">
          <Link href={trimUrl(story?.post_url)}>
-            <div className="image col-span-1 cursor-pointer">
+            <div className="image cursor-pointer">
                <Image
                   src={story?.image_url}
                   alt={story?.post_title}

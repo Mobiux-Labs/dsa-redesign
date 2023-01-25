@@ -10,3 +10,8 @@ export function trimUrl(url) {
 }
 
 export const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+export const removeUndefined = (obj) => {
+   Object.keys(obj).forEach((key) => obj[key] === undefined && delete obj[key]);
+   return obj;
+};

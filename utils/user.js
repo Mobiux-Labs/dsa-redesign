@@ -1,5 +1,6 @@
 import { createHeader } from "./network";
 import { baseUrl, newsletters } from "@/constants";
+import { removeUndefined } from "./helper";
 
 function getSubscribedNewsletters(
    dailyBrief,
@@ -56,7 +57,7 @@ export async function getUserSession(req) {
          );
       }
    }
-   return {
+   let returnObj = {
       loggedIn,
       subscribed,
       plan,
@@ -71,4 +72,5 @@ export async function getUserSession(req) {
       vantagePointNl,
       userFavourites,
    };
+   return removeUndefined(returnObj);
 }

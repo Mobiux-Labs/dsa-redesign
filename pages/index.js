@@ -22,11 +22,20 @@ export default function Home(props) {
             <TopZone headlines={props.data} />
             <div className="mt-[100px]"></div>
             <HomePageSection
-               stories={props.data["venture-capital"]}
+               stories={props?.data["venture-capital"]}
                title={"Venture Capital"}
-               rightSection={<TopTopicsSection />}
+               rightSection={!session.loggedIn ? <TopTopicsSection /> : null}
             />
             <CarouselBanner />
+            {session?.loggedIn && (
+               <div>
+                  <div className="mt-[100px]"></div>
+                  <HomePageSection
+                     stories={props?.data["q-a"]}
+                     title={"Q & A"}
+                  />
+               </div>
+            )}
          </div>
          <div className="mt-[100px]"></div>
          <HorizontalSection
@@ -61,10 +70,11 @@ export default function Home(props) {
 export async function getServerSideProps({ req, res }) {
    const session = await getUserSession(req);
    const data = await getHomePageHeadlines(req);
+   console.log(data);
    return {
       props: {
          data,
-         session,
+         session: session,
       },
    };
 }
