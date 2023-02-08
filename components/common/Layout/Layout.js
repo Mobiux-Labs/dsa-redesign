@@ -4,14 +4,14 @@ import Navbar from "../Navbar/Navbar";
 import SectionBar from "../Navbar/SectionBar";
 import { ThemeProvider } from "@/utils/context";
 
-export default function Layout({ children }) {
+export default function Layout({ children, showSectionBar = true }) {
    return (
       <>
          <LeaderboardAd />
          <div className="sticky top-0 z-[100]">
             <Navbar />
          </div>
-         <SectionBar />
+         {showSectionBar && <SectionBar />}
          <div className="py-[66px]">{children}</div>
          <Footer />
       </>

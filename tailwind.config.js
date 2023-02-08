@@ -77,6 +77,7 @@ module.exports = {
          xl: "18px",
          "2xl": "20px",
          "3xl": "30px",
+         "4xl": "36px",
       },
       fontWeight: {
          normal: "400",
