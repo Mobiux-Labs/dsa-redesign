@@ -10,9 +10,11 @@ import PartnerContent from "@/components/home/PartnerContent";
 import HorizontalSection from "@/components/home/HorizontalSection";
 import { useSession } from "@/utils/context";
 import { useEffect } from "react";
+import { getTitleFromSlug, getUniqueFavourites } from "@/utils/helper";
 
 export default function Home(props) {
    const [session, setSession] = useSession();
+   const favourites = getUniqueFavourites(props.data?.favourites);
    useEffect(() => {
       setSession(props.session);
    }, []);
@@ -27,15 +29,20 @@ export default function Home(props) {
                rightSection={!session.loggedIn ? <TopTopicsSection /> : null}
             />
             <CarouselBanner />
-            {session?.loggedIn && (
-               <div>
-                  <div className="mt-[100px]"></div>
-                  <HomePageSection
-                     stories={props?.data["q-a"]}
-                     title={"Q & A"}
-                  />
-               </div>
-            )}
+            {session?.loggedIn
+               ? favourites.map(
+                    (section) =>
+                       props?.data[section].length > 0 && (
+                          <div>
+                             <div className="mt-[100px]"></div>
+                             <HomePageSection
+                                stories={props?.data[section]}
+                                title={getTitleFromSlug(section)}
+                             />
+                          </div>
+                       )
+                 )
+               : null}
          </div>
          <div className="mt-[100px]"></div>
          <HorizontalSection
@@ -70,7 +77,6 @@ export default function Home(props) {
 export async function getServerSideProps({ req, res }) {
    const session = await getUserSession(req);
    const data = await getHomePageHeadlines(req);
-   console.log(data);
    return {
       props: {
          data,

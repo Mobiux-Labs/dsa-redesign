@@ -6,41 +6,24 @@ import StoryCard from "../common/Content/StoryCard";
 export default function HomePageSection({ title, stories, rightSection }) {
    const [compactTheme] = useCompactTheme();
    return (
-      <div className="grid grid-cols-3">
+      <div
+         className={`grid grid-cols-3 ${
+            rightSection ? "grid-cols-4" : "grid-cols-3"
+         }`}
+      >
          {/* Left section with the top stories */}
          <LeftSection
             headlines={stories}
             title={title}
             showBorder={rightSection}
+            hasRightSection={rightSection}
          />
          {rightSection}
-         {/* {
-            // If not right section is passed, then we show the last 2 stories on the right
-            !rightSection && (
-               <div
-                  className={`grid grid-cols-1 gap-x-20 col-span-1 ${
-                     compactTheme ? "gap-y-20 mt-20" : "gap-y-40 mt-40"
-                  }`}
-               >
-                  {
-                     // Skip the first story since it's already displayed in the main story card
-                     stories
-                        .slice(
-                           compactTheme ? 5 : 3,
-                           compactTheme ? 5 + 3 : 3 + 2
-                        )
-                        .map((story) => (
-                           <StoryCard story={story} />
-                        ))
-                  }
-               </div>
-            )
-         } */}
       </div>
    );
 }
 
-function LeftSection({ headlines, title, showBorder }) {
+function LeftSection({ headlines, title, showBorder, hasRightSection }) {
    const [compactTheme] = useCompactTheme();
    const mainStory = headlines[0];
    return (
@@ -61,18 +44,29 @@ function LeftSection({ headlines, title, showBorder }) {
          <div className="pr-[20px] h-fit col-span-3">
             {/* 3 rows of 2 columns */}
             <div
-               className={`col-span-3 grid grid-cols-3 gap-x-20 ${
+               className={`col-span-3 grid gap-x-20 ${
                   compactTheme ? "gap-y-20 mt-20" : "gap-y-40 mt-40"
-               }`}
+               } ${hasRightSection ? "grid-cols-2" : "grid-cols-3"}`}
             >
                <div className="col-span-2">
                   <MainStoryCard story={mainStory} />
                </div>
                {
                   // Skip the first story since it's already displayed in the main story card
-                  headlines.slice(1, compactTheme ? 8 : 5).map((story) => (
-                     <StoryCard story={story} />
-                  ))
+                  headlines
+                     .slice(
+                        1,
+                        compactTheme
+                           ? hasRightSection
+                              ? 5
+                              : 8
+                           : hasRightSection
+                           ? 3
+                           : 5
+                     )
+                     .map((story) => (
+                        <StoryCard story={story} />
+                     ))
                }
             </div>
             <div className="mt-30">

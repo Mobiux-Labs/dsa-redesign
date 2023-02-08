@@ -88,12 +88,13 @@ export const sections = [
    },
    {
       title: "E-commerce",
-      slug: "e-commerce",
+      slug: "ecommerce-consumer-internet",
       zone: "homepage-block-e-commerce",
       link: "/section/e-commerce",
       icon: "e-commerce.svg",
    },
 ];
+
 export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 export const username = process.env.NEXT_PUBLIC_USERNAME;
 export const password = process.env.NEXT_PUBLIC_PASSWORD;

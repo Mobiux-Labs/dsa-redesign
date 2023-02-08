@@ -6,7 +6,6 @@ import MainStoryCard from "../common/Content/MainStoryCard";
 import StoryCard from "../common/Content/StoryCard";
 
 export default function TopZone({ headlines }) {
-   console.log(headlines);
    return (
       <div className="grid grid-cols-4">
          {/* Left section with the top stories */}
