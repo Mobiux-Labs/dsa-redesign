@@ -1,7 +1,7 @@
 import { logoUrl } from "@/constants";
 import "@/styles/globals.css";
 import { useState } from "react";
-import { ThemeContext, SessionContext } from "@/utils/context";
+import { ThemeContext, SessionContext, ModalContext } from "@/utils/context";
 import { DefaultSeo } from "next-seo";
 import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
@@ -9,14 +9,18 @@ import { MantineProvider } from "@mantine/core";
 export default function App({ Component, pageProps }) {
    const [compactTheme, setCompactTheme] = useState(false);
    const [session, setSession] = useState({});
+   const [modal, setModal] = useState();
+
    return (
       <MantineProvider>
          <CustomHead />
          <DefaultSeo title="DealStreetAsia - Asia focused financial news and intelligence platform" />
          <ThemeContext.Provider value={[compactTheme, setCompactTheme]}>
-            <SessionContext.Provider value={[session, setSession]}>
-               <Component {...pageProps} />
-            </SessionContext.Provider>
+            <ModalContext.Provider value={[modal, setModal]}>
+               <SessionContext.Provider value={[session, setSession]}>
+                  <Component {...pageProps} />
+               </SessionContext.Provider>
+            </ModalContext.Provider>
          </ThemeContext.Provider>
       </MantineProvider>
    );

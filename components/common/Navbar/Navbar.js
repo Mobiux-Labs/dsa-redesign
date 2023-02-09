@@ -1,10 +1,11 @@
 import { logoUrl } from "@/constants";
 import Link from "next/link";
 import Image from "next/image";
-import { useSession } from "@/utils/context";
+import { useSession, useModal } from "@/utils/context";
 
 export default function Navbar() {
    const [session, setSession] = useSession();
+   const [modal, setModal] = useModal();
    return (
       <div className="px-[120px] shadow-3xl flex items-center h-[80px] bg-white">
          <div className="logo mr-[30px]">
@@ -73,8 +74,9 @@ export default function Navbar() {
             {/* Show login button if not loggedin */}
             {!session?.loggedIn ? (
                <Link
-                  href="/login"
+                  href=""
                   className="mx-[25px] text-blue font-semibold"
+                  onClick={() => setModal("login")}
                >
                   Login
                </Link>

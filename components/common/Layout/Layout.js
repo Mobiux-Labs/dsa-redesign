@@ -2,7 +2,7 @@ import LeaderboardAd from "../Ads/Leaderboard";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import SectionBar from "../Navbar/SectionBar";
-import { ThemeProvider } from "@/utils/context";
+import LoginModal from "@/components/auth/LoginModal";
 
 export default function Layout({ children, showSectionBar = true }) {
    return (
@@ -13,6 +13,7 @@ export default function Layout({ children, showSectionBar = true }) {
          </div>
          {showSectionBar && <SectionBar />}
          <div className="py-[66px] sm:px-30">{children}</div>
+         <LoginModal />
          <Footer />
       </>
    );
