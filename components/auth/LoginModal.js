@@ -1,5 +1,8 @@
 import { Modal } from "@mantine/core";
-import { useModal } from "@/utils/context";
+import { useModal, useSession } from "@/utils/context";
+import { loginUser } from "@/utils/auth";
+import { useState } from "react";
+import { getUserSession } from "@/utils/user";
 
 export default function LoginModal({}) {
    const [modal, setModal] = useModal();
@@ -29,7 +32,7 @@ export default function LoginModal({}) {
                   </div>
                </div>
                <InputForm setModal={setModal} />
-               <p className="mt-[80px] text-sm text-smalltext">
+               <p className=" text-sm text-smalltext">
                   We will never share your information with third parties.
                </p>
             </div>
@@ -64,19 +67,52 @@ function SocialMediaLinks() {
 }
 
 function InputForm({ setModal }) {
+   const [email, setEmail] = useState("");
+   const [password, setPassword] = useState("");
+   const [error, setError] = useState("");
+   const [loading, setLoading] = useState(false);
+   const [session, setSession] = useSession();
+
+   async function handleSubmit(e) {
+      setLoading(true);
+      e.preventDefault();
+      const res = await loginUser(email, password);
+      if (!res) setError("Something went wrong. Try again later.");
+      else if (!res.status) setError("Invalid email or password.");
+      else {
+         setError("");
+         const userSession = await getUserSession();
+         setSession(userSession);
+         setModal();
+      }
+      setLoading(false);
+   }
+
    return (
-      <form className="w-full">
+      <form className="w-full" onSubmit={(e) => handleSubmit(e)}>
          <input
             type="email"
             placeholder="Email ID"
             required
-            className="w-full mb-20 rounded-md border-1 border-solid border-r-[1px] border-smalltext py-[14px] px-[15px] placeholder:text-smalltext bg-inputbg"
+            onChange={(e) => {
+               if (error) setError("");
+               setEmail(e.target.value);
+            }}
+            className={`w-full mb-20 rounded-md border-1 border-solid border-smalltext py-[14px] px-[15px] placeholder:text-smalltext bg-inputbg focus:ring-0 focus:border-smalltext ${
+               error ? "border-red" : "border-smalltext"
+            }`}
          />
          <input
             type="password"
             placeholder="Password"
             required
-            className="w-full rounded-md border-1 border-solid border-r-[1px] border-smalltext py-[14px] px-[15px] placeholder:text-smalltext bg-inputbg"
+            onChange={(e) => {
+               if (error) setError("");
+               setPassword(e.target.value);
+            }}
+            className={`w-full rounded-md border-1 border-solid border-r-[1px] border-smalltext py-[14px] px-[15px] placeholder:text-smalltext bg-inputbg focus:ring-0 focus:border-smalltext ${
+               error ? "border-red" : "border-smalltext"
+            }`}
          />
          <div className="mt-10 flex justify-between">
             <p className="text-smalltext text-sm text-left">
@@ -91,11 +127,16 @@ function InputForm({ setModal }) {
             <p className="text-blue text-sm">Forgot Password?</p>
          </div>
          <button
+            disabled={loading}
             type="submit"
-            className="bg-blue text-white font-medium py-[11px] px-[30px] rounded-sm mt-[40px]"
+            className={`text-white bg-blue ${
+               loading ? "bg-gray" : "bg-blue"
+            } font-medium py-[11px] px-[30px] rounded-sm mt-[40px] mb-[40px]`}
          >
             Login
          </button>
+
+         <p className="text-red-500 text-sm text-center mb-[40px]">{error}</p>
       </form>
    );
 }

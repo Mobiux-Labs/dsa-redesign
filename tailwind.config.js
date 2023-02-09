@@ -20,6 +20,7 @@ module.exports = {
             lighttext: "var(--color-lighttext)",
             smalltext: "var(--color-smalltext)",
             inputbg: "var(--color-inputbg)",
+            red: "var(--color-red)",
          },
          padding: {
             10: "10px",
