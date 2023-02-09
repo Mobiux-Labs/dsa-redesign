@@ -4,12 +4,13 @@ import { useState } from "react";
 import { ThemeContext, SessionContext } from "@/utils/context";
 import { DefaultSeo } from "next-seo";
 import Head from "next/head";
+import { MantineProvider } from "@mantine/core";
 
 export default function App({ Component, pageProps }) {
    const [compactTheme, setCompactTheme] = useState(false);
    const [session, setSession] = useState({});
    return (
-      <>
+      <MantineProvider>
          <CustomHead />
          <DefaultSeo title="DealStreetAsia - Asia focused financial news and intelligence platform" />
          <ThemeContext.Provider value={[compactTheme, setCompactTheme]}>
@@ -17,7 +18,7 @@ export default function App({ Component, pageProps }) {
                <Component {...pageProps} />
             </SessionContext.Provider>
          </ThemeContext.Provider>
-      </>
+      </MantineProvider>
    );
 }
 

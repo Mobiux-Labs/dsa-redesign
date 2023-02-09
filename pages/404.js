@@ -4,6 +4,7 @@ import { useSession } from "@/utils/context";
 import { useEffect, useState } from "react";
 import { getTrendingStories } from "@/utils/api-calls";
 import StoryCard from "@/components/common/Content/StoryCard";
+import StoryCardSkeleton from "@/components/skeletons/StoryCardSkeleton";
 
 export default function Custom404(props) {
    const [session, setSession] = useSession();
@@ -32,14 +33,18 @@ export default function Custom404(props) {
             Don't let that stop you from reading some of our popular stories.
          </p>
          {/* Story Grid */}
-         <div className="mx-[320px] grid grid-cols-2 gap-40 mt-[80px]">
+         <div className="xl:mx-[300px] lg:mx-[200px] md:mx-[100px] grid xl:grid-cols-2 gap-40 mt-[80px] md:grid-cols-1">
             {trendingStories.length > 0
                ? trendingStories?.map((story, index) => (
                     <div key={index}>
                        <StoryCard story={story} />
                     </div>
                  ))
-               : ""}
+               : [...Array(6)].map((_, index) => (
+                    <div key={index}>
+                       <StoryCardSkeleton />
+                    </div>
+                 ))}
          </div>
       </Layout>
    );

@@ -12,7 +12,7 @@ export default function Layout({ children, showSectionBar = true }) {
             <Navbar />
          </div>
          {showSectionBar && <SectionBar />}
-         <div className="py-[66px]">{children}</div>
+         <div className="py-[66px] sm:px-30">{children}</div>
          <Footer />
       </>
    );
