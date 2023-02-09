@@ -3,6 +3,7 @@ import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import SectionBar from "../Navbar/SectionBar";
 import LoginModal from "@/components/auth/LoginModal";
+import SignupModal from "@/components/auth/SignupModal";
 
 export default function Layout({ children, showSectionBar = true }) {
    return (
@@ -14,6 +15,7 @@ export default function Layout({ children, showSectionBar = true }) {
          {showSectionBar && <SectionBar />}
          <div className="py-[66px] sm:px-30">{children}</div>
          <LoginModal />
+         <SignupModal />
          <Footer />
       </>
    );
