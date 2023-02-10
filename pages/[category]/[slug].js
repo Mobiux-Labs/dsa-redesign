@@ -1,5 +1,5 @@
 import Layout from "@/components/common/Layout/Layout";
-import { getCategoryStories } from "@/utils/api-calls";
+import { getCategoryStories, getLastReadStories } from "@/utils/api-calls";
 import { getUserSession } from "@/utils/user";
 import { sections, categoryDesciptions } from "@/constants";
 import TopZone from "@/components/home/TopZone";
@@ -37,12 +37,9 @@ export default function CategoryPage(props) {
          <div className="mt-[100px]"></div>
          <HorizontalSection title={"Venture capital"} stories={storiesList} />
          {/* Last Read section */}
-         {/* which would be a variation of the horizontal section without the background, padding and no images */}
-         {/* Have to create a new API for that in the backend */}
-         {/* <div className="mt-[100px]"></div> */}
          <HorizontalSection
             title={"Last Read"}
-            stories={storiesList}
+            stories={props.lastReadStories}
             background={false}
          />
       </Layout>
@@ -53,5 +50,6 @@ export async function getServerSideProps(context) {
    const session = await getUserSession(context.req);
    const { category, slug } = context.query;
    const data = await getCategoryStories(category, slug, context.req, 18);
-   return { props: { category, slug, session, data } };
+   const lastReadStories = await getLastReadStories(context.req);
+   return { props: { category, slug, session, data, lastReadStories } };
 }

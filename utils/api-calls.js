@@ -34,3 +34,12 @@ export async function getCategoryStories(
    const data = await res.json();
    return data;
 }
+
+export async function getLastReadStories(req) {
+   const res = await fetch(`${backendUrl}/new/user/last-read/`, {
+      headers: createHeader(req),
+   });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}
