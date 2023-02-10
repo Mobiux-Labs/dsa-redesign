@@ -62,20 +62,20 @@ export default function Footer({}) {
                <div className="right">
                   <div className="social-icons flex gap-[25px]">
                      <img
-                        src="icons/linkedin.svg"
+                        src="/icons/linkedin.svg"
                         alt="LinkedIn"
                         height={14}
                         width={14}
                      />
-                     <img src="icons/twitter.svg" alt="LinkedIn" />
+                     <img src="/icons/twitter.svg" alt="LinkedIn" />
                      <img
-                        src="icons/facebook.svg"
+                        src="/icons/facebook.svg"
                         alt="LinkedIn"
                         height={14}
                         width={14}
                      />
                      <img
-                        src="icons/instagram.svg"
+                        src="/icons/instagram.svg"
                         alt="LinkedIn"
                         height={14}
                         width={14}

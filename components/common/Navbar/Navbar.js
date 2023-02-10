@@ -3,8 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSession, useModal } from "@/utils/context";
 import { logoutUser } from "@/utils/auth";
+import { useEffect, useLayoutEffect } from "react";
 
-export default function Navbar() {
+export default function Navbar({ intialSession }) {
    const [session, setSession] = useSession();
    const [modal, setModal] = useModal();
 
@@ -13,6 +14,10 @@ export default function Navbar() {
       if (!res) return;
       setSession(null);
    }
+
+   useEffect(() => {
+      setSession(intialSession);
+   }, [intialSession]);
 
    return (
       <div className="px-[120px] shadow-3xl flex items-center h-[80px] bg-white">
@@ -95,7 +100,7 @@ export default function Navbar() {
                   onClick={() => handleLogout()}
                >
                   <img
-                     src="icons/avatar.svg"
+                     src="/icons/avatar.svg"
                      alt="User"
                      className="block z-[10]"
                   />

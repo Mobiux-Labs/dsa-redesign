@@ -5,15 +5,15 @@ import SectionBar from "../Navbar/SectionBar";
 import LoginModal from "@/components/auth/LoginModal";
 import SignupModal from "@/components/auth/SignupModal";
 
-export default function Layout({ children, showSectionBar = true }) {
+export default function Layout({ children, showSectionBar = true, session }) {
    return (
       <>
          <LeaderboardAd />
          <div className="sticky top-0 z-[100]">
-            <Navbar />
+            <Navbar intialSession={session} />
          </div>
          {showSectionBar && <SectionBar />}
-         <div className="py-[66px] sm:px-30">{children}</div>
+         <div className="py-[40px]  ">{children}</div>
          <LoginModal />
          <SignupModal />
          <Footer />

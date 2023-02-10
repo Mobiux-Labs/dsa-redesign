@@ -67,11 +67,11 @@ export default function HorizontalSection({
          {/* Controller */}
          <div className="flex gap-[12px] absolute right-[120px] top-[100px]">
             <button onClick={() => swiperRef.current?.slidePrev()}>
-               <img src="icons/swipe-controller.svg" alt="Prev" />
+               <img src="/icons/swipe-controller.svg" alt="Prev" />
             </button>
             <button onClick={() => swiperRef.current?.slideNext()}>
                <img
-                  src="icons/swipe-controller.svg"
+                  src="/icons/swipe-controller.svg"
                   className="transform rotate-180"
                   alt="Prev"
                />

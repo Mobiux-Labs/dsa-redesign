@@ -19,9 +19,9 @@ export default function Home(props) {
       setSession(props.session);
    }, []);
    return (
-      <Layout>
+      <Layout session={props.session}>
          <div className="px-[120px]">
-            <TopZone headlines={props.data} />
+            <TopZone stories={props.data} />
             <div className="mt-[100px]"></div>
             <HomePageSection
                stories={props?.data["venture-capital"]}

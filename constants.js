@@ -95,13 +95,6 @@ export const sections = [
    },
 ];
 
-export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-export const username = process.env.NEXT_PUBLIC_USERNAME;
-export const password = process.env.NEXT_PUBLIC_PASSWORD;
-export const wpApiUrl = process.env.NEXT_PUBLIC_WP_API;
-export const backendUrl = process.env.NEXT_PUBLIC_BACKEND_API;
-export const siteKey = process.env.NEXT_PUBLIC_SITE_KEY;
-
 export const newsletters = {
    data_vantage: {
       name: "Data Vantage",
@@ -127,4 +120,29 @@ export const newsletters = {
       description:
          "You are reading the web version of The Week That Was, a Sunday newsletter in which our editors recap the most significant developments from the past seven days. You can subscribe to it by filling out your email address below",
    },
+};
+
+export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+export const username = process.env.NEXT_PUBLIC_USERNAME;
+export const password = process.env.NEXT_PUBLIC_PASSWORD;
+export const wpApiUrl = process.env.NEXT_PUBLIC_WP_API;
+export const backendUrl = process.env.NEXT_PUBLIC_BACKEND_API;
+export const siteKey = process.env.NEXT_PUBLIC_SITE_KEY;
+
+// Description should be at-least 150 characters
+export const categoryDesciptions = {
+   "private-equity":
+      "Private equity news, deals, analysis and more from DealStreetAsia",
+   "venture-capital":
+      "Venture capital news, deals, analysis and more from DealStreetAsia",
+   unicorns: "Unicorns news, deals, analysis and more from DealStreetAsia",
+   "q-a": "Q & A news, deals, analysis and more from DealStreetAsia",
+   "deal-investment":
+      "Deals news, deals, analysis and more from DealStreetAsia",
+   ipos: "IPOs and Markets news, deals, analysis and more from DealStreetAsia",
+   analysis: "Analysis news, deals, analysis and more from DealStreetAsia",
+   opinion: "Opinion news, deals, analysis and more from DealStreetAsia",
+   "policy-and-regulations":
+      "Policy and Regulations news, deals, analysis and more from DealStreetAsia",
+   people: "People news, deals, analysis and more from DealStreetAsia",
 };

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getTrendingStories } from "@/utils/api-calls";
 import StoryCard from "@/components/common/Content/StoryCard";
 import StoryCardSkeleton from "@/components/skeletons/StoryCardSkeleton";
+import { NextSeo } from "next-seo";
 
 export default function Custom404(props) {
    const [session, setSession] = useSession();
@@ -19,13 +20,18 @@ export default function Custom404(props) {
       return stories;
    }
 
-   useEffect(async () => {
+   async function setSessionAndTrendingStories() {
       setSession(await fetchUserSession());
       setTrendingStories(await fetchTrendingStories());
+   }
+
+   useEffect(() => {
+      setSessionAndTrendingStories();
    }, []);
 
    return (
       <Layout showSectionBar={false}>
+         <NextSeo title="Page Not Found" />
          <h1 className="text-darkblue font-bold text-4xl text-center">
             Oops, we couldn't find that page
          </h1>

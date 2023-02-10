@@ -123,7 +123,7 @@ function SectionButton({
          className="cursor-pointer h-full flex items-center justify-center flex-col"
          onClick={() => handleCategoryClick()}
       >
-         <img src={`icons/${imgSrc}`} alt={name} className="h-[16px]" />
+         <img src={`/icons/${imgSrc}`} alt={name} className="h-[16px]" />
          <span
             className={`mr-[8px] mt-[12px] whitespace-nowrap ${
                isFavourite ? "text-blue" : ""

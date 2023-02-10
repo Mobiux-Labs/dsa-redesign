@@ -5,16 +5,13 @@ import CategoryBadge from "../common/Content/CategoryBadge";
 import MainStoryCard from "../common/Content/MainStoryCard";
 import StoryCard from "../common/Content/StoryCard";
 
-export default function TopZone({ headlines }) {
+export default function TopZone({ stories }) {
    return (
       <div className="grid grid-cols-4">
          {/* Left section with the top stories */}
-         <LeftSection headlines={headlines.headlines} />
+         <LeftSection headlines={stories.stories} />
          {/* Right section with justin/trending stories and sidebar */}
-         <RightSection
-            justin={headlines.just_in}
-            trending={headlines.trending}
-         />
+         <RightSection justin={stories.just_in} trending={stories.trending} />
       </div>
    );
 }

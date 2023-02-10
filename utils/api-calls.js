@@ -19,3 +19,17 @@ export async function getTrendingStories() {
    const data = await res.json();
    return data;
 }
+
+export async function getCategoryStories(
+   category,
+   slug,
+   req,
+   numberOfPosts = 9,
+   page = 1
+) {
+   const fetchUrl = `${wpApiUrl}/post/list/?taxonomy_type=${category}&taxonomy=${slug}&numberposts=${numberOfPosts}&page=${page}`;
+   const res = await fetch(fetchUrl, { headers: createHeader(req) });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}
