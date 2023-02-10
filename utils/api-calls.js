@@ -27,7 +27,8 @@ export async function getCategoryStories(
    numberOfPosts = 9,
    page = 1
 ) {
-   const fetchUrl = `${wpApiUrl}/post/list/?taxonomy_type=${category}&taxonomy=${slug}&numberposts=${numberOfPosts}&page=${page}`;
+   const wpUrl = req ? wpApiUrl : wpApiUrl.replace(baseUrl, "");
+   const fetchUrl = `${wpUrl}/post/list/?taxonomy_type=${category}&taxonomy=${slug}&numberposts=${numberOfPosts}&page=${page}`;
    const res = await fetch(fetchUrl, { headers: createHeader(req) });
    if (!res.ok) return null;
    const data = await res.json();

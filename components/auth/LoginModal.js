@@ -50,16 +50,16 @@ function SocialMediaLinks() {
          </p>
          <div className="icons flex gap-[15px] justify-center">
             <div className="icon h-[40px] w-[40px] bg-darkblue rounded-full grid place-items-center cursor-pointer">
-               <img src="icons/google.svg" alt="G" />
+               <img src="/icons/google.svg" alt="G" />
             </div>
             <div className="icon h-[40px] w-[40px] bg-darkblue rounded-full grid place-items-center cursor-pointer">
-               <img src="icons/twitter-white.svg" alt="T" />
+               <img src="/icons/twitter-white.svg" alt="T" />
             </div>
             <div className="icon h-[40px] w-[40px] bg-darkblue rounded-full grid place-items-center cursor-pointer">
-               <img src="icons/facebook-white.svg" alt="F" />
+               <img src="/icons/facebook-white.svg" alt="F" />
             </div>
             <div className="icon h-[40px] w-[40px] bg-darkblue rounded-full grid place-items-center cursor-pointer">
-               <img src="icons/linkedin-white.svg" alt="LI" />
+               <img src="/icons/linkedin-white.svg" alt="LI" />
             </div>
          </div>
       </div>
@@ -131,7 +131,7 @@ function InputForm({ setModal }) {
             type="submit"
             className={`text-white bg-blue ${
                loading ? "bg-gray" : "bg-blue"
-            } font-medium py-[11px] px-[30px] rounded-sm mt-[40px] mb-[40px]`}
+            }f font-medium py-[11px] px-[30px] rounded-sm mt-[40px] mb-[40px]`}
          >
             Login
          </button>
@@ -147,7 +147,7 @@ function CloseButton({ setModal }) {
          className="cursor-pointer absolute z-[101] right-[80px] top-[80px]"
          onClick={() => setModal()}
       >
-         <img src="icons/close.svg" alt="close" />
+         <img src="/icons/close.svg" alt="close" />
       </div>
    );
 }

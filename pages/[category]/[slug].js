@@ -27,10 +27,18 @@ export default function CategoryPage(props) {
             </div>
             <CarouselBanner />
          </section>
-         <LoadMoreStoriesSection title={title} storiesList={storiesList} />
+         <LoadMoreStoriesSection
+            title={title}
+            storiesList={storiesList}
+            category={props.category}
+            slug={props.slug}
+         />
          {/* Popular reads and you might also like */}
          <div className="mt-[100px]"></div>
          <HorizontalSection title={"Venture capital"} stories={storiesList} />
+         {/* Last Read section */}
+         {/* which would be a variation of the horizontal section without the background, padding and no images */}
+         {/* Have to create a new API for that in the backend */}
       </Layout>
    );
 }
