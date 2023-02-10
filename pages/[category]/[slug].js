@@ -39,6 +39,12 @@ export default function CategoryPage(props) {
          {/* Last Read section */}
          {/* which would be a variation of the horizontal section without the background, padding and no images */}
          {/* Have to create a new API for that in the backend */}
+         {/* <div className="mt-[100px]"></div> */}
+         <HorizontalSection
+            title={"Last Read"}
+            stories={storiesList}
+            background={false}
+         />
       </Layout>
    );
 }

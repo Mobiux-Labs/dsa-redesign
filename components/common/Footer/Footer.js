@@ -6,7 +6,7 @@ export default function Footer({}) {
    const currentYear = new Date().getFullYear();
    return (
       <>
-         <div className="top-section text-center w-full bg-darkblue mt-[100px] pt-[40px] pb-[45px]">
+         <div className="top-section text-center w-full bg-darkblue pt-[40px] pb-[45px]">
             <div className="container mx-auto">
                <p className={"uppercase text-lg text-white"}>
                   Unrivaled analysis & powerful stories

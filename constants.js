@@ -93,6 +93,13 @@ export const sections = [
       link: "/section/e-commerce",
       icon: "e-commerce.svg",
    },
+   {
+      title: "India",
+      slug: "india",
+      zone: "homepage-block-india",
+      link: "/countries/india",
+      icon: "",
+   },
 ];
 
 export const newsletters = {
@@ -145,4 +152,6 @@ export const categoryDesciptions = {
    "policy-and-regulations":
       "Policy and Regulations news, deals, analysis and more from DealStreetAsia",
    people: "People news, deals, analysis and more from DealStreetAsia",
+   india: "India news, deals, analysis and more from DealStreetAsia",
+   china: "China news, deals, analysis and more from DealStreetAsia",
 };

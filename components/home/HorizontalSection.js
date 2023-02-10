@@ -14,17 +14,22 @@ export default function HorizontalSection({
    stories,
    title,
    imageOnEveryStory = false,
+   background = true,
 }) {
    const swiperRef = useRef(null);
    const [compactTheme] = useCompactTheme();
    useEffect(() => {}, []);
    return (
       <div
-         className={`bg-blue relative ${
+         className={`${background ? "bg-blue" : "bg-white"} relative ${
             compactTheme ? "pt-60 pb-80" : "pt-[88px] pb-[116px]"
          }`}
       >
-         <h2 className=" px-[120px] mb-[45px] text-3xl font-bold text-white capitalize">
+         <h2
+            className={`px-[120px] mb-[45px] text-3xl font-bold ${
+               background ? "text-white" : "text-heading"
+            } capitalize`}
+         >
             {title}{" "}
          </h2>
          {/* Stories track */}
@@ -57,7 +62,7 @@ export default function HorizontalSection({
                            }}
                            story={story}
                            withExcerpt={false}
-                           whiteText
+                           whiteText={background ? true : false}
                         />
                      </div>
                   </div>
@@ -67,11 +72,18 @@ export default function HorizontalSection({
          {/* Controller */}
          <div className="flex gap-[12px] absolute right-[120px] top-[100px]">
             <button onClick={() => swiperRef.current?.slidePrev()}>
-               <img src="/icons/swipe-controller.svg" alt="Prev" />
+               <img
+                  src={`/icons/${
+                     background ? "swipe-controller" : "arrow-blue"
+                  }.svg`}
+                  alt="Prev"
+               />
             </button>
             <button onClick={() => swiperRef.current?.slideNext()}>
                <img
-                  src="/icons/swipe-controller.svg"
+                  src={`/icons/${
+                     background ? "swipe-controller" : "arrow-blue"
+                  }.svg`}
                   className="transform rotate-180"
                   alt="Prev"
                />
