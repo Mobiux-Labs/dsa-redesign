@@ -1,5 +1,10 @@
 import { Modal } from "@mantine/core";
-import { useModal } from "@/utils/context";
+import { useModal, useSession } from "@/utils/context";
+import Recaptcha from "react-google-invisible-recaptcha";
+import { useState } from "react";
+import { siteKey } from "@/constants";
+import { signupUser } from "@/utils/auth";
+import { getUserSession } from "@/utils/user";
 
 export default function SignupModal({}) {
    const [modal, setModal] = useModal();
@@ -15,14 +20,14 @@ export default function SignupModal({}) {
             zIndex={100}
             closeOnClickOutside={false}
          >
-            <div className="py-30 px-50 text-center">
+            <div className="py-30 px-50 text-center overflow-hidden">
                <h3 className="font-bold text-2xl text-heading">
                   Create your account
                </h3>
                <SocialMediaLinks />
-               <div class="inline-flex items-center justify-center w-full mb-[25px]">
-                  <hr class="w-full h-[1px] bg-lightgray border-0 rounded dark:bg-gray-700" />
-                  <div class="absolute px-[5px] -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
+               <div className="inline-flex items-center justify-center w-full mb-[25px]">
+                  <hr className="w-full h-[1px] bg-lightgray border-0 rounded dark:bg-gray-700" />
+                  <div className="absolute px-[5px] -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
                      <p className="text-sm text-smalltext">or join via email</p>
                   </div>
                </div>
@@ -59,31 +64,118 @@ function SocialMediaLinks() {
 }
 
 function InputForm({ setModal }) {
+   const [captchaResolved, setCaptchaResolved] = useState(false);
+   const [recaptchaObj, setRecaptcha] = useState(null);
+   const [email, setEmail] = useState("");
+   const [password, setPassword] = useState("");
+   const [name, setName] = useState("");
+   const [confirmPassword, setConfirmPassword] = useState("");
+   const [preference, setPreference] = useState(false);
+   const [tosAgreement, setTosAgreement] = useState(false);
+   const [loading, setLoading] = useState(false);
+   const [session, setSession] = useSession();
+   const [error, setError] = useState({
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      tosAgreement: "",
+   });
+
+   async function handleSubmit(e) {
+      setLoading(true);
+      e.preventDefault();
+      if (validateForm()) {
+         recaptchaObj.execute();
+         const res = await signupUser(
+            name,
+            email,
+            password,
+            preference,
+            tosAgreement,
+            recaptchaObj.getResponse()
+         );
+         if (!res || !res.status) {
+            console.log(res);
+            setLoading(false);
+            return;
+         }
+         console.log(res);
+         const userSession = await getUserSession();
+         setSession(userSession);
+         setModal();
+      } else {
+         console.log("Form not submitted");
+         console.log(error);
+      }
+      setLoading(false);
+   }
+
+   const validateForm = () => {
+      let nameValid = /^[a-zA-Z]+$/.test(name);
+      let emailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+         email
+      );
+      let passwordValid = password.length >= 8 && password === confirmPassword;
+      if (!nameValid) {
+         setError((prev) => ({
+            ...prev,
+            name: "Name must contain only alphabets",
+         }));
+      }
+      if (!emailValid) {
+         setError((prev) => ({
+            ...prev,
+            email: "Please enter a valid email",
+         }));
+      }
+      if (!passwordValid) {
+         setError((prev) => ({
+            ...prev,
+            password: "Password must be atleast 8 characters",
+            confirmPassword: "Passwords don't match",
+         }));
+      }
+      if (!tosAgreement) {
+         setError((prev) => ({
+            ...prev,
+            tosAgreement: "Please agree to the terms and conditions",
+         }));
+      }
+      return nameValid && emailValid && passwordValid && tosAgreement;
+   };
+
    return (
-      <form className="w-full">
+      <form className="w-full" onSubmit={(e) => handleSubmit(e)}>
          <input
             type="text"
             placeholder="Full Name"
             required
-            className="w-full mb-20 rounded-md border-1 border-solid border-r-[1px] border-smalltext py-[14px] px-[15px] placeholder:text-smalltext bg-inputbg"
+            className="w-full mb-20 rounded-md border-1 border-solid border-r-[1px] border-smalltext py-[14px] px-[15px] placeholder:text-smalltext bg-inputbg focus:ring-0 focus:border-smalltext "
+            onChange={(e) => setName(e.target.value)}
          />
          <input
             type="email"
             placeholder="Email ID"
             required
-            className="w-full mb-20 rounded-md border-1 border-solid border-r-[1px] border-smalltext py-[14px] px-[15px] placeholder:text-smalltext bg-inputbg"
+            className="w-full mb-20 rounded-md border-1 border-solid border-r-[1px] border-smalltext py-[14px] px-[15px] placeholder:text-smalltext bg-inputbg focus:ring-0 focus:border-smalltext "
+            onChange={(e) => setEmail(e.target.value)}
          />
          <input
             type="password"
             placeholder="Create Password"
             required
-            className="w-full mb-20 rounded-md border-1 border-solid border-r-[1px] border-smalltext py-[14px] px-[15px] placeholder:text-smalltext bg-inputbg"
+            autoComplete="new-password"
+            className="w-full mb-20 rounded-md border-1 border-solid border-r-[1px] border-smalltext py-[14px] px-[15px] placeholder:text-smalltext bg-inputbg focus:ring-0 focus:border-smalltext "
+            onChange={(e) => setPassword(e.target.value)}
          />
          <input
             type="password"
             placeholder="Re-type Password"
             required
-            className="w-full rounded-md border-1 border-solid border-r-[1px] border-smalltext py-[14px] px-[15px] placeholder:text-smalltext bg-inputbg"
+            autoComplete="new-password"
+            className="w-full rounded-md border-1 border-solid border-r-[1px] border-smalltext py-[14px] px-[15px] placeholder:text-smalltext bg-inputbg focus:ring-0 focus:border-smalltext "
+            onChange={(e) => setConfirmPassword(e.target.value)}
          />
          <div className="mt-10 flex justify-between">
             <p className="text-smalltext text-sm text-left">
@@ -96,28 +188,30 @@ function InputForm({ setModal }) {
                </span>
             </p>
          </div>
-         <div class="flex items-center mt-40">
+         <div className="flex items-center mt-40">
             <input
                id="red-checkbox"
                type="checkbox"
-               class="w-[14px] h-[14px] text-blue bg-gray-100 border-content rounded focus:ring-blue focus:ring-1 dark:bg-gray-700 dark:border-gray-600"
+               className="w-[14px] h-[14px] text-blue bg-gray-100 border-content rounded focus:ring-blue focus:ring-1 dark:bg-gray-700 dark:border-gray-600"
+               onChange={(e) => setPreference(e.target.checked)}
             />
             <label
                for="newsletter-checkbox"
-               class="text-sm text-smalltext ml-[6px]"
+               className="text-sm text-smalltext ml-[6px]"
             >
                Signup for newsletters & latest updates on email
             </label>
          </div>
-         <div class="flex items-center mt-[15px]">
+         <div className="flex items-center mt-[15px]">
             <input
                id="red-checkbox"
                type="checkbox"
-               class="w-[14px] h-[14px] text-blue bg-gray-100 border-content rounded focus:ring-blue focus:ring-1 dark:bg-gray-700 dark:border-gray-600"
+               className="w-[14px] h-[14px] text-blue bg-gray-100 border-content rounded focus:ring-blue focus:ring-1 dark:bg-gray-700 dark:border-gray-600"
+               onChange={(e) => setTosAgreement(e.target.checked)}
             />
             <label
                for="newsletter-checkbox"
-               class="text-sm text-smalltext ml-[6px]"
+               className="text-sm text-smalltext ml-[6px]"
             >
                I have read and I accept the{" "}
                <span className="text-blue cursor-pointer">
@@ -126,11 +220,22 @@ function InputForm({ setModal }) {
             </label>
          </div>
          <button
+            disabled={loading}
             type="submit"
-            className="bg-blue text-white font-medium py-[11px] px-[30px] rounded-sm mt-[40px]"
+            className={`text-white bg-blue ${
+               loading ? "bg-gray" : "bg-blue"
+            } font-medium py-[11px] px-[30px] rounded-sm mt-[40px] mb-[40px]`}
          >
             Create Account
          </button>
+         {/* Recaptcha */}
+         <Recaptcha
+            ref={(ref) => setRecaptcha(ref)}
+            sitekey={siteKey}
+            onResolved={() => setCaptchaResolved(true)}
+            onError={() => console.log("recaptcha error")}
+            onExpired={() => recaptchaObj.reset()}
+         />
       </form>
    );
 }

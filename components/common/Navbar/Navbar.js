@@ -2,10 +2,18 @@ import { logoUrl } from "@/constants";
 import Link from "next/link";
 import Image from "next/image";
 import { useSession, useModal } from "@/utils/context";
+import { logoutUser } from "@/utils/auth";
 
 export default function Navbar() {
    const [session, setSession] = useSession();
    const [modal, setModal] = useModal();
+
+   async function handleLogout() {
+      const res = await logoutUser();
+      if (!res) return;
+      setSession(null);
+   }
+
    return (
       <div className="px-[120px] shadow-3xl flex items-center h-[80px] bg-white">
          <div className="logo mr-[30px]">
@@ -81,13 +89,17 @@ export default function Navbar() {
                   Login
                </Link>
             ) : (
-               <Link href={""} className={"h-[18px] w-[18px] mx-[15px]"}>
+               <div
+                  href={""}
+                  className={"h-[18px] w-[18px] mx-[15px] cursor-pointer"}
+                  onClick={() => handleLogout()}
+               >
                   <img
                      src="icons/avatar.svg"
                      alt="User"
                      className="block z-[10]"
                   />
-               </Link>
+               </div>
             )}
             {/* Show subscribe button only if user is not subscribed */}
             {!session?.subscribed ? (

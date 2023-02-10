@@ -100,6 +100,7 @@ export const username = process.env.NEXT_PUBLIC_USERNAME;
 export const password = process.env.NEXT_PUBLIC_PASSWORD;
 export const wpApiUrl = process.env.NEXT_PUBLIC_WP_API;
 export const backendUrl = process.env.NEXT_PUBLIC_BACKEND_API;
+export const siteKey = process.env.NEXT_PUBLIC_SITE_KEY;
 
 export const newsletters = {
    data_vantage: {

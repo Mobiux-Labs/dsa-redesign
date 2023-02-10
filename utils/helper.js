@@ -17,6 +17,7 @@ export const removeUndefined = (obj) => {
 };
 
 export const getUniqueFavourites = (favourites) => {
+   if (!favourites) return [];
    let constantSections = [
       "people",
       "unicorns",
@@ -34,3 +35,17 @@ export const getTitleFromSlug = (slug) => {
    let section = sections.find((section) => section.slug === slug);
    return section.title;
 };
+
+export function parseFullName(fullName) {
+   const names = fullName.split(" ");
+   if (names.length >= 2) {
+      const firstName = names[0];
+      let lastName = names[names.length - 1];
+      const middleName = names.slice(1, names.length - 1).join(" ");
+      // combine last name and middle name
+      if (middleName) lastName = `${middleName} ${lastName}`;
+      return { firstName, lastName };
+   } else {
+      return { firstName: fullName, lastName: "" };
+   }
+}
