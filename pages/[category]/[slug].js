@@ -12,7 +12,6 @@ export default function CategoryPage(props) {
    const stories = props.data;
    const title = sections.find((section) => section.slug === props.slug).title;
    const storiesList = props.data?.stories?.slice(9, 18);
-   console.log(storiesList);
    return (
       <Layout session={props.session}>
          <section className="px-[120px]">

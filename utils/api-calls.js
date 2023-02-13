@@ -5,7 +5,6 @@ export async function getHomePageHeadlines(req) {
    const res = await fetch(`${backendUrl}/new/posts/home/`, {
       headers: createHeader(req),
    });
-   console.log(res.status);
    if (!res.ok) return null;
    const data = await res.json();
    return data;
@@ -41,5 +40,16 @@ export async function getLastReadStories(req) {
    });
    if (!res.ok) return null;
    const data = await res.json();
+   return data;
+}
+
+export async function getFullStoryData(req, id, uri) {
+   const url = `${wpApiUrl}/story?id=${id}&uri=${uri}`;
+   const res = await fetch(url, { headers: createHeader(req) });
+   console.log("Fetching status code: ", res.status);
+   if (!res.ok) return null;
+   if (!res.status === 200) return null;
+   const data = await res.json();
+   if (!data?.id) return null;
    return data;
 }

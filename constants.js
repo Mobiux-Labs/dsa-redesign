@@ -155,3 +155,8 @@ export const categoryDesciptions = {
    india: "India news, deals, analysis and more from DealStreetAsia",
    china: "China news, deals, analysis and more from DealStreetAsia",
 };
+
+// Rdeirect to 404 from getServerSideProps
+export const redirectTo404 = {
+   notFound: true,
+};

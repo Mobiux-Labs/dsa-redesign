@@ -11,6 +11,9 @@ export default function StoryCard({
    partnerLogo,
    whiteText = false,
    contentStyles = {},
+   imagePosition = "top",
+   customImageHeight,
+   customImageWidth,
 }) {
    const authors = story?.authors;
    const timeToRead = story?.time_to_read;
@@ -31,18 +34,36 @@ export default function StoryCard({
       sm: 147,
    };
 
+   const imageHeight = customImageHeight
+      ? customImageHeight
+      : heightSizes[imageSize];
+   const imageWidth = customImageWidth
+      ? customImageWidth
+      : widthSizes[imageSize];
+
    return (
-      <div className="content flex flex-col justify-between h-fit items-stretch w-full">
+      <div
+         className={`content flex justify-between h-fit items-stretch w-full ${
+            imagePosition == "right" ? "flex-row-reverse" : "flex-col"
+         }`}
+      >
          {/* Image */}
          {withImage ? (
-            <Link href={trimUrl(story?.post_url)}>
-               <div className="mb-[15px]">
+            <Link
+               href={trimUrl(story?.post_url)}
+               className={` ${imagePosition == "right" ? "ml-[60px]" : ""}`}
+            >
+               <div className={`mb-[15px]`}>
                   <Image
                      src={story?.image_url}
                      alt={story?.post_title}
-                     height={heightSizes[imageSize]}
-                     width={widthSizes[imageSize]}
-                     className="rounded-md h-[90px]"
+                     height={imageHeight}
+                     width={imageWidth}
+                     className={`rounded-md ${
+                        customImageHeight
+                           ? `h-[${customImageHeight}px]`
+                           : `h-[90px]`
+                     }`}
                   />
                </div>
             </Link>
@@ -67,24 +88,25 @@ export default function StoryCard({
                   </p>
                ) : null}
             </Link>
-         </div>
-         {/* Bottom info Author, time ago and minutes read */}
-         <div
-            className={`${
-               whiteText ? "text-white" : "text-smalltext"
-            } text-sm mt-[5px]`}
-         >
-            <p>
-               <Link href={authors[0]?.data?.url}>
-                  <span className="text-capitalize hover:text-black">
-                     {authors[0]?.data?.display_name}
+
+            {/* Bottom info Author, time ago and minutes read */}
+            <div
+               className={`${
+                  whiteText ? "text-white" : "text-smalltext"
+               } text-sm mt-[5px]`}
+            >
+               <p>
+                  <Link href={authors[0]?.data?.url}>
+                     <span className="text-capitalize hover:text-black">
+                        {authors[0]?.data?.display_name}
+                     </span>
+                  </Link>{" "}
+                  | <span>{getTimeAgo(story?.post_date)}</span> |{" "}
+                  <span>
+                     {timeToRead} {timeToRead == 1 ? "min" : "mins"} read
                   </span>
-               </Link>{" "}
-               | <span>{getTimeAgo(story?.post_date)}</span> |{" "}
-               <span>
-                  {timeToRead} {timeToRead == 1 ? "min" : "mins"} read
-               </span>
-            </p>
+               </p>
+            </div>
          </div>
       </div>
    );

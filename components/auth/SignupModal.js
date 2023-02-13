@@ -96,11 +96,9 @@ function InputForm({ setModal }) {
             recaptchaObj.getResponse()
          );
          if (!res || !res.status) {
-            console.log(res);
             setLoading(false);
             return;
          }
-         console.log(res);
          const userSession = await getUserSession();
          setSession(userSession);
          setModal();

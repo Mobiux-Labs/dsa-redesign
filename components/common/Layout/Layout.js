@@ -5,10 +5,15 @@ import SectionBar from "../Navbar/SectionBar";
 import LoginModal from "@/components/auth/LoginModal";
 import SignupModal from "@/components/auth/SignupModal";
 
-export default function Layout({ children, showSectionBar = true, session }) {
+export default function Layout({
+   children,
+   showSectionBar = true,
+   session,
+   withLeaderBoardAd = true,
+}) {
    return (
       <>
-         <LeaderboardAd />
+         {withLeaderBoardAd ? <LeaderboardAd /> : null}
          <div className="sticky top-0 z-[100]">
             <Navbar intialSession={session} />
          </div>

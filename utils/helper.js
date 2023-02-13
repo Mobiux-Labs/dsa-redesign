@@ -49,3 +49,10 @@ export function parseFullName(fullName) {
       return { firstName: fullName, lastName: "" };
    }
 }
+
+export function separateSlugId(uri) {
+   let separatorIndex = uri.lastIndexOf("-");
+   let slug = uri.slice(0, separatorIndex);
+   let id = uri.slice(separatorIndex + 1);
+   return [slug, id];
+}
