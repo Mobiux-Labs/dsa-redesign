@@ -73,3 +73,16 @@ export async function anonymousStoriesViewed(req) {
    return res["story_ids"].length;
    return 0;
 }
+
+export async function setStoryViews(uri, premiumContent, researchContent) {
+   uri = `/stories/${uri}`;
+   let res = await fetch(`/subs/`, {
+      headers: { "Content-type": "application/x-www-form-urlencoded" },
+      method: "POST",
+      body: JSON.stringify({ uri, premiumContent, researchContent }),
+   });
+   if (!res.ok) return null;
+   // let cookies = res.headers.get("Set-cookie");
+   // res.headers.set("Set-cookie", cookies + "Domain=.dealstreetasia.com;");
+   return res;
+}

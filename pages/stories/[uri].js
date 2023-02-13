@@ -1,7 +1,11 @@
 import Layout from "@/components/common/Layout/Layout";
 import { getUserSession } from "@/utils/user";
 import { separateSlugId, getTimeAgo } from "@/utils/helper";
-import { getFullStoryData, getLastReadStories } from "@/utils/api-calls";
+import {
+   getFullStoryData,
+   getLastReadStories,
+   setStoryViews,
+} from "@/utils/api-calls";
 import { redirectTo404 } from "@/constants";
 import LeaderboardAd from "@/components/common/Ads/Leaderboard";
 import CategoryBadge from "@/components/common/Content/CategoryBadge";
@@ -24,9 +28,11 @@ import Blocker from "@/components/story/Blocker";
 export default function StoryPage(props) {
    const story = props.storyData;
    const hasRelatedStories = story?.related_stories?.length > 0;
+   const restricted = props.contentRestrictions;
 
    useEffect(() => {
       addTablePressFeatures();
+      restricted && setStoryViews(props.uri, story.premium, story.research);
    }, []);
 
    return (
@@ -79,7 +85,7 @@ export default function StoryPage(props) {
             <PopularReads stories={story?.trending} />
          </div>
          {/* Last read */}
-         {props.lastReadStories?.lenght > 0 ? (
+         {props.lastReadStories?.length > 0 ? (
             <HorizontalSection
                stories={props.lastReadStories}
                title="Last Read"
@@ -126,7 +132,7 @@ export async function getServerSideProps(context) {
          storyData,
          session,
          lastReadStories,
-         showBlocker: contentRestrictions.restricted,
+         contentRestrictions,
       },
    };
 }

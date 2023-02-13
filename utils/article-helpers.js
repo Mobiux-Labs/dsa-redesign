@@ -103,16 +103,16 @@ function getPosition(string, subString, index) {
 }
 
 export function getContentRestrictions(story, session, req) {
-   let isResearch = story.research;
-   let isPremium = story.premium;
+   let isResearch = story?.research;
+   let isPremium = story?.premium;
    let isFree = !isResearch && !isPremium;
    console.log("isResearch: ", isResearch);
    console.log("isPremium: ", isPremium);
    console.log("isFree: ", isFree);
-   console.log("session: ", session);
    if (isResearch) return researchContentRestrictions(session, req);
    if (isPremium) return premiumContentRestrictions(session, req);
    if (isFree) return freeContentRestrictions(session, req);
+   return { restricted: true, message: "" };
 }
 
 async function researchContentRestrictions(session, req) {
