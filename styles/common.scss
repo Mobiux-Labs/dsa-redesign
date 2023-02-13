@@ -1,0 +1,110 @@
+.tablepress-expand-button {
+   display: none;
+}
+
+//TABLEPRESS STYLING FOR IT'S FILTERS
+table.tablepress {
+   margin-bottom: 2rem !important;
+}
+.dataTables_length,
+.dataTables_filter,
+.dataTables_info,
+.dataTables_paginate {
+   font-size: 1rem;
+   font-family: "Mate";
+   width: fit-content;
+}
+
+.dataTables_paginate {
+   margin-bottom: 1rem;
+
+   span {
+      display: none;
+   }
+
+   & > a {
+      padding: 0 !important;
+   }
+}
+
+.paginate_button.next,
+.paginate_button.previous {
+   font-size: 18.75px;
+   font-weight: 700;
+   position: relative;
+}
+
+.paginate_button.next:hover,
+.paginate_button.previous:hover {
+   background: grey !important;
+   border: none !important;
+   color: black !important;
+}
+
+.paginate_button.next::before,
+.paginate_button.previous::before {
+   position: absolute;
+   top: 0%;
+}
+
+.paginate_button.next::before {
+   content: "\203A";
+   right: -10px;
+}
+
+.paginate_button.previous::before {
+   content: "\2039";
+   left: -10px;
+}
+
+table.dataTable.no-footer {
+   border-bottom: 0;
+}
+
+button.expand-table-button {
+   margin-block: 8px;
+   padding: 4px 8px;
+   font-size: 14px;
+   font-family: "Mate";
+   font-weight: 700;
+   border: none;
+   background-color: #1c70b6;
+   color: white;
+   border-radius: 3px;
+   display: block;
+   margin-left: auto;
+}
+
+.expanded-table-wrapper {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   z-index: 10000;
+   background-color: white;
+   padding: 1rem;
+
+   & > div,
+   & > table {
+      height: 90vh;
+      overflow: scroll;
+      overflow-x: hidden;
+   }
+}
+
+.close-button {
+   margin-block: 8px;
+   padding: 4px 8px;
+   font-size: 14px;
+   font-family: "Mate";
+   font-weight: 700;
+   border: none;
+   background-color: #1c70b6;
+   color: white;
+   border-radius: 3px;
+   display: block;
+   margin-left: auto;
+   margin-right: 1rem;
+   display: none;
+}

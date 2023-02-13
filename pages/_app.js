@@ -1,5 +1,6 @@
 import { logoUrl } from "@/constants";
 import "@/styles/globals.css";
+import "@/styles/common.scss";
 import { useState } from "react";
 import { ThemeContext, SessionContext, ModalContext } from "@/utils/context";
 import { DefaultSeo } from "next-seo";

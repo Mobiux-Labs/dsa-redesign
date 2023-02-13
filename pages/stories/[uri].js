@@ -12,11 +12,18 @@ import AuthorInfo from "@/components/story/AuthorInfo";
 import ShareIcons from "@/components/story/ShareIcons";
 import FromFavourites from "@/components/story/FromFavourites";
 import PopularReads from "@/components/story/PopularReads";
+import { useEffect } from "react";
+import { addTablePressFeatures } from "@/utils/misc";
 
 export default function StoryPage(props) {
    console.table(props.storyData);
    const story = props.storyData;
    const hasRelatedStories = story?.related_stories?.length > 0;
+
+   useEffect(() => {
+      addTablePressFeatures();
+   }, []);
+
    return (
       <Layout session={props.session} withLeaderBoardAd={false}>
          <div className="w-[800px] mx-auto">
@@ -45,7 +52,6 @@ export default function StoryPage(props) {
                height={488}
             />
             {/* Content */}
-            {/* dangerously insert into a div */}
             <div
                className="font-serif font-medium text-content leading-[28px]"
                dangerouslySetInnerHTML={{ __html: story?.content }}
