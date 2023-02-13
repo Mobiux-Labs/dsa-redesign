@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function AuthorInfo({ story }) {
    return (
-      <div className="text-smalltext text-sm mt-[5px]">
+      <div className="text-smalltext text-sm mt-[5px] bg-white">
          <p>
             <Link href={story?.authors[0]?.data?.url}>
                <span className="text-capitalize hover:text-black">

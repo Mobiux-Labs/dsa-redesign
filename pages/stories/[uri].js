@@ -11,10 +11,12 @@ import HorizontalSection from "@/components/home/HorizontalSection";
 import AuthorInfo from "@/components/story/AuthorInfo";
 import ShareIcons from "@/components/story/ShareIcons";
 import FromFavourites from "@/components/story/FromFavourites";
+import PopularReads from "@/components/story/PopularReads";
 
 export default function StoryPage(props) {
    console.table(props.storyData);
    const story = props.storyData;
+   const hasRelatedStories = story?.related_stories?.length > 0;
    return (
       <Layout session={props.session} withLeaderBoardAd={false}>
          <div className="w-[800px] mx-auto">
@@ -27,12 +29,12 @@ export default function StoryPage(props) {
                {story?.post_title}
             </h1>
             {/* Author info and the share icons */}
-            <div className="flex justify-between mt-[20px] items-center">
+            <div className="flex justify-between py-[20px] items-center sticky bg-white top-[80px]">
                <AuthorInfo story={story} />
                <ShareIcons story={story} />
             </div>
             {/* Excerpt */}
-            <p className="font-serif font-medium mt-[20px] leading-[28px] text-content">
+            <p className="font-serif font-medium leading-[28px] text-content">
                {story?.post_excerpt}
             </p>
             {/* Image */}
@@ -50,15 +52,18 @@ export default function StoryPage(props) {
             />
             <hr className="my-[80px] border-t-1 border-gray" />
             {/* Related stories */}
-            <RelatedStories stories={story?.related_stories} />
+            {hasRelatedStories ? (
+               <RelatedStories stories={story?.related_stories} />
+            ) : null}
             {/* Advertisement */}
             <div className="mt-[80px]">
                <LeaderboardAd withoutPadding />
             </div>
          </div>
          {/* Favourites and popular reads */}
-         <div className="flex px-[120px] my-[100px]">
-            <FromFavourites stories={story?.related_stories} />
+         <div className="flex  px-[120px] my-[100px]">
+            <FromFavourites stories={story?.trending} />
+            <PopularReads stories={story?.trending} />
          </div>
          {/* Last read */}
          {props.lastReadStories?.lenght > 0 ? (

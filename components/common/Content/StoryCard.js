@@ -53,17 +53,15 @@ export default function StoryCard({
                href={trimUrl(story?.post_url)}
                className={` ${imagePosition == "right" ? "ml-[60px]" : ""}`}
             >
-               <div className={`mb-[15px]`}>
+               <div className={`mb-[15px] h-[120px]`}>
                   <Image
                      src={story?.image_url}
                      alt={story?.post_title}
                      height={imageHeight}
                      width={imageWidth}
                      className={`rounded-md ${
-                        customImageHeight
-                           ? `h-[${customImageHeight}px]`
-                           : `h-[90px]`
-                     }`}
+                        customImageHeight ? "h-[120px] w-[160px] max-w-fit" : ""
+                     } object-cover`}
                   />
                </div>
             </Link>
@@ -75,17 +73,15 @@ export default function StoryCard({
                   className={`${
                      whiteText ? "text-white" : "text-heading"
                   } font-bold text-2xl my-[5px] w-full`}
-               >
-                  {story?.post_title}
-               </h2>
+                  dangerouslySetInnerHTML={{ __html: story?.post_title }}
+               ></h2>
                {withExcerpt ? (
                   <p
                      className={`${
                         whiteText ? "text-white" : "text-content"
                      } font-serif text-lg text-content`}
-                  >
-                     {story?.post_excerpt}
-                  </p>
+                     dangerouslySetInnerHTML={{ __html: story?.post_excerpt }}
+                  ></p>
                ) : null}
             </Link>
 

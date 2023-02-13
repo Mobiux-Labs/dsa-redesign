@@ -86,13 +86,12 @@ export default function Navbar({ intialSession }) {
          <div className="flex items-center">
             {/* Show login button if not loggedin */}
             {!session?.loggedIn ? (
-               <Link
-                  href=""
+               <a
                   className="mx-[25px] text-blue font-semibold"
                   onClick={() => setModal("login")}
                >
                   Login
-               </Link>
+               </a>
             ) : (
                <div
                   href={""}
