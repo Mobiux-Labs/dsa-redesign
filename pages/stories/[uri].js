@@ -13,7 +13,8 @@ import ShareIcons from "@/components/story/ShareIcons";
 import FromFavourites from "@/components/story/FromFavourites";
 import PopularReads from "@/components/story/PopularReads";
 import { useEffect } from "react";
-import { addTablePressFeatures } from "@/utils/misc";
+import { addTablePressFeatures, getMiniContent } from "@/utils/article-helpers";
+import Blocker from "@/components/story/Blocker";
 
 export default function StoryPage(props) {
    console.table(props.storyData);
@@ -56,6 +57,8 @@ export default function StoryPage(props) {
                className="font-serif font-medium text-content leading-[28px]"
                dangerouslySetInnerHTML={{ __html: story?.content }}
             />
+            {/* Blocker if applicable */}
+            {props.showBlocker ? <Blocker /> : null}
             <hr className="my-[80px] border-t-1 border-gray" />
             {/* Related stories */}
             {hasRelatedStories ? (
@@ -92,6 +95,11 @@ export async function getServerSideProps(context) {
    if (!storyData) return redirectTo404;
 
    const lastReadStories = await getLastReadStories(context.req);
+   // If use ris not logged in, replace the contents from story data with the mini content
+   // NOTE: FOR testing only, needs a lot more checks
+   const miniContent = getMiniContent(storyData?.content);
+   storyData.content = miniContent;
+   const showBlocker = true;
 
    return {
       props: {
@@ -99,6 +107,7 @@ export async function getServerSideProps(context) {
          storyData,
          session,
          lastReadStories,
+         showBlocker,
       },
    };
 }

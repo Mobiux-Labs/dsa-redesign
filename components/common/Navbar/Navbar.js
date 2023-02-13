@@ -87,7 +87,7 @@ export default function Navbar({ intialSession }) {
             {/* Show login button if not loggedin */}
             {!session?.loggedIn ? (
                <a
-                  className="mx-[25px] text-blue font-semibold"
+                  className="mx-[25px] text-blue font-semibold cursor-pointer"
                   onClick={() => setModal("login")}
                >
                   Login

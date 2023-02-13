@@ -78,3 +78,22 @@ const addExpandTableButton = (tableId) => {
    tableWrapper.parentNode.insertBefore(expandedTableWrapper, tableWrapper);
    expandedTableWrapper.appendChild(tableWrapper);
 };
+
+export function getMiniContent(fullContent) {
+   let totalContentLength = fullContent.length;
+   let moreTagPos = getPosition(fullContent, '<span id="more-', 1);
+   if (moreTagPos === totalContentLength) {
+      let newPos = getPosition(fullContent, "<!--more-->", 1);
+      if (newPos === totalContentLength) {
+         let secondParagraphEndingPos = getPosition(fullContent, "</p>", 2);
+         return fullContent.slice(0, secondParagraphEndingPos + 4);
+      } else {
+         return fullContent.slice(0, newPos + "<!--more-->".length);
+      }
+   }
+   return fullContent.slice(0, moreTagPos + '<span id="more-'.length);
+}
+
+function getPosition(string, subString, index) {
+   return string.split(subString, index).join(subString).length;
+}
