@@ -53,3 +53,23 @@ export async function getFullStoryData(req, id, uri) {
    if (!data?.id) return null;
    return data;
 }
+
+export async function storiesRead(req, storyType) {
+   let res = await fetch(`${baseUrl}/subs/usage/?story_type=${storyType}`, {
+      headers: createHeader(req),
+   });
+   if (!res.ok) return null;
+   res = await res.json();
+   return res.stories.length;
+}
+
+export async function anonymousStoriesViewed(req) {
+   let res = await fetch(`${baseUrl}/subs/usage/30/`, {
+      headers: createHeader(),
+   });
+   if (!res.ok) return null;
+   res = await res.json();
+   console.log("anonymous stories read: ", res);
+   return res["story_ids"].length;
+   return 0;
+}

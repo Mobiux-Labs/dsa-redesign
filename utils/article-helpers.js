@@ -1,3 +1,7 @@
+import { baseUrl } from "@/constants";
+import { anonymousStoriesViewed, storiesRead } from "./api-calls";
+import { createHeader } from "./network";
+
 export async function addTablePressFeatures() {
    const tables = document.querySelectorAll(".tablepress");
    if (tables.length > 0) {
@@ -96,4 +100,58 @@ export function getMiniContent(fullContent) {
 
 function getPosition(string, subString, index) {
    return string.split(subString, index).join(subString).length;
+}
+
+export function getContentRestrictions(story, session, req) {
+   let isResearch = story.research;
+   let isPremium = story.premium;
+   let isFree = !isResearch && !isPremium;
+   console.log("isResearch: ", isResearch);
+   console.log("isPremium: ", isPremium);
+   console.log("isFree: ", isFree);
+   console.log("session: ", session);
+   if (isResearch) return researchContentRestrictions(session, req);
+   if (isPremium) return premiumContentRestrictions(session, req);
+   if (isFree) return freeContentRestrictions(session, req);
+}
+
+async function researchContentRestrictions(session, req) {
+   if (!session.loggedIn) return { restricted: true, message: "" };
+   if (session.subscribed && session.plan.includes("Research"))
+      return { restricted: false, message: "" };
+   let researchStoriesRead = await storiesRead(req, "research");
+   // A user subscribed to a non-research plan can read 1 research story-per-month
+   if (researchStoriesRead >= 1) return { restricted: true, message: "" };
+   return { restricted: false, message: "One research story left this month" };
+}
+
+async function premiumContentRestrictions(session, req) {
+   if (!session.loggedIn) return { restricted: true, message: "" };
+   if (session.subscribed) return { restricted: false, message: "" };
+   let premiumStoriesRead = await storiesRead(req, "premium");
+   // A non subsscribed(loggedin) user can only view 1 premium story per month
+   if (premiumStoriesRead >= 1) return { restricted: true, message: "" };
+   return { restricted: false, message: "One premium story left this month" };
+}
+
+async function freeContentRestrictions(session, req) {
+   if (session.loggedIn) return { restricted: false, message: "" };
+   let freeStoriesRead = await anonymousStoriesViewed(req);
+   console.log("freeStoriesRead: ", freeStoriesRead);
+   // A non logged in user can only view 3 free stories per month
+   if (freeStoriesRead >= 3) return { restricted: true, message: "" };
+   // Show a banner to show the user has only 3 free stories left
+   return { restricted: false, message: "Three free stories left this month" };
+}
+
+export async function validateGiftKey(key, storyId, req) {
+   let body = { articleId: storyId, giftKey: key };
+   let res = await fetch(`${baseUrl}/subs/check-link-validity`, {
+      headers: createHeader(req),
+      method: "POST",
+      body: JSON.stringify(body),
+   });
+   if (!res.ok) return;
+   let data = await res.json();
+   return data?.valid;
 }

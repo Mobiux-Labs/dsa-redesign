@@ -23,9 +23,9 @@ export default function LoginModal({}) {
                   Login to your account
                </h3>
                <SocialMediaLinks />
-               <div class="inline-flex items-center justify-center w-full mb-[25px]">
-                  <hr class="w-full h-[1px] bg-lightgray border-0 rounded dark:bg-gray-700" />
-                  <div class="absolute px-[5px] -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
+               <div className="inline-flex items-center justify-center w-full mb-[25px]">
+                  <hr className="w-full h-[1px] bg-lightgray border-0 rounded dark:bg-gray-700" />
+                  <div className="absolute px-[5px] -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
                      <p className="text-sm text-smalltext">
                         or login via email
                      </p>

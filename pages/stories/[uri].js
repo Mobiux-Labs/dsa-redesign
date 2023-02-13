@@ -13,11 +13,15 @@ import ShareIcons from "@/components/story/ShareIcons";
 import FromFavourites from "@/components/story/FromFavourites";
 import PopularReads from "@/components/story/PopularReads";
 import { useEffect } from "react";
-import { addTablePressFeatures, getMiniContent } from "@/utils/article-helpers";
+import {
+   addTablePressFeatures,
+   getContentRestrictions,
+   getMiniContent,
+   validateGiftKey,
+} from "@/utils/article-helpers";
 import Blocker from "@/components/story/Blocker";
 
 export default function StoryPage(props) {
-   console.table(props.storyData);
    const story = props.storyData;
    const hasRelatedStories = story?.related_stories?.length > 0;
 
@@ -90,16 +94,31 @@ export async function getServerSideProps(context) {
    const { uri } = context.query;
    const session = await getUserSession(context.req);
    const [slug, id] = separateSlugId(uri);
+   const { giftKey } = context.query;
 
    const storyData = await getFullStoryData(context.req, id, uri);
    if (!storyData) return redirectTo404;
-
    const lastReadStories = await getLastReadStories(context.req);
-   // If use ris not logged in, replace the contents from story data with the mini content
-   // NOTE: FOR testing only, needs a lot more checks
-   const miniContent = getMiniContent(storyData?.content);
-   storyData.content = miniContent;
-   const showBlocker = true;
+   let contentRestrictions = await getContentRestrictions(
+      storyData,
+      session,
+      context.res
+   );
+   console.log(contentRestrictions);
+
+   // If the content is restricted due to any reason but there is a gift key, then validate it
+   if (contentRestrictions.restricted && giftKey) {
+      const validGiftKey = await validateGiftKey(
+         giftKey,
+         storyData.id,
+         context.req
+      );
+      if (validGiftKey) contentRestrictions.restricted = false;
+   }
+
+   if (contentRestrictions.restricted)
+      storyData.content = getMiniContent(storyData.content);
+   storyData.content = `<article>${storyData.content}</article>`;
 
    return {
       props: {
@@ -107,7 +126,7 @@ export async function getServerSideProps(context) {
          storyData,
          session,
          lastReadStories,
-         showBlocker,
+         showBlocker: contentRestrictions.restricted,
       },
    };
 }
