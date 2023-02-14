@@ -28,7 +28,6 @@ export default function NewsletetrEdition(props) {
 export async function getServerSideProps(context) {
    const session = await getUserSession(context.req);
    const slug = context.params.slug;
-   console.log(slug);
    const newsletter = newsletters[slug];
    if (!newsletter) return redirectTo404;
    const newsletterData = await getNewsletterEdition(

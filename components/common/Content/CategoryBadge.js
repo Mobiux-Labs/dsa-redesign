@@ -13,7 +13,7 @@ export default function CategoryBadge({ category, greyed = false, logo }) {
                   height={12}
                   width={42}
                   alt=""
-                  className="object-contain"
+                  className="object-contain max-h-[12px]"
                />
             </span>
          ) : null}

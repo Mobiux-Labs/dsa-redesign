@@ -10,10 +10,9 @@ export async function getHomePageHeadlines(req) {
    return data;
 }
 
-export async function getTrendingStories() {
-   const res = await fetch(`${wpApiUrl.replace(baseUrl, "")}/trending/`, {
-      headers: createHeader(),
-   });
+export async function getTrendingStories(req) {
+   let url = `${req ? wpApiUrl : wpApiUrl.replace(baseUrl, "")}/trending/`;
+   const res = await fetch(url, { headers: createHeader(req) });
    if (!res.ok) return null;
    const data = await res.json();
    return data;
@@ -99,6 +98,20 @@ export async function getNewsletters(req, slug, page = 1) {
 
 export async function getNewsletterEdition(req, id) {
    let url = `${backendUrl}/newsletters/${id}/`;
+   const res = await fetch(url, { headers: createHeader(req) });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}
+
+export async function getPartnerContentStories(
+   req,
+   page = 1,
+   numberOfPosts = 9
+) {
+   const url = `${
+      req ? wpApiUrl : wpApiUrl.replace(baseUrl, "")
+   }/partner-content/list/?page=${page}&numberposts=${numberOfPosts}`;
    const res = await fetch(url, { headers: createHeader(req) });
    if (!res.ok) return null;
    const data = await res.json();

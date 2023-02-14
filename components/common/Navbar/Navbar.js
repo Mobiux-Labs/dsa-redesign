@@ -4,10 +4,12 @@ import Image from "next/image";
 import { useSession, useModal } from "@/utils/context";
 import { logoutUser } from "@/utils/auth";
 import { useEffect, useLayoutEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function Navbar({ intialSession }) {
    const [session, setSession] = useSession();
    const [modal, setModal] = useModal();
+   const router = useRouter();
 
    async function handleLogout() {
       const res = await logoutUser();
@@ -28,6 +30,8 @@ export default function Navbar({ intialSession }) {
                layout="contain"
                width={87}
                height={63}
+               onClick={() => router.push("/")}
+               className="cursor-pointer"
             />
             <Image
                src="https://media.dealstreetasia.com/uploads/2019/10/nikkei-group-transparent-logo.png"
@@ -47,7 +51,7 @@ export default function Navbar({ intialSession }) {
                   Data Vantage
                </Link>
                <Link
-                  href="data.dealstreetasia.com"
+                  href="/partner-content/"
                   className="mr-[35px] text-darkblue"
                >
                   Partner Content

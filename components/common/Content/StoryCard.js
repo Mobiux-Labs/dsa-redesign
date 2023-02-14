@@ -72,14 +72,14 @@ export default function StoryCard({
                <h2
                   className={`${
                      whiteText ? "text-white" : "text-heading"
-                  } font-bold text-2xl my-[5px] w-full`}
+                  } font-bold text-2xl my-[5px] w-full leading-[35px]`}
                   dangerouslySetInnerHTML={{ __html: story?.post_title }}
                ></h2>
                {withExcerpt ? (
                   <p
                      className={`${
                         whiteText ? "text-white" : "text-content"
-                     } font-serif text-lg text-content`}
+                     } font-serif text-lg text-content leading-[28px]`}
                      dangerouslySetInnerHTML={{ __html: story?.post_excerpt }}
                   ></p>
                ) : null}
@@ -89,7 +89,7 @@ export default function StoryCard({
             <div
                className={`${
                   whiteText ? "text-white" : "text-smalltext"
-               } text-sm mt-[5px]`}
+               } text-sm mt-[10px]`}
             >
                <p>
                   <Link href={authors[0]?.data?.url}>
