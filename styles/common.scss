@@ -108,3 +108,19 @@ button.expand-table-button {
    margin-right: 1rem;
    display: none;
 }
+
+// Content inside articles(story and partner content)
+.article-content {
+   img {
+      width: 100%;
+      margin-block: 1rem;
+      max-width: 100%;
+      height: auto;
+   }
+   p {
+      margin-bottom: 1rem;
+   }
+   a {
+      color: #1c70b6;
+   }
+}

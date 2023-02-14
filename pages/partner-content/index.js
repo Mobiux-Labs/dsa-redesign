@@ -8,8 +8,6 @@ import {
 } from "@/utils/api-calls";
 import { getUserSession } from "@/utils/user";
 import LoadMorePartnerContentStoriesSection from "@/components/partner-content/LoadMore";
-import FromFavourites from "@/components/story/FromFavourites";
-import PopularReads from "@/components/story/PopularReads";
 import HorizontalSection from "@/components/home/HorizontalSection";
 import PopularPartnerContentStories from "@/components/partner-content/PupularReads";
 import YouMightLike from "@/components/partner-content/MightLike";
@@ -36,7 +34,7 @@ export default function PartnerContentPage(props) {
                category={"partner-content"}
                slug={"partner-content"}
             />
-            {/* Favourites and popular reads */}
+            {/* Popular reads and You might also like section */}
             <div className="flex mt-[100px] mb-[22px]">
                <div className="border-r-[1px] border-gray pr-[20px]">
                   <PopularPartnerContentStories stories={props.stories} />

@@ -117,3 +117,11 @@ export async function getPartnerContentStories(
    const data = await res.json();
    return data;
 }
+
+export async function getPartnerContentStory(req, slug) {
+   const url = `${wpApiUrl}/partner-content/${slug}`;
+   const res = await fetch(url, { headers: createHeader(req) });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}
