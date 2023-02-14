@@ -96,3 +96,11 @@ export async function getNewsletters(req, slug, page = 1) {
    const data = await res.json();
    return data;
 }
+
+export async function getNewsletterEdition(req, id) {
+   let url = `${backendUrl}/newsletters/${id}/`;
+   const res = await fetch(url, { headers: createHeader(req) });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}

@@ -5,6 +5,7 @@ import { newsletters, redirectTo404 } from "@/constants";
 import { getNewsletters } from "@/utils/api-calls";
 import { formatDate } from "@/utils/helper";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 export default function NewsletterArchive(props) {
    const { newsletter, list: initialList } = props;
@@ -62,11 +63,13 @@ export default function NewsletterArchive(props) {
 }
 
 function Newsletter({ newsletter, hasBorder = true }) {
+   const router = useRouter();
    return (
       <div
          className={`py-[25px] flex justify-between cursor-pointer animate-fade-in ${
             hasBorder ? "border-b-[1px] border-gray" : ""
          }`}
+         onClick={() => router.push(`${router.asPath}/${newsletter.id}`)}
       >
          <h3 className="text-heading text-xl leading-[30px] font-bold">
             {newsletter?.subject}
