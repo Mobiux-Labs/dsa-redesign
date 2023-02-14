@@ -103,11 +103,11 @@ export const sections = [
 ];
 
 export const newsletters = {
-   daily_breif: {
+   daily_brief: {
       name: "The Daily Brief",
       slug: "daily_brief",
       description:
-         "Authored by Angus Mackintosh, this weekly newsletter highlights top developments and trends across Southeast Asia's digital economy and ecosystem, without losing sight of the solid links between the online and offline worlds.",
+         "All our headlines in a 24 hour cycle, covering the most significant developments in SE Asia, India, Greater China and the World, crunched into one neat email sent to you at the top of the morning. This is a daily newsletter, with the exception of a Sunday run.",
    },
    data_vantage: {
       name: "Data Vantage",
@@ -125,7 +125,7 @@ export const newsletters = {
       name: "Vantage Point",
       slug: "vantage_point",
       description:
-         "This is the web version of our Vantage Point newsletter. Authored by Angus Mackintosh, it highlights the top trends across SE Asia’s digital economy. Get this newsletter delivered to your inbox every Monday, by filling in your email address below.",
+         "Authored by Angus Mackintosh, this weekly newsletter highlights top developments and trends across Southeast Asia's digital economy and ecosystem, without losing sight of the solid links between the online and offline worlds.",
    },
 };
 

@@ -56,3 +56,7 @@ export function separateSlugId(uri) {
    let id = uri.slice(separatorIndex + 1);
    return [slug, id];
 }
+
+export function formatDate(date) {
+   return moment(date).format("DD MMM YYYY");
+}

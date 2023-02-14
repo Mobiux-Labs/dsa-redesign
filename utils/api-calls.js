@@ -86,3 +86,13 @@ export async function setStoryViews(uri, premiumContent, researchContent) {
    // res.headers.set("Set-cookie", cookies + "Domain=.dealstreetasia.com;");
    return res;
 }
+
+export async function getNewsletters(req, slug, page = 1) {
+   let url = `${
+      req ? backendUrl : backendUrl.replace(baseUrl, "")
+   }/new/newsletter/${slug}/${page}/`;
+   const res = await fetch(url, { headers: createHeader(req) });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}
