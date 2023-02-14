@@ -103,29 +103,29 @@ export const sections = [
 ];
 
 export const newsletters = {
+   daily_breif: {
+      name: "The Daily Brief",
+      slug: "daily_brief",
+      description:
+         "Authored by Angus Mackintosh, this weekly newsletter highlights top developments and trends across Southeast Asia's digital economy and ecosystem, without losing sight of the solid links between the online and offline worlds.",
+   },
    data_vantage: {
       name: "Data Vantage",
       slug: "data_vantage",
       description:
-         "This is a web version of our twice-weekly, data-led newsletter Data Vantage. You can subscribe to it by filling in your email address below.",
+         "A twice-weekly, data-led newsletter that will keep you abreast of the region’s constantly evolving markets and shed light on the most important and regionally relevant deal and investment developments through the expert lens of the DATA VANTAGE team.",
+   },
+   week_that_was: {
+      name: "The Week That Was",
+      slug: "week_that_was",
+      description:
+         "Our editors recap the most significant developments and perspectives that come to the fore after the closing of a week, and wind it into a single narrative fit for a one-glance consumption.",
    },
    vantage_point: {
       name: "Vantage Point",
       slug: "vantage_point",
       description:
          "This is the web version of our Vantage Point newsletter. Authored by Angus Mackintosh, it highlights the top trends across SE Asia’s digital economy. Get this newsletter delivered to your inbox every Monday, by filling in your email address below.",
-   },
-   // Daily brief is not operational yet
-   daily_breif: {
-      name: "Daily Brief",
-      slug: "daily_brief",
-      description: "",
-   },
-   week_that_was: {
-      name: "The Week That Was",
-      slug: "week_that_was",
-      description:
-         "You are reading the web version of The Week That Was, a Sunday newsletter in which our editors recap the most significant developments from the past seven days. You can subscribe to it by filling out your email address below",
    },
 };
 

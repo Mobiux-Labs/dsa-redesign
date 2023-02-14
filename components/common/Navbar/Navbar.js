@@ -64,10 +64,7 @@ export default function Navbar({ intialSession }) {
                >
                   Reports
                </Link>
-               <Link
-                  href="data.dealstreetasia.com"
-                  className="mr-[35px] text-darkblue"
-               >
+               <Link href="/newsletters" className="mr-[35px] text-darkblue">
                   Newsletters
                </Link>
             </div>
