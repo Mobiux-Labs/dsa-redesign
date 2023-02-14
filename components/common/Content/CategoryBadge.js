@@ -1,7 +1,7 @@
 export default function CategoryBadge({ category, greyed = false, logo }) {
    return greyed ? (
       <div
-         className="uppercase text-sm text-darkgray px-[5px] py-[3px] rounded-md w-fit bg-graybadgebg cursor-pointer hover:bg-blue"
+         className="uppercase text-sm text-darkgray px-[5px] py-[3px] rounded-md w-fit bg-graybadgebg cursor-pointer"
          dangerouslySetInnerHTML={{ __html: category?.title }}
       ></div>
    ) : (

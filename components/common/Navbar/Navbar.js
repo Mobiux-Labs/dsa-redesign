@@ -73,12 +73,14 @@ export default function Navbar({ intialSession }) {
                </Link>
             </div>
             <div className="search-icon">
-               <Image
-                  src="/icons/search.svg"
-                  alt="Search Icon"
-                  height={18}
-                  width={18}
-               />
+               <Link href="/search/">
+                  <Image
+                     src="/icons/search.svg"
+                     alt="Search Icon"
+                     height={18}
+                     width={18}
+                  />
+               </Link>
             </div>
          </div>
          {/* Divider */}

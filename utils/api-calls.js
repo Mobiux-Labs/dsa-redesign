@@ -125,3 +125,12 @@ export async function getPartnerContentStory(req, slug) {
    const data = await res.json();
    return data;
 }
+
+export const getSearchResults = async (req, query, page = 1, sortBy) => {
+   let baseUrl = `${req ? backendUrl : backendUrl.replace(baseUrl, "")}`;
+   let url = `${baseUrl}/es_search/?page=${page}&search_text=${query}&sort_by=${sortBy}`;
+   const res = await fetch(url, { headers: createHeader(req) });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+};
