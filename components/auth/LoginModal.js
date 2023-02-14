@@ -141,7 +141,7 @@ function InputForm({ setModal }) {
    );
 }
 
-function CloseButton({ setModal }) {
+export function CloseButton({ setModal }) {
    return (
       <div
          className="cursor-pointer absolute z-[101] right-[80px] top-[80px]"

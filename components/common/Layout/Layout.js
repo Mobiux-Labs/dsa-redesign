@@ -4,6 +4,7 @@ import Navbar from "../Navbar/Navbar";
 import SectionBar from "../Navbar/SectionBar";
 import LoginModal from "@/components/auth/LoginModal";
 import SignupModal from "@/components/auth/SignupModal";
+import UnSubscribeNlModal from "@/components/newsletter/UnSubscribeModal";
 
 export default function Layout({
    children,
@@ -21,6 +22,7 @@ export default function Layout({
          <div className="py-[40px]  ">{children}</div>
          <LoginModal />
          <SignupModal />
+         <UnSubscribeNlModal />
          <Footer />
       </>
    );

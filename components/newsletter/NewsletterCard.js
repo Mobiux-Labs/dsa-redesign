@@ -1,9 +1,17 @@
 import Link from "next/link";
+import { useModal } from "@/utils/context";
 
 export default function NewsletterCard({ newsletter, subscribed = false }) {
    let buttonText = subscribed ? "Subscribed" : "Subscribe";
    let subscribedBtnStyle = "bg-blue text-white";
    let unsubscribedBtnStyle = "bg-white text-blue border border-blue";
+   const [modal, setModal] = useModal();
+
+   function openUnSubscribeModal(name) {
+      if (!subscribed) return;
+      setModal(`unsubscribe_nl-${name}`);
+   }
+
    return (
       <div
          style={{ boxShadow: " 0px 4px 30px rgba(184, 183, 183, 0.2)" }}
@@ -18,6 +26,7 @@ export default function NewsletterCard({ newsletter, subscribed = false }) {
                className={`px-[10px] py-[6px] font-medium rounded-sm ${
                   subscribed ? subscribedBtnStyle : unsubscribedBtnStyle
                }`}
+               onClick={() => openUnSubscribeModal(newsletter?.name)}
             >
                {buttonText}
             </button>
@@ -29,7 +38,7 @@ export default function NewsletterCard({ newsletter, subscribed = false }) {
          {/* view past newsletetrs */}
          <Link
             href={`/newsletters/${newsletter?.slug}`}
-            className="text-blue font-semibold leading-[17px] mt-[20px] inline-block"
+            className="text-blue text-base font-semibold leading-[17px] mt-[20px] inline-block"
          >
             View Past Newsletters
          </Link>
