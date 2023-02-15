@@ -160,3 +160,20 @@ export const categoryDesciptions = {
 export const redirectTo404 = {
    notFound: true,
 };
+
+export const regions = [
+   { value: "asia", label: "Asia" },
+   { value: "india", label: "India" },
+   { value: "china", label: "China" },
+   { value: "southeast-asia", label: "Southeast Asia" },
+];
+
+export const categories = [
+   { value: "private-equity", label: "Private Equity" },
+   { value: "venture-capital", label: "Venture Capital" },
+   { value: "unicorns", label: "Unicorns" },
+   { value: "q-a", label: "Q & A" },
+   { value: "deal-investment", label: "Deals" },
+   { value: "ipos", label: "IPOs" },
+   { value: "analysis", label: "Analysis" },
+];

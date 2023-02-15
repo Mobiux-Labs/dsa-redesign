@@ -3,7 +3,6 @@ import Layout from "@/components/common/Layout/Layout";
 import { getSearchResults, getTermSuggestions } from "@/utils/api-calls";
 import { getUserSession } from "@/utils/user";
 import SearchInput from "@/components/search/Input";
-import SuggestedCategories from "@/components/search/SuggestedCategories";
 import { useState } from "react";
 
 export default function SearchPage(props) {
@@ -11,6 +10,8 @@ export default function SearchPage(props) {
    const [page, setPage] = useState(1);
    const [stories, setStories] = useState([]);
    const [loading, setLoading] = useState(false);
+   const showTitle = props.query.length == 0;
+   console.log(searchResult);
 
    async function fetchMoreStories() {
       setLoading(true);
@@ -27,11 +28,18 @@ export default function SearchPage(props) {
          <div className="w-[800px] mx-auto">
             <div className="sticky top-[80px] bg-white py-[40px]">
                <SearchInput initialValue={props.query} />
-               <SuggestedCategories />
             </div>
-            <h1 className="text-heading leading-[55px] font-bold text-3xl mb-[30px]">
-               Top Searches
-            </h1>
+            {showTitle && (
+               <h1 className="text-heading leading-[55px] font-bold text-3xl mb-[30px] animate-fade-in">
+                  Top Searches
+               </h1>
+            )}
+            {props.query.length > 0 ? (
+               <p className="text-[#B3B3B3] text-lg mb-[20px]">
+                  {searchResult?.total_results} search results for '
+                  {props.query}'
+               </p>
+            ) : null}
             <SearchResults
                stories={stories.length > 0 ? stories : searchResult?.stories}
             />
@@ -58,7 +66,7 @@ function LoadMoreButton({ onClick, loading }) {
    );
 }
 
-function SearchResults({ stories }) {
+function SearchResults({ stories, totalStories, query }) {
    return (
       <div className="mb-[60px] flex flex-col gap-[30px]">
          {stories?.map((story, index) => (

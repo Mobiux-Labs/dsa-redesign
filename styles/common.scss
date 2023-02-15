@@ -124,3 +124,16 @@ button.expand-table-button {
       color: #1c70b6;
    }
 }
+
+.mantine-select-dropdown {
+   input {
+      font-family: "Montserrat";
+      border-radius: 5px;
+      border: 1px solid #c8c8c8;
+      font-size: 14px;
+   }
+}
+
+.mantine-multiselect input {
+   display: none;
+}

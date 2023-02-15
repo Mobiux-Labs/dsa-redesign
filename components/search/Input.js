@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useDebouncedValue } from "@mantine/hooks";
 import { getTermSuggestions } from "@/utils/api-calls";
 import { useRouter } from "next/router";
+import SuggestedCategories from "./SuggestedCategories";
+import FiltersAndSorts from "./Filters";
 
 export default function SearchInput({ initialValue }) {
    const router = useRouter();
@@ -43,13 +45,15 @@ export default function SearchInput({ initialValue }) {
             styles={{
                input: {
                   fontFamily: "Montserrat",
-                  borderRadius: "0",
+                  borderRadius: "2px",
                   fontSize: "16px",
                   lineHeight: "19.5px",
                   border: "none",
                },
                wrapper: {
                   border: "1px solid #C8C8C8",
+                  borderRadius: "2px",
+                  overflow: "hidden",
                },
                item: {
                   fontFamily: "Montserrat",
@@ -75,6 +79,11 @@ export default function SearchInput({ initialValue }) {
             onSubmit={() => handleSearchSubmit(searchText)}
             onItemSubmit={(value) => handleSearchSubmit(value.value)}
          />
+         {debouncedSearchText.length <= 2 ? (
+            <SuggestedCategories />
+         ) : (
+            <FiltersAndSorts />
+         )}
       </div>
    );
 }
