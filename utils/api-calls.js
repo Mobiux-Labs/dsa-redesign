@@ -134,3 +134,12 @@ export const getSearchResults = async (req, query, page = 1, sortBy) => {
    const data = await res.json();
    return data;
 };
+
+export async function getTermSuggestions(query) {
+   let base = `${backendUrl.replace(baseUrl, "")}`;
+   let url = `${base}/es_search/terms/suggest/?suggest_term=${query}`;
+   const res = await fetch(url, { headers: createHeader() });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}

@@ -41,27 +41,53 @@ export default function StoryCard({
       ? customImageWidth
       : widthSizes[imageSize];
 
+   function getExcerpt(excerpt) {
+      if (excerpt?.length > 150) {
+         return excerpt?.substring(0, 150) + "...";
+      }
+      return excerpt;
+   }
+
    return (
       <div
          className={`content flex justify-between h-fit items-stretch w-full ${
-            imagePosition == "right" ? "flex-row-reverse" : "flex-col"
+            imagePosition == "right"
+               ? "flex-row-reverse"
+               : imagePosition == "left"
+               ? "flex-row"
+               : "flex-col"
          }`}
       >
          {/* Image */}
          {withImage ? (
             <Link
                href={trimUrl(story?.post_url)}
-               className={` ${imagePosition == "right" ? "ml-[60px]" : ""}`}
+               className={` ${
+                  imagePosition == "right"
+                     ? "ml-[60px]"
+                     : imagePosition == "left"
+                     ? "mr-[20px]"
+                     : ""
+               }`}
             >
-               <div className={`mb-[15px] h-[120px]`}>
+               <div
+                  className={`${
+                     imagePosition == "right" ? "mb-[15px]" : ""
+                  } max-w-full`}
+               >
                   <Image
                      src={story?.image_url}
                      alt={story?.post_title}
                      height={imageHeight}
                      width={imageWidth}
-                     className={`rounded-md ${
-                        customImageHeight ? "h-[120px] w-[160px] max-w-fit" : ""
-                     } object-cover`}
+                     className={`rounded-md object-center object-cover ${
+                        imagePosition == "right" ? "max-w-fit" : ""
+                     }`}
+                     style={{
+                        height: imageHeight,
+                        width: imageWidth,
+                        minWidth: imageWidth,
+                     }}
                   />
                </div>
             </Link>
@@ -80,7 +106,9 @@ export default function StoryCard({
                      className={`${
                         whiteText ? "text-white" : "text-content"
                      } font-serif text-lg text-content leading-[28px]`}
-                     dangerouslySetInnerHTML={{ __html: story?.post_excerpt }}
+                     dangerouslySetInnerHTML={{
+                        __html: getExcerpt(story?.post_excerpt),
+                     }}
                   ></p>
                ) : null}
             </Link>
@@ -92,7 +120,9 @@ export default function StoryCard({
                } text-sm mt-[10px]`}
             >
                <p>
-                  <Link href={authors[0]?.data?.url}>
+                  <Link
+                     href={authors[0]?.data?.url ? authors[0]?.data?.url : ""}
+                  >
                      <span className="text-capitalize hover:text-black">
                         {authors[0]?.data?.display_name}
                      </span>
