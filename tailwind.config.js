@@ -71,6 +71,7 @@ module.exports = {
       fontFamily: {
          sans: ["Montserrat", "sans-serif"],
          serif: ["Mate", "serif"],
+         outfit: ["Outfit", "sans-serif"],
       },
       fontSize: {
          sm: "12px",
