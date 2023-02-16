@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { sections } from "@/constants";
+import { Icon, sections } from "@/constants";
 import { createHeader } from "@/utils/network";
 import { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { useCompactTheme, useSession } from "@/utils/context";
 import { fetcher } from "@/utils/helper";
+import LocationIcon from "@/public/icons/search.svg";
 
 export default function SectionBar({}) {
    const swiperRef = useRef(null);
@@ -63,7 +64,10 @@ export default function SectionBar({}) {
 function RegionSelector({}) {
    return (
       <div className="cursor-pointer flex flex-col mr-[45px] ml-[20px]">
-         <img src={`icons/location.svg`} alt="" className="h-[16px]" />
+         {/* <img src={Icon} alt="" className="h-[16px]" /> */}
+         <div className="mx-auto">
+            <Icon color={"#000"} name="location" />
+         </div>
          <div className="flex items-center mt-[12px]">
             <button
                id="dropdownDefaultButton"
