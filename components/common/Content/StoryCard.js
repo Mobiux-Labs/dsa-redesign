@@ -54,7 +54,7 @@ export default function StoryCard({
             imagePosition == "right"
                ? "flex-row-reverse"
                : imagePosition == "left"
-               ? "flex-row"
+               ? "flex-row justify-start"
                : "flex-col"
          }`}
       >

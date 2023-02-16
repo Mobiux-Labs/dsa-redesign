@@ -162,7 +162,7 @@ export const redirectTo404 = {
 };
 
 export const regions = [
-   { value: "asia", label: "Asia" },
+   { value: "world", label: "World" },
    { value: "india", label: "India" },
    { value: "china", label: "China" },
    { value: "southeast-asia", label: "Southeast Asia" },

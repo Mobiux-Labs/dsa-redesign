@@ -5,6 +5,7 @@ import { useSession, useModal } from "@/utils/context";
 import { logoutUser } from "@/utils/auth";
 import { useEffect, useLayoutEffect } from "react";
 import { useRouter } from "next/router";
+import SearchIcon from "@/public/icons/search.svg";
 
 export default function Navbar({ intialSession }) {
    const [session, setSession] = useSession();
@@ -75,7 +76,7 @@ export default function Navbar({ intialSession }) {
             <div className="search-icon">
                <Link href="/search/">
                   <Image
-                     src="/icons/search.svg"
+                     src={SearchIcon}
                      alt="Search Icon"
                      height={18}
                      width={18}

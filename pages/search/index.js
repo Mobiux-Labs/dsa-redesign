@@ -11,7 +11,6 @@ export default function SearchPage(props) {
    const [stories, setStories] = useState([]);
    const [loading, setLoading] = useState(false);
    const showTitle = props.query.length == 0;
-   console.log(searchResult);
 
    async function fetchMoreStories() {
       setLoading(true);

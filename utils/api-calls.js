@@ -7,6 +7,8 @@ export async function getHomePageHeadlines(req) {
    });
    if (!res.ok) return null;
    const data = await res.json();
+   console.log(data);
+   console.log(res.status);
    return data;
 }
 
@@ -126,9 +128,18 @@ export async function getPartnerContentStory(req, slug) {
    return data;
 }
 
-export const getSearchResults = async (req, query, page = 1, sortBy) => {
+export const getSearchResults = async (
+   req,
+   query,
+   page = 1,
+   sortBy,
+   countries,
+   sections
+) => {
    let base = `${req ? backendUrl : backendUrl.replace(baseUrl, "")}`;
-   let url = `${base}/es_search/?page=${page}&search_text=${query}&sort_by=${sortBy}`;
+   if (countries) countries = countries.join(",");
+   if (sections) sections = sections.join(",");
+   let url = `${base}/es_search/?page=${page}&search_text=${query}&sort_by=${sortBy}&countries=${countries}&sections=${sections}`;
    const res = await fetch(url, { headers: createHeader(req) });
    if (!res.ok) return null;
    const data = await res.json();
