@@ -26,7 +26,12 @@ export default function SearchPage(props) {
       <Layout session={props.session} showSectionBar={false}>
          <div className="w-[800px] mx-auto">
             <div className="sticky top-[80px] bg-white py-[40px]">
-               <SearchInput initialValue={props.query} />
+               <SearchInput
+                  initialValue={props.query}
+                  countries={props.countries}
+                  sections={props.sections}
+                  sortBy={props.sortBy}
+               />
             </div>
             {showTitle && (
                <h1 className="text-heading leading-[55px] font-bold text-3xl mb-[30px] animate-fade-in">
@@ -86,6 +91,19 @@ function SearchResults({ stories, totalStories, query }) {
 export async function getServerSideProps(context) {
    const session = await getUserSession(context.req);
    const query = context.query.s || "";
-   const searchResult = await getSearchResults(context.req, query, 1, "recent");
+   let sections = context.query.sections || "";
+   let countries = context.query.countries || "";
+   const sortBy = context.query.sortBy || "recent";
+   sections = sections.split(",");
+   countries = countries.split(",");
+   console.log(sections, countries, sortBy);
+   const searchResult = await getSearchResults(
+      context.req,
+      query,
+      1,
+      sortBy,
+      countries,
+      sections
+   );
    return { props: { session, searchResult, query } };
 }

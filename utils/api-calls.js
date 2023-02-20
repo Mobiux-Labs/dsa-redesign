@@ -138,7 +138,9 @@ export const getSearchResults = async (
    let base = `${req ? backendUrl : backendUrl.replace(baseUrl, "")}`;
    if (countries) countries = countries.join(",");
    if (sections) sections = sections.join(",");
-   let url = `${base}/es_search/?page=${page}&search_text=${query}&sort_by=${sortBy}&countries=${countries}&sections=${sections}`;
+   let url = `${base}/es_search/?page=${page}&search_text=${query}&sort_by=${sortBy}`;
+   if (countries) url += `&countries=${countries}`;
+   if (sections) url += `&sections=${sections}`;
    const res = await fetch(url, { headers: createHeader(req) });
    if (!res.ok) return null;
    const data = await res.json();

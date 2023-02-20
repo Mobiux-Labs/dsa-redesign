@@ -60,3 +60,9 @@ export function separateSlugId(uri) {
 export function formatDate(date) {
    return moment(date).format("DD MMM YYYY");
 }
+
+export function removeElementFromArray(arr, elem) {
+   const index = arr.indexOf(elem);
+   if (index > -1) arr.splice(index, 1);
+   return arr;
+}

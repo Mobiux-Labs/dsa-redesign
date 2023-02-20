@@ -155,20 +155,64 @@ export const redirectTo404 = {
 };
 
 export const regions = [
-   { value: "world", label: "World" },
+   { value: "Singapore", label: "Singapore" },
    { value: "india", label: "India" },
-   { value: "china", label: "China" },
-   { value: "southeast-asia", label: "Southeast Asia" },
+   { value: "china-hk", label: "Greater China" },
+   { value: "indonesia", label: "Indonesia" },
+   { value: "malaysia", label: "Malaysia" },
+   { value: "myanmar", label: "Myanmar" },
+   { value: "rest-of-asia", label: "Rest of Asia" },
+   { value: "philippines", label: "Philippines" },
+   { value: "southeast-asia", label: "Southaast Asia" },
+   { value: "thailand", label: "Thailand" },
+   { value: "vietnam", label: "Vietnam" },
+   { value: "international", label: "World" },
 ];
 
 export const categories = [
-   { value: "private-equity", label: "Private Equity" },
-   { value: "venture-capital", label: "Venture Capital" },
-   { value: "unicorns", label: "Unicorns" },
-   { value: "q-a", label: "Q & A" },
-   { value: "deal-investment", label: "Deals" },
-   { value: "ipos", label: "IPOs" },
-   { value: "analysis", label: "Analysis" },
+   { value: "private-equity", label: "Private Equity", type: "section" },
+   { value: "venture-capital", label: "Venture Capital", type: "section" },
+   { value: "q-a", label: "Q & A", type: "section" },
+   {
+      value: "policy-and-regulations",
+      label: "Policy and Regulations",
+      type: "section",
+   },
+   { value: "people", label: "People", type: "section" },
+   { value: "opinion", label: "Opinion", type: "section" },
+   { value: "ipos", label: "IPOs and Markets", type: "section" },
+   {
+      value: "indonesia-pe-vc-summit-2022",
+      label: "Indonesia PE-VC Summit 2022",
+      type: "section",
+   },
+   {
+      value: "indonesia-pe-vc-summit-2021",
+      label: "Indonesia PE-VC Summit 2021",
+      type: "section",
+   },
+   { value: "deal-investment", label: "Deals", type: "section" },
+   { value: "covid-19-ripple", label: "COVID-19", type: "section" },
+   { value: "analysis", label: "Analysis", type: "section" },
+   { value: "consumer-and-brands", label: "Consumer & Brands", type: "sector" },
+   {
+      value: "ecommerce-consumer-internet",
+      label: "E-Commerce & Internet Economy",
+      type: "sector",
+   },
+   { value: "financial-services", label: "Financial Services", type: "sector" },
+   {
+      value: "Not available	real-estate-and-infrastructure",
+      label: "Real Estate & Infrastructure",
+      type: "sector",
+   },
+   { value: "technology", label: "Technology", type: "sector" },
+   { value: "deal-monitors", label: "Deal Monitors", type: "story-section" },
+   {
+      value: "data-led-stories",
+      label: "Data-Led Stories",
+      type: "story-section",
+   },
 ];
 
 export const Icon = ({ name, color }) => {

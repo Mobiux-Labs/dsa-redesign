@@ -7,7 +7,12 @@ import SuggestedCategories from "./SuggestedCategories";
 import FiltersAndSorts from "./Filters";
 import CustomIcon from "@/utils/icon-mapping";
 
-export default function SearchInput({ initialValue }) {
+export default function SearchInput({
+   initialValue,
+   countries,
+   sections,
+   sortBy,
+}) {
    const router = useRouter();
    const [searchText, setSearchText] = useState(initialValue || "");
    const [debouncedSearchText, setDebouncedSearchText] = useDebouncedValue(
@@ -70,14 +75,7 @@ export default function SearchInput({ initialValue }) {
             value={searchText}
             data={suggestions}
             onChange={handleChange}
-            rightSection={
-               <CustomIcon
-                  name="search"
-                  color={"#000"}
-                  height={20}
-                  width={20}
-               />
-            }
+            rightSection={<CustomIcon name="search" color={"#8D8D8D"} />}
             onKeyDownCapture={(e) => {
                if (e.key === "Enter") {
                   e.preventDefault();
@@ -90,7 +88,11 @@ export default function SearchInput({ initialValue }) {
          {debouncedSearchText.length <= 2 ? (
             <SuggestedCategories />
          ) : (
-            <FiltersAndSorts />
+            <FiltersAndSorts
+               initialCountries={countries}
+               initialSections={sections}
+               initialSortBy={sortBy}
+            />
          )}
       </div>
    );
