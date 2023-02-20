@@ -119,6 +119,11 @@ export default function FiltersAndSorts({
             initialOptions.push(storySection);
          });
       }
+      console.log("initialOptions", initialOptions);
+      console.log("initialSortBy", initialSortBy);
+      console.log("initialSectors", initialSectors);
+      console.log("initialStorySections", initialStorySections);
+      console.log("initialSections", initialSections);
       setSelectedOptions(initialOptions);
    }, []);
 

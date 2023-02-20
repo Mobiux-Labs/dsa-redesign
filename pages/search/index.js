@@ -93,16 +93,15 @@ function SearchResults({ stories, totalStories, query }) {
 export async function getServerSideProps(context) {
    const session = await getUserSession(context.req);
    const query = context.query.s || "";
-   let sections = context.query.sections || "";
-   let countries = context.query.countries || "";
-   let sectors = context.query.sectors || "";
-   let storySections = context.query.storySections || "";
+   let sections = context.query.sections || null;
+   let countries = context.query.countries || null;
+   let sectors = context.query.sectors || null;
+   let storySections = context.query.storySections || null;
    const sortBy = context.query.sortBy || "recent";
-   sections = sections.split(",");
-   countries = countries.split(",");
-   sectors = sectors.split(",");
-   storySections = storySections.split(",");
-   console.log(sections, countries, sortBy);
+   sections = sections?.split(",") || null;
+   countries = countries?.split(",") || null;
+   sectors = sectors?.split(",") || null;
+   storySections = storySections?.split(",") || null;
    const searchResult = await getSearchResults(
       context.req,
       query,
