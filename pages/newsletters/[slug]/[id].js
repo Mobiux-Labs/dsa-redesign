@@ -5,7 +5,6 @@ import { getNewsletterEdition } from "@/utils/api-calls";
 
 export default function NewsletetrEdition(props) {
    const { newsletter, newsletterData: data } = props;
-   console.log(data);
    return (
       <Layout session={props.session}>
          <div className="w-[800px] mx-auto">

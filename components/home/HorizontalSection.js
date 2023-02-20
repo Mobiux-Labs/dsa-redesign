@@ -9,6 +9,7 @@ import { Navigation } from "swiper";
 import StoryCard from "../common/Content/StoryCard";
 import Image from "next/image";
 import { useCompactTheme } from "@/utils/context";
+import CustomIcon from "@/utils/icon-mapping";
 
 export default function HorizontalSection({
    stories,
@@ -72,20 +73,16 @@ export default function HorizontalSection({
          {/* Controller */}
          <div className="flex gap-[12px] absolute right-[120px] top-[100px]">
             <button onClick={() => swiperRef.current?.slidePrev()}>
-               <img
-                  src={`/icons/${
-                     background ? "swipe-controller" : "arrow-blue"
-                  }.svg`}
-                  alt="Prev"
+               <CustomIcon
+                  name={"swipeController"}
+                  color={background ? "#fff" : "#35A7DF"}
                />
             </button>
             <button onClick={() => swiperRef.current?.slideNext()}>
-               <img
-                  src={`/icons/${
-                     background ? "swipe-controller" : "arrow-blue"
-                  }.svg`}
+               <CustomIcon
+                  name={"swipeController"}
+                  color={background ? "#fff" : "#35A7DF"}
                   className="transform rotate-180"
-                  alt="Prev"
                />
             </button>
          </div>

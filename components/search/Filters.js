@@ -1,6 +1,8 @@
 import { MultiSelect, Select } from "@mantine/core";
 import { categories, regions } from "@/constants";
 import { useState } from "react";
+import CustomIcon from "@/utils/icon-mapping";
+import DropdownArrowIcon from "../common/DropdownArrow";
 
 export default function FiltersAndSorts({}) {
    const [selectedOptions, setSelectedOptions] = useState([]);
@@ -37,7 +39,7 @@ export default function FiltersAndSorts({}) {
                   placeholder="All Regions"
                   data={regions}
                   className="rounded-md mantine-select-dropdown"
-                  rightSection={<img src="/icons/gray-arrow-down.svg" />}
+                  rightSection={<DropdownArrowIcon />}
                   styles={dropdownStyles}
                   value={regions[0]}
                   onChange={(value) => addToSelectedOptions(value)}
@@ -46,7 +48,7 @@ export default function FiltersAndSorts({}) {
                   placeholder="All Category"
                   data={categories}
                   className="mantine-select-dropdown"
-                  rightSection={<img src="/icons/gray-arrow-down.svg" />}
+                  rightSection={<DropdownArrowIcon />}
                   styles={dropdownStyles}
                   value={categories[0]}
                   onChange={(value) => addToSelectedOptions(value)}
@@ -56,7 +58,7 @@ export default function FiltersAndSorts({}) {
                placeholder="Sort By: Latest"
                data={sortByOptions}
                className="mantine-select-dropdown"
-               rightSection={<img src="/icons/gray-arrow-down.svg" />}
+               rightSection={<DropdownArrowIcon />}
                styles={dropdownStyles}
             />
          </div>

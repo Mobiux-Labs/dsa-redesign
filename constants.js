@@ -7,98 +7,91 @@ export const sections = [
       slug: "private-equity",
       zone: "homepage-block-private-equity",
       link: "/section/private-equity",
-      icon: "private-equity.svg",
+      icon: "privateEquity",
    },
    {
       title: "Venture Capital",
       slug: "venture-capital",
       zone: "homepage-block-venture-capital",
       link: "/sectins/venture-capital",
-      icon: "venture-capital.svg",
+      icon: "ventureCapital",
    },
    {
       title: "Unicorns",
       slug: "unicorns",
       zone: "homepage-block-unicorns",
       link: "/section/unicorns",
-      icon: "unicorns.svg",
+      icon: "unicorns",
    },
    {
       title: "Q & A",
       slug: "q-a",
       zone: "homepage-block-qanda",
       link: "/section/q-a",
-      icon: "ipo.svg",
+      icon: "ipo",
    },
    {
       title: "Deals",
       slug: "deal-investment",
       zone: "homepage-block-deals",
       link: "/section/deal-investment",
-      icon: "deals.svg",
+      icon: "deals",
    },
    {
       title: "IPOs and Markets",
       slug: "ipos",
       zone: "homepage-block-ipos-and-markets",
       link: "/section/ipos",
-      icon: "ipo.svg",
+      icon: "ipo",
    },
    {
       title: "Analysis",
       slug: "analysis",
       zone: "homepage-block-analysis",
       link: "/section/analysis",
-      icon: "ipo.svg",
+      icon: "analysis",
    },
    {
       title: "Opinion",
       slug: "opinion",
       zone: "homepage-block-opinion",
       link: "/section/opinion",
-      icon: "deals.svg",
+      icon: "deals",
    },
    {
       title: "Policy and Regulations",
       slug: "policy-and-regulations",
       zone: "homepage-block-policy-and-regulations",
       link: "/section/policy-and-regulations",
-      icon: "deals.svg",
+      icon: "deals",
    },
    {
       title: "People",
       slug: "people",
       zone: "homepage-block-people",
       link: "/section/people",
-      icon: "people.svg",
+      icon: "people",
    },
    {
       title: "Deals Barometer",
       slug: "deals-barometer",
       zone: "homepage-block-deals-barometer",
       link: "/section/deals-barometer",
-      icon: "deals-barometer.svg",
+      icon: "dealsBarometer",
    },
    {
       title: "Real Estate",
       slug: "real-estate-and-infrastructure",
       zone: "homepage-block-real-estate",
       link: "/section/real-estate",
-      icon: "real-estate.svg",
+      icon: "realEstate",
    },
    {
       title: "E-commerce",
       slug: "ecommerce-consumer-internet",
       zone: "homepage-block-e-commerce",
       link: "/section/e-commerce",
-      icon: "e-commerce.svg",
-   },
-   {
-      title: "India",
-      slug: "india",
-      zone: "homepage-block-india",
-      link: "/countries/india",
-      icon: "",
+      icon: "eCommerce",
    },
 ];
 
@@ -178,7 +171,7 @@ export const categories = [
    { value: "analysis", label: "Analysis" },
 ];
 
-export let Icon = ({ name, color }) => {
+export const Icon = ({ name, color }) => {
    let svgMap = {
       search: `<svg
       width="18"

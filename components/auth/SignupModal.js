@@ -5,6 +5,7 @@ import { useState } from "react";
 import { siteKey } from "@/constants";
 import { signupUser } from "@/utils/auth";
 import { getUserSession } from "@/utils/user";
+import CustomIcon from "@/utils/icon-mapping";
 
 export default function SignupModal({}) {
    const [modal, setModal] = useModal();
@@ -47,16 +48,16 @@ function SocialMediaLinks() {
          </p>
          <div className="icons flex gap-[15px] justify-center">
             <div className="icon h-[40px] w-[40px] bg-darkblue rounded-full grid place-items-center cursor-pointer">
-               <img src="/icons/google.svg" alt="G" />
+               <CustomIcon name={"google"} color={"#fff"} height={16} />
             </div>
             <div className="icon h-[40px] w-[40px] bg-darkblue rounded-full grid place-items-center cursor-pointer">
-               <img src="/icons/twitter-white.svg" alt="T" />
+               <CustomIcon name={"twitter"} color={"#fff"} height={16} />
             </div>
             <div className="icon h-[40px] w-[40px] bg-darkblue rounded-full grid place-items-center cursor-pointer">
-               <img src="/icons/facebook-white.svg" alt="F" />
+               <CustomIcon name={"facebook"} color={"#fff"} height={16} />
             </div>
             <div className="icon h-[40px] w-[40px] bg-darkblue rounded-full grid place-items-center cursor-pointer">
-               <img src="/icons/linkedin-white.svg" alt="LI" />
+               <CustomIcon name={"linkedin"} color={"#fff"} height={16} />
             </div>
          </div>
       </div>
@@ -244,7 +245,7 @@ function CloseButton({ setModal }) {
          className="cursor-pointer absolute z-[101] right-[80px] top-[80px]"
          onClick={() => setModal()}
       >
-         <img src="/icons/close.svg" alt="close" />
+         <CustomIcon icon="close" color={"fff"} />
       </div>
    );
 }

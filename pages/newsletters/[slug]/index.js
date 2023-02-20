@@ -6,6 +6,8 @@ import { getNewsletters } from "@/utils/api-calls";
 import { formatDate } from "@/utils/helper";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import CustomIcon from "@/utils/icon-mapping";
+import DropdownArrowIcon from "@/components/common/DropdownArrow";
 
 export default function NewsletterArchive(props) {
    const { newsletter, list: initialList } = props;
@@ -78,11 +80,7 @@ function Newsletter({ newsletter, hasBorder = true }) {
             <p className="text-base text-content whitespace-nowrap">
                {formatDate(newsletter?.pub_date)}
             </p>
-            <img
-               src="/icons/arrow-gray.svg"
-               alt="Select"
-               className="cursor-pointer"
-            />
+            <DropdownArrowIcon className={"rotate-[-90deg]"} />
          </div>
       </div>
    );

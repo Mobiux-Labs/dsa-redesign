@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { useCompactTheme, useSession } from "@/utils/context";
 import { fetcher } from "@/utils/helper";
-import LocationIcon from "@/public/icons/search.svg";
+import CustomIcon from "@/utils/icon-mapping";
 
 export default function SectionBar({}) {
    const swiperRef = useRef(null);
@@ -66,7 +66,7 @@ function RegionSelector({}) {
       <div className="cursor-pointer flex flex-col mr-[45px] ml-[20px]">
          {/* <img src={Icon} alt="" className="h-[16px]" /> */}
          <div className="mx-auto">
-            <Icon color={"#000"} name="location" />
+            <CustomIcon color={"#B3B3B3"} name="location" />
          </div>
          <div className="flex items-center mt-[12px]">
             <button
@@ -76,7 +76,12 @@ function RegionSelector({}) {
             >
                Select Region
                <span>
-                  <img src="icons/dropdown.svg" className="ml-[8px]" alt="" />
+                  <CustomIcon
+                     color={"#B3B3B3"}
+                     name="lineArrowDown"
+                     className="ml-[8px]"
+                     dontReplaceColor
+                  />
                </span>
             </button>
             {/* Dropdown menu */}
@@ -127,7 +132,12 @@ function SectionButton({
          className="cursor-pointer h-full flex items-center justify-center flex-col"
          onClick={() => handleCategoryClick()}
       >
-         <img src={`/icons/${imgSrc}`} alt={name} className="h-[16px]" />
+         <CustomIcon
+            name={imgSrc}
+            alt={name}
+            className="h-[16px]"
+            color={"#B3B3B3"}
+         />
          <span
             className={`mr-[8px] mt-[12px] whitespace-nowrap ${
                isFavourite ? "text-blue" : ""

@@ -1,11 +1,11 @@
-import { logoUrl } from "@/constants";
+import { Icon, logoUrl } from "@/constants";
 import Link from "next/link";
 import Image from "next/image";
 import { useSession, useModal } from "@/utils/context";
 import { logoutUser } from "@/utils/auth";
 import { useEffect, useLayoutEffect } from "react";
 import { useRouter } from "next/router";
-import SearchIcon from "@/public/icons/search.svg";
+import CustomIcon from "@/utils/icon-mapping";
 
 export default function Navbar({ intialSession }) {
    const [session, setSession] = useSession();
@@ -75,12 +75,7 @@ export default function Navbar({ intialSession }) {
             </div>
             <div className="search-icon">
                <Link href="/search/">
-                  <Image
-                     src={SearchIcon}
-                     alt="Search Icon"
-                     height={18}
-                     width={18}
-                  />
+                  <CustomIcon name={"search"} color="#B3B3B3" />
                </Link>
             </div>
          </div>
@@ -102,11 +97,7 @@ export default function Navbar({ intialSession }) {
                   className={"h-[18px] w-[18px] mx-[15px] cursor-pointer"}
                   onClick={() => handleLogout()}
                >
-                  <img
-                     src="/icons/avatar.svg"
-                     alt="User"
-                     className="block z-[10]"
-                  />
+                  <CustomIcon name={"avatar"} color="#B3B3B3" />
                </div>
             )}
             {/* Show subscribe button only if user is not subscribed */}

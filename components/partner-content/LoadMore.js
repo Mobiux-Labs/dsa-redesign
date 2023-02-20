@@ -23,8 +23,6 @@ export default function LoadMorePartnerContentStoriesSection({
       setLoading(false);
    }
 
-   console.log(storiesList);
-
    return (
       <section className="mt-[100px]">
          <h2 className="text-heading font-bold text-3xl leading-[55px]">

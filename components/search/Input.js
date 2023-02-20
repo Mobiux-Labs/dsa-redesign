@@ -5,6 +5,7 @@ import { getTermSuggestions } from "@/utils/api-calls";
 import { useRouter } from "next/router";
 import SuggestedCategories from "./SuggestedCategories";
 import FiltersAndSorts from "./Filters";
+import CustomIcon from "@/utils/icon-mapping";
 
 export default function SearchInput({ initialValue }) {
    const router = useRouter();
@@ -69,7 +70,14 @@ export default function SearchInput({ initialValue }) {
             value={searchText}
             data={suggestions}
             onChange={handleChange}
-            rightSection={<img src="/icons/search.svg" className="mr-[15px]" />}
+            rightSection={
+               <CustomIcon
+                  name="search"
+                  color={"#000"}
+                  height={20}
+                  width={20}
+               />
+            }
             onKeyDownCapture={(e) => {
                if (e.key === "Enter") {
                   e.preventDefault();

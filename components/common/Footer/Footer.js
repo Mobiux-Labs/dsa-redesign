@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { logoUrl } from "@/constants";
 import Link from "next/link";
+import CustomIcon from "@/utils/icon-mapping";
 
 export default function Footer({}) {
    const currentYear = new Date().getFullYear();
@@ -61,24 +62,25 @@ export default function Footer({}) {
                </div>
                <div className="right">
                   <div className="social-icons flex gap-[25px]">
-                     <img
-                        src="/icons/linkedin.svg"
-                        alt="LinkedIn"
+                     <CustomIcon
+                        name={"linkedin"}
+                        color={"#1C70B6"}
                         height={14}
-                        width={14}
                      />
-                     <img src="/icons/twitter.svg" alt="LinkedIn" />
-                     <img
-                        src="/icons/facebook.svg"
-                        alt="LinkedIn"
+                     <CustomIcon
+                        name={"twitter"}
+                        color={"#1C70B6"}
                         height={14}
-                        width={14}
                      />
-                     <img
-                        src="/icons/instagram.svg"
-                        alt="LinkedIn"
+                     <CustomIcon
+                        name={"facebook"}
+                        color={"#1C70B6"}
                         height={14}
-                        width={14}
+                     />
+                     <CustomIcon
+                        name={"instagram"}
+                        color={"#1C70B6"}
+                        height={14}
                      />
                   </div>
                </div>

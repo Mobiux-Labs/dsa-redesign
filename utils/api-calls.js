@@ -7,7 +7,6 @@ export async function getHomePageHeadlines(req) {
    });
    if (!res.ok) return null;
    const data = await res.json();
-   console.log(data);
    console.log(res.status);
    return data;
 }
