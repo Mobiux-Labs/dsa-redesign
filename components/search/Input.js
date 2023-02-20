@@ -11,6 +11,8 @@ export default function SearchInput({
    initialValue,
    countries,
    sections,
+   sectors,
+   storySections,
    sortBy,
 }) {
    const router = useRouter();
@@ -92,6 +94,8 @@ export default function SearchInput({
                initialCountries={countries}
                initialSections={sections}
                initialSortBy={sortBy}
+               initialSectors={sectors}
+               initialStorySections={storySections}
             />
          )}
       </div>

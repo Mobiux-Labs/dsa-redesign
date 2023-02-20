@@ -133,14 +133,20 @@ export const getSearchResults = async (
    page = 1,
    sortBy,
    countries,
-   sections
+   sections,
+   sectors,
+   storySections
 ) => {
    let base = `${req ? backendUrl : backendUrl.replace(baseUrl, "")}`;
    if (countries) countries = countries.join(",");
    if (sections) sections = sections.join(",");
+   if (sectors) sectors = sectors.join(",");
+   if (storySections) storySections = storySections.join(",");
    let url = `${base}/es_search/?page=${page}&search_text=${query}&sort_by=${sortBy}`;
    if (countries) url += `&countries=${countries}`;
    if (sections) url += `&sections=${sections}`;
+   if (sectors) url += `&sectors=${sectors}`;
+   if (storySections) url += `&story_sections=${storySections}`;
    const res = await fetch(url, { headers: createHeader(req) });
    if (!res.ok) return null;
    const data = await res.json();

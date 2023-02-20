@@ -202,7 +202,7 @@ export const categories = [
    },
    { value: "financial-services", label: "Financial Services", type: "sector" },
    {
-      value: "Not available	real-estate-and-infrastructure",
+      value: "real-estate-and-infrastructure",
       label: "Real Estate & Infrastructure",
       type: "sector",
    },

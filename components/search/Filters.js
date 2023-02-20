@@ -9,6 +9,8 @@ export default function FiltersAndSorts({
    initialCountries,
    initialSections,
    initialSortBy,
+   initialSectors,
+   initialStorySections,
 }) {
    const [selectedOptions, setSelectedOptions] = useState([]);
    const [selectedRegions, setSelectedRegions] = useState(
@@ -39,16 +41,37 @@ export default function FiltersAndSorts({
       { label: "Sort By: Relevant", value: "relevant" },
    ];
 
+   function seperateOutSectorsAndStorySections(options) {
+      let sectors = [];
+      let storySections = [];
+      let sections = [];
+      options.forEach((option) => {
+         let category = categories.find(
+            (category) => category.value === option
+         );
+         if (!category) return;
+         if (category.type === "sector") sectors.push(option);
+         if (category.type === "section") sections.push(option);
+         if (category.type === "story-section") storySections.push(option);
+      });
+      console.log({ sectors, storySections, sections });
+      return { sectors, storySections, sections };
+   }
+
    function createQuery() {
       let queryText = router.query.s;
-      let categories = selectedCategories.length
-         ? selectedCategories.map((category) => category).join(",")
-         : "";
+      let { sectors, storySections, sections } =
+         seperateOutSectorsAndStorySections(selectedOptions);
+      sectors = sectors.length ? sectors.join(",") : "";
+      storySections = storySections.length ? storySections.join(",") : "";
+      sections = sections.length ? sections.join(",") : "";
       let regions = selectedRegions.length
          ? selectedRegions.map((region) => region).join(",")
          : "";
       let sort = sortBy === "recent" ? "recent" : sortBy;
-      let query = `?s=${queryText}&sections=${categories}&countries=${regions}&sortBy=${sort}`;
+      let query = `?s=${queryText}&sections=${sections}&countries=${regions}&sortBy=${sort}`;
+      if (sectors) query += `&sectors=${sectors}`;
+      if (storySections) query += `&storySections=${storySections}`;
       return query;
    }
 
@@ -84,6 +107,16 @@ export default function FiltersAndSorts({
       if (initialSections) {
          initialSections.forEach((section) => {
             initialOptions.push(section);
+         });
+      }
+      if (initialSectors) {
+         initialSectors.forEach((sector) => {
+            initialOptions.push(sector);
+         });
+      }
+      if (initialStorySections) {
+         initialStorySections.forEach((storySection) => {
+            initialOptions.push(storySection);
          });
       }
       setSelectedOptions(initialOptions);

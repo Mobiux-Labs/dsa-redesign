@@ -31,6 +31,8 @@ export default function SearchPage(props) {
                   countries={props.countries}
                   sections={props.sections}
                   sortBy={props.sortBy}
+                  sectors={props.sectors}
+                  storySections={props.storySections}
                />
             </div>
             {showTitle && (
@@ -93,9 +95,13 @@ export async function getServerSideProps(context) {
    const query = context.query.s || "";
    let sections = context.query.sections || "";
    let countries = context.query.countries || "";
+   let sectors = context.query.sectors || "";
+   let storySections = context.query.storySections || "";
    const sortBy = context.query.sortBy || "recent";
    sections = sections.split(",");
    countries = countries.split(",");
+   sectors = sectors.split(",");
+   storySections = storySections.split(",");
    console.log(sections, countries, sortBy);
    const searchResult = await getSearchResults(
       context.req,
@@ -103,7 +109,19 @@ export async function getServerSideProps(context) {
       1,
       sortBy,
       countries,
-      sections
+      sections,
+      sectors,
+      storySections
    );
-   return { props: { session, searchResult, query } };
+   return {
+      props: {
+         session,
+         searchResult,
+         query,
+         sections,
+         countries,
+         sectors,
+         storySections,
+      },
+   };
 }
