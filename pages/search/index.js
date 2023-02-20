@@ -41,7 +41,7 @@ export default function SearchPage(props) {
                </h1>
             )}
             {props.query.length > 0 ? (
-               <p className="text-[#B3B3B3] text-lg mb-[20px]">
+               <p className="text-[#B3B3B3] text-lg mb-[20px] animate-fade-in">
                   {searchResult?.total_results} search results for '
                   {props.query}'
                </p>
