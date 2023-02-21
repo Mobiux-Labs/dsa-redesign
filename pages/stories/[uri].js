@@ -1,6 +1,6 @@
 import Layout from "@/components/common/Layout/Layout";
 import { getUserSession } from "@/utils/user";
-import { separateSlugId } from "@/utils/helper";
+import { loader, separateSlugId } from "@/utils/helper";
 import {
    getFullStoryData,
    getLastReadStories,
@@ -61,6 +61,7 @@ export default function StoryPage(props) {
                src={story?.image_url}
                width={1000}
                height={488}
+               loader={loader}
             />
             {/* Content */}
             <div

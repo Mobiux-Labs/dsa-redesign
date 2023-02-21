@@ -74,3 +74,18 @@ export function getCategoryTitle(slug, category) {
       return regions.find((region) => region.value === slug)?.label;
    }
 }
+
+export function replaceCDN(url) {
+   return url
+      ? url.replace("dealstreetwebsite.s3.amazonaws", "media.dealstreetasia")
+      : "";
+}
+
+export function loader({ src, width, height, quality }) {
+   //If src has ?fit=, then add &, else start with ?
+   const condition = src.includes("?fit=") ? "&" : "?";
+   let newSrc =
+      replaceCDN(src) +
+      `${condition}resize=${width},${height}&q=${quality || 75}`;
+   return newSrc;
+}

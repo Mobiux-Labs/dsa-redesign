@@ -6,6 +6,7 @@ import { ThemeContext, SessionContext, ModalContext } from "@/utils/context";
 import { DefaultSeo } from "next-seo";
 import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
+import ProgressIndicator from "@/components/common/NProgress";
 
 export default function App({ Component, pageProps }) {
    const [compactTheme, setCompactTheme] = useState(true);
@@ -19,6 +20,7 @@ export default function App({ Component, pageProps }) {
          <ThemeContext.Provider value={[compactTheme, setCompactTheme]}>
             <ModalContext.Provider value={[modal, setModal]}>
                <SessionContext.Provider value={[session, setSession]}>
+                  <ProgressIndicator />
                   <Component {...pageProps} />
                </SessionContext.Provider>
             </ModalContext.Provider>
