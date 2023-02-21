@@ -137,3 +137,20 @@ button.expand-table-button {
 .mantine-multiselect input {
    display: none;
 }
+
+.region-selector {
+   * {
+      font-family: "Montserrat";
+   }
+   input {
+      background-color: transparent;
+      border: none;
+      padding-block: 0px;
+      width: 156px;
+      position: relative;
+      top: 3px;
+   }
+   input::placeholder {
+      color: #999999;
+   }
+}

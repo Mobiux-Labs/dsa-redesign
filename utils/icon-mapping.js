@@ -60,7 +60,6 @@ const icons = {
 
 function replaceFillAndStroke(svgCode, color, dontReplaceColor = false) {
    if (!svgCode) {
-      console.log("svgCode is undefined");
       return "";
    }
    if (dontReplaceColor) {

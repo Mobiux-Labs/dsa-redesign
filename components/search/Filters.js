@@ -54,7 +54,6 @@ export default function FiltersAndSorts({
          if (category.type === "section") sections.push(option);
          if (category.type === "story-section") storySections.push(option);
       });
-      console.log({ sectors, storySections, sections });
       return { sectors, storySections, sections };
    }
 

@@ -11,7 +11,7 @@ export default function Document() {
                async
                src="https://code.jquery.com/jquery-3.6.1.min.js"
                integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-               crossorigin="anonymous"
+               crossOrigin="anonymous"
             ></script>
          </body>
       </Html>

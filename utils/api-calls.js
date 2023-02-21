@@ -7,7 +7,6 @@ export async function getHomePageHeadlines(req) {
    });
    if (!res.ok) return null;
    const data = await res.json();
-   console.log(res.status);
    return data;
 }
 
@@ -46,7 +45,6 @@ export async function getLastReadStories(req) {
 export async function getFullStoryData(req, id, uri) {
    const url = `${wpApiUrl}/story?id=${id}&uri=${uri}`;
    const res = await fetch(url, { headers: createHeader(req) });
-   console.log("Fetching status code: ", res.status);
    if (!res.ok) return null;
    if (!res.status === 200) return null;
    const data = await res.json();
@@ -69,7 +67,6 @@ export async function anonymousStoriesViewed(req) {
    });
    if (!res.ok) return null;
    res = await res.json();
-   console.log("anonymous stories read: ", res);
    return res["story_ids"].length;
    return 0;
 }

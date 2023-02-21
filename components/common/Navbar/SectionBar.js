@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Icon, sections } from "@/constants";
+import { Icon, regions, sections } from "@/constants";
 import { createHeader } from "@/utils/network";
 import { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,6 +10,7 @@ import "swiper/css/navigation";
 import { useCompactTheme, useSession } from "@/utils/context";
 import { fetcher } from "@/utils/helper";
 import CustomIcon from "@/utils/icon-mapping";
+import { Select } from "@mantine/core";
 
 export default function SectionBar({}) {
    const swiperRef = useRef(null);
@@ -36,6 +37,7 @@ export default function SectionBar({}) {
             {sections.map((section) => (
                <SwiperSlide
                   style={{ width: "fit-content", paddingRight: "40px" }}
+                  key={section.title}
                >
                   <SectionButton
                      key={section.title}
@@ -64,39 +66,28 @@ export default function SectionBar({}) {
 function RegionSelector({}) {
    return (
       <div className="cursor-pointer flex flex-col mr-[45px] ml-[20px]">
-         {/* <img src={Icon} alt="" className="h-[16px]" /> */}
-         <div className="mx-auto">
-            <CustomIcon color={"#B3B3B3"} name="location" />
-         </div>
-         <div className="flex items-center mt-[12px]">
-            <button
-               id="dropdownDefaultButton"
-               data-dropdown-toggle="regions-dropdown"
-               className="flex items-center whitespace-nowrap"
-            >
-               Select Region
-               <span>
-                  <CustomIcon
-                     color={"#B3B3B3"}
-                     name="lineArrowDown"
-                     className="ml-[8px]"
-                     dontReplaceColor
-                  />
-               </span>
-            </button>
-            {/* Dropdown menu */}
-            <div
-               id="regions-dropdown"
-               className="hidden bg-white p-3 shadow-md"
-            >
-               <ul aria-labelledby="dropdownDefaultButton">
-                  <li>India</li>
-                  <li>Indonesia</li>
-                  <li>Malaysia</li>
-                  <li>Philippines</li>
-               </ul>
-            </div>
-         </div>
+         <CustomIcon
+            name={"location"}
+            color={"#B3B3B3"}
+            className="mx-auto w-full flex justify-center"
+         />
+         <Select
+            placeholder="Select Region"
+            data={regions}
+            styles={{
+               item: {
+                  fontSize: "12px",
+               },
+            }}
+            className="region-selector ml-[8px]"
+            rightSection={
+               <CustomIcon
+                  name={"dropdown"}
+                  dontReplaceColor
+                  className="top-[3px] relative"
+               />
+            }
+         />
       </div>
    );
 }
