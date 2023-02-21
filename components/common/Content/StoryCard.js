@@ -1,4 +1,4 @@
-import { getTimeAgo, trimUrl } from "@/utils/helper";
+import { getTimeAgo, loader, trimUrl } from "@/utils/helper";
 import Image from "next/image";
 import CategoryBadge from "./CategoryBadge";
 import Link from "next/link";
@@ -88,6 +88,7 @@ export default function StoryCard({
                         width: imageWidth,
                         minWidth: imageWidth,
                      }}
+                     loader={loader}
                   />
                </div>
             </Link>

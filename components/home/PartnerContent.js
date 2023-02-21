@@ -1,4 +1,5 @@
 import { useCompactTheme } from "@/utils/context";
+import { loader } from "@/utils/helper";
 import Image from "next/image";
 import { SeeMoreButton } from "../common/Buttons";
 import StoryCard from "../common/Content/StoryCard";
@@ -22,6 +23,7 @@ export default function PartnerContent({ stories }) {
                         layout={"fill"}
                         objectFit={"cover"}
                         className={"mb-[33px] rounded-md"}
+                        loader={loader}
                      />
                   </div>
                   <StoryCard

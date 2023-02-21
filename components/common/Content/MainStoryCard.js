@@ -1,5 +1,5 @@
 import { useCompactTheme } from "@/utils/context";
-import { getTimeAgo, trimUrl } from "@/utils/helper";
+import { getTimeAgo, loader, trimUrl } from "@/utils/helper";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import CategoryBadge from "./CategoryBadge";
@@ -20,6 +20,7 @@ export default function MainStoryCard({ story }) {
                   height={177}
                   width={290}
                   className="w-full rounded-md mr-[30px]"
+                  loader={loader}
                />
             </div>
          </Link>

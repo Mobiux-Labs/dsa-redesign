@@ -45,14 +45,13 @@ export const sections = [
       link: "/section/ipos",
       icon: "ipo",
    },
-   // NOTE SURE IF SECTION EXISTS
-   // {
-   //    title: "Deals Barometer",
-   //    slug: "deals-barometer",
-   //    zone: "homepage-block-deals-barometer",
-   //    link: "/section/deals-barometer",
-   //    icon: "dealsBarometer",
-   // },
+   {
+      title: "Deal Monitors",
+      slug: "deal-monitors",
+      zone: "homepage-block-deal-monitors",
+      link: "/story-section/deal-monitors",
+      icon: "dealsBarometer",
+   },
    {
       title: "Real Estate",
       slug: "real-estate-and-infrastructure",

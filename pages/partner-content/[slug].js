@@ -11,6 +11,7 @@ import HorizontalSection from "@/components/home/HorizontalSection";
 import Image from "next/image";
 import RelatedStories from "@/components/story/Related";
 import { redirectTo404 } from "@/constants";
+import { loader } from "@/utils/helper";
 
 export default function PartnerContentStory(props) {
    const { story } = props;
@@ -41,6 +42,7 @@ export default function PartnerContentStory(props) {
                src={story?.image_url}
                width={1000}
                height={488}
+               loader={loader}
             />
             {/* Content */}
             <div

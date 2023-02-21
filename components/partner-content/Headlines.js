@@ -1,6 +1,7 @@
 import StoryCard from "../common/Content/StoryCard";
 import Image from "next/image";
 import { SeeMoreButton } from "../common/Buttons";
+import { loader } from "@/utils/helper";
 
 export default function PartnerContentHeadlines({ stories }) {
    let headline = stories[0];
@@ -13,6 +14,7 @@ export default function PartnerContentHeadlines({ stories }) {
                   width={1200}
                   height={366}
                   className="rounded-md"
+                  loader={loader}
                />
                <StoryCard
                   story={headline}
