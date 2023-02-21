@@ -5,6 +5,7 @@ import SectionBar from "../Navbar/SectionBar";
 import LoginModal from "@/components/auth/LoginModal";
 import SignupModal from "@/components/auth/SignupModal";
 import UnSubscribeNlModal from "@/components/newsletter/UnSubscribeModal";
+import { motion } from "framer-motion";
 
 export default function Layout({
    children,
@@ -12,6 +13,16 @@ export default function Layout({
    session,
    withLeaderBoardAd = true,
 }) {
+   let motionOptions = {
+      initial: { y: 0, opacity: 0 },
+      animate: { y: 0, opacity: 1 },
+      exit: { y: 0, opacity: 1 },
+      transition: {
+         type: "just",
+         duration: 0.4,
+      },
+   };
+
    return (
       <>
          {withLeaderBoardAd ? <LeaderboardAd /> : null}
@@ -19,7 +30,9 @@ export default function Layout({
             <Navbar intialSession={session} />
          </div>
          {showSectionBar && <SectionBar />}
-         <div className="py-[40px]  ">{children}</div>
+         <motion.div {...motionOptions}>
+            <div className="py-[40px]">{children}</div>
+         </motion.div>
          <LoginModal />
          <SignupModal />
          <UnSubscribeNlModal />

@@ -7,11 +7,14 @@ import { DefaultSeo } from "next-seo";
 import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
 import ProgressIndicator from "@/components/common/NProgress";
+import { AnimatePresence } from "framer-motion";
+import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }) {
    const [compactTheme, setCompactTheme] = useState(true);
    const [session, setSession] = useState({});
    const [modal, setModal] = useState();
+   const router = useRouter();
 
    return (
       <MantineProvider>
@@ -21,7 +24,9 @@ export default function App({ Component, pageProps }) {
             <ModalContext.Provider value={[modal, setModal]}>
                <SessionContext.Provider value={[session, setSession]}>
                   <ProgressIndicator />
-                  <Component {...pageProps} />
+                  <AnimatePresence mode="wait">
+                     <Component {...pageProps} key={router.asPath} />
+                  </AnimatePresence>
                </SessionContext.Provider>
             </ModalContext.Provider>
          </ThemeContext.Provider>
