@@ -93,7 +93,12 @@ export default function StoryCard({
                </div>
             </Link>
          ) : null}
-         <div style={contentStyles}>
+         <div
+            style={contentStyles}
+            className={`${
+               imagePosition == "top" && withImage ? "mt-[10px]" : ""
+            }`}
+         >
             <CategoryBadge logo={partnerLogo} category={story?.category} />
             <Link href={trimUrl(story?.post_url)}>
                <h2
