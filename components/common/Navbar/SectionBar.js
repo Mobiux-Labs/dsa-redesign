@@ -158,7 +158,7 @@ function ThemeSwitchButton() {
                   type="checkbox"
                   value=""
                   className="sr-only peer"
-                  checked={compactTheme}
+                  checked={!compactTheme}
                   onChange={() => setCompactTheme(!compactTheme)}
                />
                <div className="w-[30px] h-[16px] bg-gray rounded-full peer peer-focus:ring-1 peer-focus:ring-blue-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[3px] after:bg-white after:rounded-full after:h-[12px] after:w-[12px] after:transition-all peer-checked:bg-blue"></div>

@@ -8,7 +8,7 @@ import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
 
 export default function App({ Component, pageProps }) {
-   const [compactTheme, setCompactTheme] = useState(false);
+   const [compactTheme, setCompactTheme] = useState(true);
    const [session, setSession] = useState({});
    const [modal, setModal] = useState();
 
