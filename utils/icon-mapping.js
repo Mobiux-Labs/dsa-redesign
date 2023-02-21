@@ -26,6 +26,7 @@ import { unicorns } from "@/components/icons/unicorns";
 import { ventureCapital } from "@/components/icons/venture-capital";
 import { whatsapp } from "@/components/icons/whatsapp";
 import { lineArrowDown } from "@/components/icons/line-arrow-down";
+import { opinion } from "@/components/icons/opinion";
 
 const icons = {
    arrow: arrow,
@@ -56,6 +57,7 @@ const icons = {
    ventureCapital: ventureCapital,
    whatsapp: whatsapp,
    lineArrowDown: lineArrowDown,
+   opinion: opinion,
 };
 
 function replaceFillAndStroke(svgCode, color, dontReplaceColor = false) {

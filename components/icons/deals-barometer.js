@@ -25,5 +25,5 @@ xmlns="http://www.w3.org/2000/svg"
    stroke="#999999"
    stroke-width="0.2"
 />
-</svg>;
+</svg>
 `;

@@ -11,12 +11,13 @@ import { useCompactTheme, useSession } from "@/utils/context";
 import { fetcher } from "@/utils/helper";
 import CustomIcon from "@/utils/icon-mapping";
 import { Select } from "@mantine/core";
+import { useRouter } from "next/router";
 
 export default function SectionBar({}) {
    const swiperRef = useRef(null);
    const [session] = useSession();
    const [refresh, setRefresh] = useState(0);
-   const { data, error } = useSWR(`/subs/?refresh=${refresh}`, fetcher);
+   const { data, error } = useSWR(`/subs/`, fetcher);
    return (
       <div className="px-[120px] py-[20px] bg-[#35a7e90d] flex items-center text-darkgray">
          <ThemeSwitchButton />
@@ -45,27 +46,31 @@ export default function SectionBar({}) {
                      name={section.title}
                      link={section.link}
                      slug={section.slug}
-                     setRefresh={setRefresh}
-                     refresh={refresh}
                      isFavourite={data?.user_favourites?.includes(section.slug)}
                   />
                </SwiperSlide>
             ))}
          </Swiper>
          {/* Right Arrow to scroll the buttons */}
-         <button
-            className="absolute right-[120px] z-10"
-            onClick={() => swiperRef.current?.slideNext()}
-         >
-            <img src="icons/right-arrow.svg" alt="" />
-         </button>
+         <div className="w-[120px] h-[52px] flex items-center justify-start">
+            <button
+               className="ml-[25px] z-10"
+               onClick={() => swiperRef.current?.slideNext()}
+            >
+               <CustomIcon
+                  name={"swipeController"}
+                  color={"fff"}
+                  className="rotate-180"
+               />
+            </button>
+         </div>
       </div>
    );
 }
 
 function RegionSelector({}) {
    return (
-      <div className="cursor-pointer flex flex-col mr-[45px] ml-[20px]">
+      <div className="cursor-pointer flex flex-col mr-[40px] ml-[20px]">
          <CustomIcon
             name={"location"}
             color={"#B3B3B3"}
@@ -92,16 +97,9 @@ function RegionSelector({}) {
    );
 }
 
-function SectionButton({
-   imgSrc,
-   name,
-   link,
-   slug,
-   isFavourite = false,
-   setRefresh,
-   refresh,
-}) {
-   async function handleCategoryClick() {
+function SectionButton({ imgSrc, name, link, slug, isFavourite = false }) {
+   const router = useRouter();
+   async function handleCategoryClick(link) {
       const res = await fetch(`/api/subs/favourite/`, {
          method: "POST",
          headers: createHeader(),
@@ -112,22 +110,19 @@ function SectionButton({
             email: "roshin@mobiux.in",
          }),
       });
-      if (res.status === 200) {
-         setRefresh(refresh + 1);
-         const data = await res.json();
-      }
+      router.push(link);
    }
 
    return (
       <div
          className="cursor-pointer h-full flex items-center justify-center flex-col"
-         onClick={() => handleCategoryClick()}
+         onClick={() => handleCategoryClick(link)}
       >
          <CustomIcon
             name={imgSrc}
             alt={name}
             className="h-[16px]"
-            color={"#B3B3B3"}
+            color={isFavourite ? "#35a7df" : "#B3B3B3"}
          />
          <span
             className={`mr-[8px] mt-[12px] whitespace-nowrap ${
