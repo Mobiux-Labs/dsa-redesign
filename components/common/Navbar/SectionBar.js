@@ -79,6 +79,7 @@ export default function SectionBar({}) {
 }
 
 function RegionSelector({}) {
+   const router = useRouter();
    return (
       <div className="cursor-pointer flex flex-col mr-[40px] ml-[20px]">
          <CustomIcon
@@ -89,11 +90,13 @@ function RegionSelector({}) {
          <Select
             placeholder="Select Region"
             data={regions}
+            value={regions[0]}
             styles={{
                item: {
                   fontSize: "12px",
                },
             }}
+            onChange={(value) => router.push(`/countries/${value}`)}
             className="region-selector ml-[8px]"
             rightSection={
                <CustomIcon

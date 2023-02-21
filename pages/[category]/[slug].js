@@ -1,16 +1,16 @@
 import Layout from "@/components/common/Layout/Layout";
 import { getCategoryStories, getLastReadStories } from "@/utils/api-calls";
 import { getUserSession } from "@/utils/user";
-import { sections, categoryDesciptions } from "@/constants";
+import { categoryDesciptions } from "@/constants";
 import TopZone from "@/components/home/TopZone";
 import CarouselBanner from "@/components/home/CarouselBanner";
-import StoryCard from "@/components/common/Content/StoryCard";
 import LoadMoreStoriesSection from "@/components/common/Sections/LoadMoreStories";
 import HorizontalSection from "@/components/home/HorizontalSection";
+import { getCategoryTitle } from "@/utils/helper";
 
 export default function CategoryPage(props) {
    const stories = props.data;
-   const title = sections.find((section) => section.slug === props.slug).title;
+   const title = props.title;
    const storiesList = props.data?.stories?.slice(9, 18);
    return (
       <Layout session={props.session}>
@@ -50,5 +50,6 @@ export async function getServerSideProps(context) {
    const { category, slug } = context.query;
    const data = await getCategoryStories(category, slug, context.req, 18);
    const lastReadStories = await getLastReadStories(context.req);
-   return { props: { category, slug, session, data, lastReadStories } };
+   const title = getCategoryTitle(slug, category);
+   return { props: { category, slug, session, data, lastReadStories, title } };
 }

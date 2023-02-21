@@ -1,4 +1,4 @@
-import { baseUrl, sections } from "@/constants";
+import { baseUrl, categories, regions, sections } from "@/constants";
 import moment from "moment/moment";
 
 export function getTimeAgo(datetime) {
@@ -65,4 +65,12 @@ export function removeElementFromArray(arr, elem) {
    const index = arr.indexOf(elem);
    if (index > -1) arr.splice(index, 1);
    return arr;
+}
+
+export function getCategoryTitle(slug, category) {
+   if (category == "section" || category == "sector") {
+      return categories.find((category) => category.value === slug)?.label;
+   } else {
+      return regions.find((region) => region.value === slug)?.label;
+   }
 }

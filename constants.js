@@ -136,7 +136,7 @@ export const redirectTo404 = {
 };
 
 export const regions = [
-   { value: "Singapore", label: "Singapore" },
+   { value: "singapore", label: "Singapore" },
    { value: "india", label: "India" },
    { value: "china-hk", label: "Greater China" },
    { value: "indonesia", label: "Indonesia" },
