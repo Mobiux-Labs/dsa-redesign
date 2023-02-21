@@ -1,23 +1,31 @@
 import { useState } from "react";
-import { Icon, regions, sections } from "@/constants";
+import { regions, sections } from "@/constants";
 import { createHeader } from "@/utils/network";
 import { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
-import useSWR from "swr";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useCompactTheme, useSession } from "@/utils/context";
-import { fetcher } from "@/utils/helper";
 import CustomIcon from "@/utils/icon-mapping";
 import { Select } from "@mantine/core";
 import { useRouter } from "next/router";
+import { getUserSession } from "@/utils/user";
 
 export default function SectionBar({}) {
    const swiperRef = useRef(null);
-   const [session] = useSession();
+   const [session, setSession] = useSession();
    const [refresh, setRefresh] = useState(0);
-   const { data, error } = useSWR(`/subs/`, fetcher);
+
+   async function fetchUserSessionAgain() {
+      const res = await getUserSession();
+      setSession(res);
+   }
+
+   useEffect(() => {
+      fetchUserSessionAgain();
+   }, []);
+
    return (
       <div className="px-[120px] py-[20px] bg-[#35a7e90d] flex items-center text-darkgray">
          <ThemeSwitchButton />
@@ -46,7 +54,9 @@ export default function SectionBar({}) {
                      name={section.title}
                      link={section.link}
                      slug={section.slug}
-                     isFavourite={data?.user_favourites?.includes(section.slug)}
+                     isFavourite={session?.userFavourites?.includes(
+                        section.slug
+                     )}
                   />
                </SwiperSlide>
             ))}
