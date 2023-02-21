@@ -4,6 +4,7 @@ import Sidebar from "../common/Ads/Sidebar";
 import CategoryBadge from "../common/Content/CategoryBadge";
 import MainStoryCard from "../common/Content/MainStoryCard";
 import StoryCard from "../common/Content/StoryCard";
+import { useState } from "react";
 
 export default function TopZone({ stories }) {
    return (
@@ -45,20 +46,46 @@ function LeftSection({ headlines }) {
 }
 
 function RightSection({ justin, trending }) {
+   const [selectedTab, setSelectedTab] = useState("justin");
+
+   function getSelectedTabStories() {
+      if (selectedTab == "justin") return justin;
+      return trending;
+   }
+
+   function changeTab() {
+      if (selectedTab == "justin") setSelectedTab("trending");
+      else setSelectedTab("justin");
+   }
+
+   let selectedTabHeadingStyles =
+      "text-heading text-3xl font-bold cursor-pointer transition-all duration-200 ease";
+   let unselectedTabHeadingStyles =
+      "text-gray font-bold cursor-pointer transition-all duration-200 ease";
+
    return (
       <div className="pl-[21px]">
          {/* Title */}
          <div className="flex gap-[20px] items-baseline">
-            <p className="text-heading text-3xl font-bold">Just In</p>
-            <p className="text-gray font-bold">Trending</p>
+            <p className={selectedTabHeadingStyles} onClick={() => changeTab()}>
+               {selectedTab == "justin" ? "Just In" : "Trending"}
+            </p>
+            <p
+               className={unselectedTabHeadingStyles}
+               onClick={() => changeTab()}
+            >
+               {selectedTab == "justin" ? "Trending" : "Just In"}
+            </p>
          </div>
          <div className="mt-[25px]">
             {/* Stories x 3 */}
-            {justin.slice(0, 3).map((story) => (
-               <div className="mb-[37px]">
-                  <StoryCard story={story} withExcerpt={false} />
-               </div>
-            ))}
+            {getSelectedTabStories()
+               .slice(0, 3)
+               .map((story) => (
+                  <div className="mb-[37px]">
+                     <StoryCard story={story} withExcerpt={false} />
+                  </div>
+               ))}
             {/* Sidebar ad */}
             <div className="mt-[37px]">
                <Sidebar />
