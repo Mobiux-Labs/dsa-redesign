@@ -11,8 +11,8 @@ export default function NewsletterCard({ newsletter }) {
    let buttonText = subscribed ? "Subscribed" : "Subscribe";
 
    function openUnSubscribeModal(name) {
-      if (!subscribed) return;
-      setModal(`unsubscribe_nl-${name}`);
+      if (!subscribed) setModal(`_subscribe_nl-${name}`);
+      else setModal(`unsubscribe_nl-${name}`);
    }
 
    function checkIfSubscribedToNl(nl) {

@@ -6,6 +6,7 @@ import LoginModal from "@/components/auth/LoginModal";
 import SignupModal from "@/components/auth/SignupModal";
 import UnSubscribeNlModal from "@/components/newsletter/UnSubscribeModal";
 import { motion } from "framer-motion";
+import SubscribeNlModal from "@/components/newsletter/SubscribeModa";
 
 export default function Layout({
    children,
@@ -36,6 +37,7 @@ export default function Layout({
          <LoginModal />
          <SignupModal />
          <UnSubscribeNlModal />
+         <SubscribeNlModal />
          <Footer />
       </>
    );
