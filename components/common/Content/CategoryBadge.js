@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function CategoryBadge({ category, greyed = false, logo }) {
    return greyed ? (
       <div
@@ -5,7 +7,10 @@ export default function CategoryBadge({ category, greyed = false, logo }) {
          dangerouslySetInnerHTML={{ __html: category?.title }}
       ></div>
    ) : (
-      <div className="uppercase cursor-pointer text-sm text-blue px-[5px] py-[3px] rounded-md w-fit bg-bluebadgebg flex items-center gap-[5px] hover:bg-[#bddbf9]">
+      <Link
+         href={category?.uri || ""}
+         className="uppercase cursor-pointer text-sm text-blue px-[5px] py-[3px] rounded-md w-fit bg-bluebadgebg flex items-center gap-[5px] hover:bg-[#bddbf9]"
+      >
          {logo ? (
             <span>
                <img
@@ -18,6 +23,6 @@ export default function CategoryBadge({ category, greyed = false, logo }) {
             </span>
          ) : null}
          <span dangerouslySetInnerHTML={{ __html: category?.name }}></span>
-      </div>
+      </Link>
    );
 }

@@ -25,7 +25,7 @@ export default function VerticalSection({
             compactTheme={compactTheme}
          />
          {/* divider */}
-         <div className="absolute top-0 left-0 h-full w-full grid grid-cols-3">
+         <div className="absolute top-0 left-0 h-full w-full grid grid-cols-3 z-[-1]">
             <div className="col-span-2 border-solid border-r-[1px] border-lightgray"></div>
          </div>
          {/* See more buttons for both the sections */}

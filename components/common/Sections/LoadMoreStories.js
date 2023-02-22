@@ -35,7 +35,7 @@ export default function LoadMoreStoriesSection({
          </div>
          {/* Load more button */}
          <button
-            className={`font-medium text-blue mt-[50px] rounded-sm border-[1.5px] border-blue border-solid block mx-auto py-[11px] px-[20px] ${
+            className={`font-medium text-blue mt-[50px] rounded-sm border-[1.5px] border-blue border-solid block mx-auto py-[11px] px-[20px] font-outfit ${
                loading && "opacity-50"
             }`}
             onClick={getMoreStories}
