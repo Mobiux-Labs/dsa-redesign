@@ -56,7 +56,7 @@ function Content({ leftStories, rightStories, imageSize, compactTheme }) {
             }`}
          >
             {leftStories.slice(0, 2).map((story, i) => (
-               <div className="h-fit">
+               <div className="h-fit" key={i}>
                   <StoryCard
                      key={story.id}
                      story={story}
@@ -66,7 +66,7 @@ function Content({ leftStories, rightStories, imageSize, compactTheme }) {
                </div>
             ))}
             {rightStories.slice(0, 1).map((story, i) => (
-               <div className="h-fit">
+               <div className="h-fit" key={i}>
                   <StoryCard
                      key={story.id}
                      story={story}
@@ -84,7 +84,7 @@ function Content({ leftStories, rightStories, imageSize, compactTheme }) {
             }`}
          >
             {leftStories.slice(2, 4).map((story, i) => (
-               <div className="h-fit">
+               <div className="h-fit" key={i}>
                   <StoryCard
                      key={story.id}
                      story={story}
@@ -94,7 +94,7 @@ function Content({ leftStories, rightStories, imageSize, compactTheme }) {
                </div>
             ))}
             {rightStories.slice(1, 2).map((story, i) => (
-               <div className="h-fit">
+               <div className="h-fit" key={i}>
                   <StoryCard
                      key={story.id}
                      story={story}
@@ -112,7 +112,7 @@ function Content({ leftStories, rightStories, imageSize, compactTheme }) {
             }`}
          >
             {leftStories.slice(4, 6).map((story, i) => (
-               <div className="h-fit">
+               <div className="h-fit" key={i}>
                   <StoryCard
                      key={story.id}
                      story={story}
@@ -122,7 +122,7 @@ function Content({ leftStories, rightStories, imageSize, compactTheme }) {
                </div>
             ))}
             {rightStories.slice(2, 3).map((story, i) => (
-               <div className="h-fit">
+               <div className="h-fit" key={i}>
                   <StoryCard
                      key={story.id}
                      story={story}
@@ -141,7 +141,7 @@ function Content({ leftStories, rightStories, imageSize, compactTheme }) {
                }`}
             >
                {leftStories.slice(6, 8).map((story, i) => (
-                  <div className="h-fit">
+                  <div className="h-fit" key={i}>
                      <StoryCard
                         key={story.id}
                         story={story}
@@ -151,7 +151,7 @@ function Content({ leftStories, rightStories, imageSize, compactTheme }) {
                   </div>
                ))}
                {rightStories.slice(3, 4).map((story, i) => (
-                  <div className="h-fit">
+                  <div className="h-fit" key={i}>
                      <StoryCard
                         key={story.id}
                         story={story}

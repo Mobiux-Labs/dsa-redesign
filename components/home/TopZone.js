@@ -36,8 +36,8 @@ function LeftSection({ headlines }) {
          >
             {
                // Skip the first story since it's already displayed in the main story card
-               headlines.slice(1, compactTheme ? 10 : 7).map((story) => (
-                  <StoryCard story={story} />
+               headlines.slice(1, compactTheme ? 10 : 7).map((story, index) => (
+                  <StoryCard story={story} key={index} />
                ))
             }
          </div>
@@ -90,8 +90,8 @@ function RightSection({ justin, trending }) {
             {/* Stories x 3 */}
             {getSelectedTabStories()
                .slice(0, 3)
-               .map((story) => (
-                  <div className="mb-[37px]">
+               .map((story, index) => (
+                  <div className="mb-[37px]" key={index}>
                      <StoryCard story={story} withExcerpt={false} />
                   </div>
                ))}

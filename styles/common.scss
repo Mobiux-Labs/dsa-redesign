@@ -169,3 +169,10 @@ button.expand-table-button {
       transform: translateY(0px);
    }
 }
+
+.newsletter-form-input {
+   .mantine-TextInput-wrapper,
+   input {
+      height: 100%;
+   }
+}

@@ -79,8 +79,6 @@ export async function setStoryViews(uri, premiumContent, researchContent) {
       body: JSON.stringify({ uri, premiumContent, researchContent }),
    });
    if (!res.ok) return null;
-   // let cookies = res.headers.get("Set-cookie");
-   // res.headers.set("Set-cookie", cookies + "Domain=.dealstreetasia.com;");
    return res;
 }
 
@@ -157,4 +155,15 @@ export async function getTermSuggestions(query) {
    if (!res.ok) return null;
    const data = await res.json();
    return data;
+}
+
+export async function subscribeToNewsletter(email, newsletter) {
+   let url = "/subs/newsletter/subscribe/";
+   const res = await fetch(url, {
+      headers: createHeader(),
+      method: "POST",
+      body: JSON.stringify({ email, newsletter }),
+   });
+   if (!res.ok) return null;
+   return res;
 }

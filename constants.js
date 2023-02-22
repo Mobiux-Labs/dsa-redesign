@@ -194,3 +194,6 @@ export const categories = [
       type: "story-section",
    },
 ];
+
+export const defaultNlToSubscribe =
+   process.env.NEXT_PUBLIC_DEFAULT_NL_TO_SUBSCRIBE;

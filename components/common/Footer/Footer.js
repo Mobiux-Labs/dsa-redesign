@@ -2,6 +2,7 @@ import Image from "next/image";
 import { logoUrl } from "@/constants";
 import Link from "next/link";
 import CustomIcon from "@/utils/icon-mapping";
+import NewsletterForm from "./NewsletterForm";
 
 export default function Footer({}) {
    const currentYear = new Date().getFullYear();
@@ -15,19 +16,7 @@ export default function Footer({}) {
                <p className="text-white font-bold text-3xl mt-[20px] mb-[35px]">
                   Sign up to our newsletters for a daily dose of DealStreetAsia.
                </p>
-               <form className="w-[593px] mx-auto flex h-[45px]">
-                  <input
-                     type="email"
-                     placeholder="Enter Your Email"
-                     className="py-[14px] placeholder:text-lg placeholder-lightgray w-[461px]"
-                  />
-                  <button
-                     type="submit"
-                     className="bg-blue text-white w-fit h-full text-base px-[12px]"
-                  >
-                     Subscribe Now
-                  </button>
-               </form>
+               <NewsletterForm />
             </div>
          </div>
          <div className="bottom-section relative">
