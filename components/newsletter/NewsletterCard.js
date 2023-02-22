@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { useModal, useSession } from "@/utils/context";
 import { useEffect, useState } from "react";
+import { setNlPreference } from "@/utils/api-calls";
+import { getUserSession } from "@/utils/user";
 
 export default function NewsletterCard({ newsletter }) {
    let subscribedBtnStyle = "bg-blue text-white";
@@ -10,14 +12,35 @@ export default function NewsletterCard({ newsletter }) {
    const [subscribed, setSubscribed] = useState(false);
    let buttonText = subscribed ? "Subscribed" : "Subscribe";
 
-   function openUnSubscribeModal(name) {
-      if (!subscribed) setModal(`_subscribe_nl-${name}`);
-      else setModal(`unsubscribe_nl-${name}`);
+   function handleClick(newsletter) {
+      if (!subscribed) subscribeToNl(newsletter);
+      else setModal(`unsubscribe_nl-${newsletter?.name}`);
    }
 
    function checkIfSubscribedToNl(nl) {
       if (!session) return false;
       return session.subscribedNewsletters?.includes(nl.slug);
+   }
+
+   function createPreferenceObject(slug) {
+      let preference = {
+         daily_brief: session?.dailyBriefNl,
+         week_that_was: session?.weekThatWasNl,
+         vantage_point: session?.vantagePointNl,
+         data_vantage: session?.dataVantageNl,
+         events: session?.events,
+         offers: session?.offers,
+      };
+      preference[slug] = true;
+      return preference;
+   }
+
+   async function subscribeToNl(newsletter) {
+      let preference = createPreferenceObject(newsletter.slug);
+      let res = await setNlPreference(session?.email, preference);
+      const userSession = await getUserSession();
+      setSession(userSession);
+      if (res) setModal(`_subscribe_nl-${newsletter.name}`);
    }
 
    useEffect(() => {
@@ -38,7 +61,7 @@ export default function NewsletterCard({ newsletter }) {
                className={`px-[10px] py-[6px] font-medium rounded-sm font-outfit ${
                   subscribed ? subscribedBtnStyle : unsubscribedBtnStyle
                }`}
-               onClick={() => openUnSubscribeModal(newsletter?.name)}
+               onClick={() => handleClick(newsletter)}
             >
                {buttonText}
             </button>
