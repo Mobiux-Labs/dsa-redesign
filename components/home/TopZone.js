@@ -47,6 +47,14 @@ function LeftSection({ headlines }) {
 
 function RightSection({ justin, trending }) {
    const [selectedTab, setSelectedTab] = useState("justin");
+   const [isAnimating, setIsAnimating] = useState(false);
+
+   function startAnimation() {
+      setIsAnimating(true);
+      setTimeout(() => {
+         setIsAnimating(false);
+      }, 400);
+   }
 
    function getSelectedTabStories() {
       if (selectedTab == "justin") return justin;
@@ -56,6 +64,7 @@ function RightSection({ justin, trending }) {
    function changeTab() {
       if (selectedTab == "justin") setSelectedTab("trending");
       else setSelectedTab("justin");
+      startAnimation();
    }
 
    let selectedTabHeadingStyles =
@@ -77,7 +86,7 @@ function RightSection({ justin, trending }) {
                {selectedTab == "justin" ? "Trending" : "Just In"}
             </p>
          </div>
-         <div className="mt-[25px]">
+         <div className={`mt-[25px] ${isAnimating ? "animated_slidein" : ""}`}>
             {/* Stories x 3 */}
             {getSelectedTabStories()
                .slice(0, 3)
