@@ -100,10 +100,15 @@ module.exports = {
             "0%": { opacity: 0, transform: "translateY(-10px)" },
             "100%": { opacity: 1, transform: "translateY(0)" },
          },
+         "arrow-translate": {
+            "0%": { transform: "translateX(0)" },
+            "100%": { transform: "translateX(10px)" },
+         },
       },
       animation: {
          "fade-in": "fade-in 0.3s ease-in-out",
          "slide-top": "slide-top 0.3s ease-in-out",
+         "arrow-translate": "arrow-translate 0.3s ease-in-out infinite",
       },
    },
    plugins: [require("flowbite/plugin")],

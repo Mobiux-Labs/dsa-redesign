@@ -29,7 +29,7 @@ export default function VerticalSection({
             <div className="col-span-2 border-solid border-r-[1px] border-lightgray"></div>
          </div>
          {/* See more buttons for both the sections */}
-         <div className="head text-heading text-3xl font-bold col-span-3 pb-[45px] grid grid-cols-3 mt-[40px]">
+         <div className="head text-heading text-3xl font-bold col-span-3 pb-[45px] grid grid-cols-3 mt-[40px] z-[1000]">
             <div className="col-span-2">
                <SeeMoreButton href={""} />
             </div>

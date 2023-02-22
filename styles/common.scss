@@ -176,3 +176,24 @@ button.expand-table-button {
       height: 100%;
    }
 }
+
+.see-more-btn {
+   &:hover span {
+      animation: shift-aroow 0.4s ease forwards;
+      transition: 0.2s ease;
+   }
+}
+
+@keyframes shift-aroow {
+   0% {
+      transform: translateX(0px);
+      opacity: 0;
+   }
+   50% {
+      transform: translateX(-5px);
+   }
+   100% {
+      transform: translateX(0px);
+      opacity: 1;
+   }
+}

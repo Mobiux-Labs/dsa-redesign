@@ -1,13 +1,16 @@
-export const SeeMoreButton = ({ href }) => {
+import CustomIcon from "@/utils/icon-mapping";
+import Link from "next/link";
+
+export const SeeMoreButton = ({ href = "" }) => {
    return (
-      <a
+      <Link
          href={href}
-         className="text-blue font-medium flex items-center gap-[10px] text-base"
+         className="text-blue font-medium flex items-center gap-[10px] text-base cursor-pointer see-more-btn w-fit"
       >
          See More
-         <span>
-            <img src="icons/arrow.svg" alt="" />
+         <span className="transition duration-300">
+            <CustomIcon name="arrow" dontReplaceColor />
          </span>
-      </a>
+      </Link>
    );
 };
