@@ -1,4 +1,10 @@
-import { baseUrl, categories, regions, sections } from "@/constants";
+import {
+   baseUrl,
+   categories,
+   regions,
+   sections,
+   newsletters,
+} from "@/constants";
 import moment from "moment/moment";
 
 export function getTimeAgo(datetime) {
@@ -88,4 +94,13 @@ export function loader({ src, width, height, quality }) {
       replaceCDN(src) +
       `${condition}resize=${width},${height}&q=${quality || 75}`;
    return newSrc;
+}
+
+export function findNewsletterByName(name) {
+   for (const newsletter of Object.values(newsletters)) {
+      if (newsletter.name === name) {
+         return newsletter;
+      }
+   }
+   return null;
 }

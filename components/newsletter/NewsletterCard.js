@@ -1,16 +1,28 @@
 import Link from "next/link";
-import { useModal } from "@/utils/context";
+import { useModal, useSession } from "@/utils/context";
+import { useEffect, useState } from "react";
 
-export default function NewsletterCard({ newsletter, subscribed = false }) {
-   let buttonText = subscribed ? "Subscribed" : "Subscribe";
+export default function NewsletterCard({ newsletter }) {
    let subscribedBtnStyle = "bg-blue text-white";
    let unsubscribedBtnStyle = "bg-white text-blue border border-blue";
    const [modal, setModal] = useModal();
+   const [session, setSession] = useSession();
+   const [subscribed, setSubscribed] = useState(false);
+   let buttonText = subscribed ? "Subscribed" : "Subscribe";
 
    function openUnSubscribeModal(name) {
       if (!subscribed) return;
       setModal(`unsubscribe_nl-${name}`);
    }
+
+   function checkIfSubscribedToNl(nl) {
+      if (!session) return false;
+      return session.subscribedNewsletters?.includes(nl.slug);
+   }
+
+   useEffect(() => {
+      if (newsletter) setSubscribed(checkIfSubscribedToNl(newsletter));
+   }, [session]);
 
    return (
       <div
@@ -23,7 +35,7 @@ export default function NewsletterCard({ newsletter, subscribed = false }) {
                {newsletter?.name}
             </h2>
             <button
-               className={`px-[10px] py-[6px] font-medium rounded-sm ${
+               className={`px-[10px] py-[6px] font-medium rounded-sm font-outfit ${
                   subscribed ? subscribedBtnStyle : unsubscribedBtnStyle
                }`}
                onClick={() => openUnSubscribeModal(newsletter?.name)}

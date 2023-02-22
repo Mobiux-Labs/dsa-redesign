@@ -1,14 +1,47 @@
 import { useModal } from "@/utils/context";
 import { Modal } from "@mantine/core";
 import { CloseButton } from "@/components/auth/LoginModal";
+import { newsletters } from "@/constants";
+import { useSession } from "@/utils/context";
+import { setNlPreference } from "@/utils/api-calls";
+import { getUserSession } from "@/utils/user";
+import { findNewsletterByName } from "@/utils/helper";
 
 export default function UnSubscribeNlModal({}) {
    const [modal, setModal] = useModal();
+   const [session, setSession] = useSession();
+
    function getNewsletterName() {
       if (!modal) return;
       const name = modal.split("-").pop();
       return name;
    }
+
+   function createPreferenceObject(slug) {
+      let preference = {
+         daily_brief: session?.dailyBriefNl,
+         week_that_was: session?.weekThatWasNl,
+         vantage_point: session?.vantagePointNl,
+         data_vantage: session?.dataVantageNl,
+         events: session?.events,
+         offers: session?.offers,
+      };
+      preference[slug] = false;
+      return preference;
+   }
+
+   async function onConfirm() {
+      let name = getNewsletterName();
+      let newsletter = findNewsletterByName(name);
+      if (!newsletter) return;
+      let slug = newsletter.slug;
+      let preference = createPreferenceObject(slug);
+      let res = await setNlPreference(session?.email, preference);
+      const userSession = await getUserSession();
+      setSession(userSession);
+      if (res) setModal();
+   }
+
    return (
       <div>
          <Modal
@@ -31,8 +64,13 @@ export default function UnSubscribeNlModal({}) {
                   latest updates?
                </p>
                <div className="text-blue flex items-center justify-end gap-[30px] text-base font-medium mt-[40px] w-full">
-                  <button onClick={() => setModal()}>Cancel</button>
-                  <button className="py-[11px] px-[20px] border-[1px] border-blue rounded-sm">
+                  <button onClick={() => setModal()} className="font-outfit">
+                     Cancel
+                  </button>
+                  <button
+                     className="py-[11px] px-[20px] border-[1px] border-blue rounded-sm font-outfit"
+                     onClick={() => onConfirm()}
+                  >
                      Confirm
                   </button>
                </div>

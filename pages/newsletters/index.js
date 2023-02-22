@@ -4,11 +4,6 @@ import NewsletterCard from "@/components/newsletter/NewsletterCard";
 import { newsletters } from "@/constants";
 
 export default function Newsletters(props) {
-   function checkIfSubscribedToNl(nl) {
-      if (!props.session) return false;
-      return props.session.subscribedNewsletters.includes(nl.slug);
-   }
-
    return (
       <Layout session={props.session}>
          {/* Top section with title and description */}
@@ -33,7 +28,6 @@ export default function Newsletters(props) {
                <NewsletterCard
                   key={index}
                   newsletter={newsletters[newsletter]}
-                  subscribed={checkIfSubscribedToNl(newsletters[newsletter])}
                />
             ))}
          </div>

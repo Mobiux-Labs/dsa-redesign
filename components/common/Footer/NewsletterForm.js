@@ -43,7 +43,7 @@ export default function NewsletterForm({ defaultEmail }) {
             className={`bg-blue text-white w-fit h-full text-base px-[12px]`}
             disabled={loading}
          >
-            {success ? "Subscribed" : "Subscribe"}
+            {success ? "Subscribed" : "Subscribe Now"}
          </button>
       </form>
    );

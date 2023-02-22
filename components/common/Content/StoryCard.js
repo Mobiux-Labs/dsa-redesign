@@ -50,12 +50,12 @@ export default function StoryCard({
 
    return (
       <div
-         className={`content flex justify-between h-fit items-stretch w-full ${
+         className={`content flex h-fit items-stretch w-full ${
             imagePosition == "right"
                ? "flex-row-reverse"
                : imagePosition == "left"
                ? "flex-row justify-start"
-               : "flex-col"
+               : "flex-col justify-between"
          }`}
       >
          {/* Image */}

@@ -167,3 +167,24 @@ export async function subscribeToNewsletter(email, newsletter) {
    if (!res.ok) return null;
    return res;
 }
+
+export async function setNlPreference(email, preference) {
+   let url = "/api/subs/communications-prefs/";
+   const res = await fetch(url, {
+      headers: createHeader(),
+      method: "POST",
+      body: JSON.stringify({
+         email,
+         dailyFeed: preference.daily_brief,
+         dataVantage: preference.data_vantage,
+         vantagePoint: preference.vantage_point,
+         pastWeek: preference.week_that_was,
+         events: preference.events,
+         offers: preference.offers,
+      }),
+   });
+   if (!res.ok) return;
+   let data = await res.json();
+   if (data?.message == "success") return true;
+   return;
+}

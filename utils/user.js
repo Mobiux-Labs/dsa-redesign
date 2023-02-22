@@ -9,7 +9,7 @@ function getSubscribedNewsletters(
    dataVantage
 ) {
    let subscribedNewsletters = [];
-   if (dailyBrief) subscribedNewsletters.push(newsletters.daily_breif.slug);
+   if (dailyBrief) subscribedNewsletters.push(newsletters.daily_brief.slug);
    if (weekThatWas) subscribedNewsletters.push(newsletters.week_that_was.slug);
    if (vantagePoint) subscribedNewsletters.push(newsletters.vantage_point.slug);
    if (dataVantage) subscribedNewsletters.push(newsletters.data_vantage.slug);
@@ -23,6 +23,7 @@ export async function getUserSession(req) {
    let plan, userId;
    let res, email;
    let name, dailyBriefNl, dataVantageNl, weekThatWasNl, vantagePointNl;
+   let events, offers;
    let subscribedNewsletters = [];
    let userFavourites = [];
    if (req) {
@@ -44,6 +45,8 @@ export async function getUserSession(req) {
          dataVantageNl = res.data_vantage_nl;
          weekThatWasNl = res.week_that_was_nl;
          vantagePointNl = res.vantage_point_nl;
+         events = res.events;
+         offers = res.offers;
          userFavourites = res.user_favourites;
          if (res.plan !== null) {
             plan = res.plan;
@@ -71,6 +74,8 @@ export async function getUserSession(req) {
       weekThatWasNl,
       vantagePointNl,
       userFavourites,
+      events,
+      offers,
    };
    return removeUndefined(returnObj);
 }
