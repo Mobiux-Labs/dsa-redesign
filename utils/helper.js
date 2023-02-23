@@ -104,3 +104,47 @@ export function findNewsletterByName(name) {
    }
    return null;
 }
+
+function findPlanByName(objects, code) {
+   for (let i = 0; i < objects.length; i++) {
+      if (objects[i].plan_code === code) {
+         return objects[i];
+      }
+   }
+   return null;
+}
+
+export function createPricingObject(planData) {
+   let result = {};
+   result["1 Month"] = {
+      basic: findPlanByName(planData, "Mo033"),
+      professional: findPlanByName(planData, "rt01"),
+   };
+   result["3 Months"] = {
+      basic: findPlanByName(planData, "Qu321"),
+      professional: findPlanByName(planData, "ra03"),
+   };
+   result["1 year"] = {
+      basic: findPlanByName(planData, "Ye432"),
+      professional: findPlanByName(planData, "ra12"),
+   };
+   result["2 years"] = {
+      basic: findPlanByName(planData, "Bi543"),
+      professional: findPlanByName(planData, "rb24"),
+   };
+   result["3 years"] = {
+      basic: findPlanByName(planData, "Tr649"),
+      professional: findPlanByName(planData, "rt36"),
+   };
+   return result;
+}
+
+export function formatPrice(price) {
+   price = price / 100;
+   return price.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+   });
+}

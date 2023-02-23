@@ -90,6 +90,7 @@ module.exports = {
       },
       boxShadow: {
          "3xl": "0px 4px 4px 0px rgba(197, 197, 197, 0.15)",
+         plancard: "0px 4px 30px rgba(184, 183, 183, 0.2)",
       },
       keyframes: {
          "fade-in": {

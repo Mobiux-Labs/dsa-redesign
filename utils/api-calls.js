@@ -188,3 +188,11 @@ export async function setNlPreference(email, preference) {
    if (data?.message == "success") return true;
    return;
 }
+
+export async function getPlanData(req) {
+   let url = `${backendUrl}/new/plans/`;
+   const res = await fetch(url, { headers: createHeader(req) });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}

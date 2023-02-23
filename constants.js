@@ -197,3 +197,21 @@ export const categories = [
 
 export const defaultNlToSubscribe =
    process.env.NEXT_PUBLIC_DEFAULT_NL_TO_SUBSCRIBE;
+
+export const basicPlanDetails = [
+   "Premium News Subscription",
+   "Daily Brief Newsletter (Monday to Saturday)",
+   "Priority Access to Subscriber Special Events",
+   "Twice weekly <a href='data-vantage'>Data Vantage</a> newsletter",
+];
+
+export const proPlanDetails = [
+   "Premium News Subscription",
+   "Daily Brief Newsletter (Monday to Saturday)",
+   "Priority Access to Subscriber Special Events",
+   "Twice weekly <a href='data-vantage'>Data Vantage</a> newsletter",
+   "Deal Monitors (India / China / SEA)",
+   "4 new Reports per month",
+   "Track competition and industries",
+   "Key financials of ~2,000 venture backed companies registered in Singapore",
+];
