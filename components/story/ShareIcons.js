@@ -9,10 +9,12 @@ export default function ShareIcons({ story, bookmarked }) {
    const [session, setSession] = useSession();
    const [hoveringIcon, setHoveringIcon] = useState(false);
    const [bookmark, setBookmark] = useState(bookmarked || false);
+   const [isAnimating, setIsAnimating] = useState(false);
    const router = useRouter();
 
    async function handleBookmark() {
       if (!session) return;
+      startAnimation();
       let uri = router.query.uri;
       let res = await bookMarkArticle(
          session.email,
@@ -30,6 +32,13 @@ export default function ShareIcons({ story, bookmarked }) {
       let session = await getUserSession();
       setSession(session);
       setBookmark(session?.bookmarked);
+   }
+
+   function startAnimation() {
+      setIsAnimating(true);
+      setTimeout(() => {
+         setIsAnimating(false);
+      }, 600);
    }
 
    useEffect(() => {
@@ -85,7 +94,9 @@ export default function ShareIcons({ story, bookmarked }) {
                height={16}
                onMouseLeave={() => setHoveringIcon(false)}
                onMouseEnter={() => setHoveringIcon("bookmark")}
-               className="cursor-pointer"
+               className={`cursor-pointer ${
+                  isAnimating ? "animate_bookmark" : ""
+               }`}
             />
          </div>
       </div>

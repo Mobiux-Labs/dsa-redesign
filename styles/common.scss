@@ -229,3 +229,21 @@ button.expand-table-button {
       font-weight: bold;
    }
 }
+
+.animate_bookmark {
+   animation: bookmark 0.6s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+
+@keyframes bookmark {
+   0% {
+      transform: scale(0.5);
+      opacity: 0.5;
+   }
+   50% {
+      transform: scale(1.2);
+   }
+   100% {
+      opacity: 1;
+      transform: scale(1);
+   }
+}
