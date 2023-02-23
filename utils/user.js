@@ -19,7 +19,7 @@ function getSubscribedNewsletters(
 export async function getUserSession(req) {
    let loggedIn = false;
    let subscribed = false;
-   let type;
+   let type, bookmarked;
    let plan, userId;
    let res, email;
    let name, dailyBriefNl, dataVantageNl, weekThatWasNl, vantagePointNl;
@@ -48,6 +48,7 @@ export async function getUserSession(req) {
          events = res.events;
          offers = res.offers;
          userFavourites = res.user_favourites;
+         bookmarked = res.bookmarked;
          if (res.plan !== null) {
             plan = res.plan;
             subscribed = true;
@@ -76,6 +77,7 @@ export async function getUserSession(req) {
       userFavourites,
       events,
       offers,
+      bookmarked,
    };
    return removeUndefined(returnObj);
 }

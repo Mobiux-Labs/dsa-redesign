@@ -196,3 +196,31 @@ export async function getPlanData(req) {
    const data = await res.json();
    return data;
 }
+
+export async function bookMarkArticle(
+   email,
+   uri,
+   slug,
+   story_id,
+   post_type,
+   post_title,
+   premium
+) {
+   if (!email) return;
+   let url = `${backendUrl.replace(baseUrl, "")}/new/bookmark/`;
+   const res = await fetch(url, {
+      headers: createHeader(),
+      method: "POST",
+      body: JSON.stringify({
+         email,
+         uri,
+         slug,
+         story_id,
+         post_type,
+         post_title,
+         premium,
+      }),
+   });
+   if (!res.ok) return null;
+   return res;
+}

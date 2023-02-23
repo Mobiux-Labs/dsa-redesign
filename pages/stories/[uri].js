@@ -49,7 +49,10 @@ export default function StoryPage(props) {
             {/* Author info and the share icons */}
             <div className="flex justify-between py-[20px] items-center sticky bg-white top-[80px]">
                <AuthorInfo story={story} />
-               <ShareIcons story={story} />
+               <ShareIcons
+                  story={story}
+                  bookmarked={props?.session?.bookmarked}
+               />
             </div>
             {/* Excerpt */}
             <p className="font-serif font-medium leading-[28px] text-content">
