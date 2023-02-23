@@ -85,9 +85,15 @@ export default function CustomIcon({
    height,
    dontReplaceColor = false,
    className = "",
+   onMouseLeave,
+   onMouseEnter,
 }) {
    return (
-      <div className={`h-${height} w-${width}`}>
+      <div
+         className={`h-${height} w-${width}`}
+         onMouseEnter={onMouseEnter}
+         onMouseLeave={onMouseLeave}
+      >
          <div
             dangerouslySetInnerHTML={{
                __html: replaceFillAndStroke(
