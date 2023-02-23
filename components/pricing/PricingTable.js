@@ -20,6 +20,11 @@ export default function PricingTable({ data }) {
       },
    };
 
+   function isMostPopular(plan) {
+      console.log(plan);
+      return plan === "1 year";
+   }
+
    return (
       <div className="mt-[30px]">
          <Tabs value={activeTab} onTabChange={setActiveTab} styles={tabStyle}>
@@ -33,7 +38,12 @@ export default function PricingTable({ data }) {
             <div className="mt-[50px]">
                {Object.keys(data).map((key) => (
                   <Tabs.Panel value={key} key={key}>
-                     <div className="grid grid-cols-2 gap-[40px]">
+                     {isMostPopular(key) ? (
+                        <p className="bg-blue py-[3px] px-[5px] uppercase rounded-md text-sm font-medium w-fit text-white mb-[14px] animate-slide-top">
+                           Most Popular
+                        </p>
+                     ) : null}
+                     <div className={`grid grid-cols-2 gap-[40px]`}>
                         <PlanCard plan={data[key]?.professional} />
                         <PlanCard plan={data[key]?.basic} basic />
                      </div>
