@@ -4,28 +4,25 @@ import PlanCard from "./PlanCard";
 
 export default function PricingTable({ data }) {
    const [activeTab, setActiveTab] = useState("1 year");
+   let tabStyle = {
+      tab: {
+         fontFamily: "montserrat",
+         color: "#C8C8C8",
+         fontWeight: 600,
+         lineHeight: "30px",
+         borderWidth: "4px",
+         marginRight: "50px",
+         border: "none",
+         "&[data-active]": {
+            color: "#35a7df",
+            borderBottom: "4px solid #35a7df",
+         },
+      },
+   };
 
    return (
       <div className="mt-[30px]">
-         <Tabs
-            value={activeTab}
-            onTabChange={setActiveTab}
-            styles={{
-               tab: {
-                  fontFamily: "montserrat",
-                  color: "#C8C8C8",
-                  fontWeight: 600,
-                  lineHeight: "30px",
-                  borderWidth: "4px",
-                  marginRight: "50px",
-                  border: "none",
-                  "&[data-active]": {
-                     color: "#35a7df",
-                     borderBottom: "4px solid #35a7df",
-                  },
-               },
-            }}
-         >
+         <Tabs value={activeTab} onTabChange={setActiveTab} styles={tabStyle}>
             <Tabs.List className="border-0">
                {Object.keys(data).map((key) => (
                   <Tabs.Tab value={key} key={key}>

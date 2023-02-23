@@ -203,3 +203,29 @@ button.expand-table-button {
    color: #1c70b6;
    font-weight: bold;
 }
+
+.bulk-radio input {
+   height: 20px;
+   width: 20px;
+}
+
+.licence-input {
+   input {
+      padding: 10px 14px;
+      font-family: "Montserrat";
+      width: 230px;
+      height: 40px;
+      border: 1px solid #c8c8c8;
+      border-radius: 5px;
+   }
+}
+
+.faq-accordion-item {
+   ul {
+      list-style: inside;
+   }
+   a {
+      color: #35a7df;
+      font-weight: bold;
+   }
+}

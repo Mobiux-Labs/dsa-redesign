@@ -2,15 +2,23 @@ import Layout from "@/components/common/Layout/Layout";
 import { getUserSession } from "@/utils/user";
 import PricingTable from "@/components/pricing/PricingTable";
 import { getPlanData } from "@/utils/api-calls";
-import { createPricingObject } from "@/utils/helper";
+import { createBulkPricingObject, createPricingObject } from "@/utils/helper";
+import BulkSubscription from "@/components/pricing/BulkSubscription";
+import FAQ from "@/components/pricing/FAQ";
 
 export default function PricingPage(props) {
    let pricingData = createPricingObject(props.planData);
+   let bulkPricingData = createBulkPricingObject(props.planData);
    return (
       <Layout session={props.session} showSectionBar={false}>
          <div className="px-[120px]">
             <TopSection />
-            <PricingTable data={pricingData} />
+            <PricingTable
+               data={pricingData}
+               bulkPricingData={bulkPricingData}
+            />
+            <BulkSubscription data={bulkPricingData} />
+            <FAQ />
          </div>
       </Layout>
    );

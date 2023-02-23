@@ -139,6 +139,17 @@ export function createPricingObject(planData) {
    return result;
 }
 
+export function createBulkPricingObject(planData) {
+   let result = {};
+   result["tier 3"] = findPlanByName(planData, "CoPreYeT3");
+   result["tier 3"].users = "2-4";
+   result["tier 1"] = findPlanByName(planData, "CoPreYeT1");
+   result["tier 1"].users = "5-9";
+   result["tier 2"] = findPlanByName(planData, "CoPreYeT2");
+   result["tier 2"].users = "10+";
+   return result;
+}
+
 export function formatPrice(price) {
    price = price / 100;
    return price.toLocaleString("en-US", {
