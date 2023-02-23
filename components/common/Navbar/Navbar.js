@@ -103,7 +103,7 @@ export default function Navbar({ intialSession }) {
             {/* Show subscribe button only if user is not subscribed */}
             {!session?.subscribed ? (
                <Link
-                  href="/user/plans"
+                  href="/plans"
                   className="bg-blue text-white px-[15px] py-[10px] rounded-sm"
                >
                   Subscribe
