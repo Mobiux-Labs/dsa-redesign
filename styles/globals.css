@@ -28,3 +28,31 @@
 input {
    --tw-ring-shadow: 0 0 #000 !important;
 }
+
+[type="radio"]:checked {
+   color: var(--color-blue);
+   position: relative;
+}
+
+[type="radio"] {
+   position: relative;
+}
+[type="radio"]:checked:before,
+[type="radio"]:checked:after {
+   position: absolute;
+   content: "";
+   inset: 0;
+   background-color: white;
+   height: 17px;
+   width: 17px;
+   border-radius: 50%;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+[type="radio"]:checked:after {
+   background-color: var(--color-blue);
+   height: 12px;
+   width: 12px;
+   z-index: 100;
+}

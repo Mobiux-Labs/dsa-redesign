@@ -13,11 +13,13 @@ export default function BulkSubscription({ data }) {
          <div className="shadow-plancard p-[30px] pb-[39px]">
             <p className="text-heading font-semibold text-base">Select type</p>
             <div className="flex justify-between items-center">
-               <div className="flex mt-[17px] gap-[80px]">
-                  {Object.keys(data).map((key) => (
-                     <Selector plan={data[key]} />
-                  ))}
-               </div>
+               <Radio.Group>
+                  <div className="flex mt-[17px] gap-[80px]">
+                     {Object.keys(data).map((key) => (
+                        <Selector plan={data[key]} />
+                     ))}
+                  </div>
+               </Radio.Group>
                <LicenceInput />
             </div>
          </div>
@@ -29,10 +31,12 @@ function Selector({ plan }) {
    return (
       <div className="flex gap-[15px]">
          <Radio
+            color={"#000000"}
             className="mt-[14px] bulk-radio"
             styles={{
                icon: { opacity: 0, display: "none" },
             }}
+            value={plan?.name}
          />
          <div>
             <p className="text-darkblue font-bold text-3xl leading-[55px]">
