@@ -14,6 +14,8 @@ export default function StoryCard({
    imagePosition = "top",
    customImageHeight,
    customImageWidth,
+   customClass = "",
+   withCategory = true,
 }) {
    const authors = story?.authors;
    const timeToRead = story?.time_to_read;
@@ -56,7 +58,7 @@ export default function StoryCard({
                : imagePosition == "left"
                ? "flex-row justify-start"
                : "flex-col justify-between"
-         }`}
+         } ${customClass}`}
       >
          {/* Image */}
          {withImage ? (
@@ -99,7 +101,9 @@ export default function StoryCard({
                imagePosition == "top" && withImage ? "mt-[10px]" : ""
             }`}
          >
-            <CategoryBadge logo={partnerLogo} category={story?.category} />
+            {withCategory ? (
+               <CategoryBadge logo={partnerLogo} category={story?.category} />
+            ) : null}
             <Link href={trimUrl(story?.post_url)}>
                <h2
                   className={`${

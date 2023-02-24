@@ -224,3 +224,12 @@ export async function bookMarkArticle(
    if (!res.ok) return null;
    return res;
 }
+
+export async function getBlogsList(req, page = 1, numberOfPosts = 9) {
+   let base = `${req ? wpApiUrl : wpApiUrl.replace(baseUrl, "")}`;
+   let url = `${base}/blogs/list/?page=${page}&numberposts=${numberOfPosts}`;
+   const res = await fetch(url, { headers: createHeader(req) });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}

@@ -247,3 +247,10 @@ button.expand-table-button {
       transform: scale(1);
    }
 }
+
+.blog-post-card {
+   img {
+      width: 100% !important;
+      height: 200px !important;
+   }
+}

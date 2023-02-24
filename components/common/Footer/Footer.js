@@ -45,7 +45,7 @@ export default function Footer({}) {
                      <Link href={""}>Advertise</Link>
                      <Link href={""}>Join us</Link>
                      <Link href={""}>Contact</Link>
-                     <Link href={""}>Blog</Link>
+                     <Link href={"/blogs/"}>Blog</Link>
                      <Link href={""}>FAQ</Link>
                   </div>
                </div>
