@@ -23,7 +23,7 @@ export default function Navbar({ intialSession }) {
    }, [intialSession]);
 
    return (
-      <div className="px-[120px] shadow-3xl flex items-center h-[80px] bg-white">
+      <div className="px-[120px] shadow-3xl flex items-center h-[80px] bg-white z-[10000]">
          <div className="logo mr-[30px]">
             <Image
                src={logoUrl}

@@ -60,7 +60,7 @@ export default function AboutUsPage(props) {
             </div>
             <AboutUsFeaturesCarousel />
             <div className="grid grid-cols-2 mb-[100px]">
-               <div className="flex items-start px-[120px] justify-center flex-col text-left w-[500px]">
+               <div className="flex items-start px-[120px] justify-center flex-col text-left">
                   <h2 className="text-heading leading-[60px] text-4xl font-bold">
                      A Strong Teamwork
                   </h2>
