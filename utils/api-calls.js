@@ -233,3 +233,11 @@ export async function getBlogsList(req, page = 1, numberOfPosts = 9) {
    const data = await res.json();
    return data;
 }
+
+export async function getBlog(req, slug) {
+   let url = `${wpApiUrl}/blog/?slug${slug}`;
+   const res = await fetch(url, { headers: createHeader(req) });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}
