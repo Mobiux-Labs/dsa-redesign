@@ -278,3 +278,36 @@ export const faqs = [
       We send an email prompt to your account 7 days prior to the date of subscription renewal for cancellation. If cancellation is not opted for, we assume the subscriber wants to continue with their subscription.`,
    },
 ];
+
+export const aboutUsFeatures = [
+   {
+      title: "In-depth Coverage",
+      description:
+         "Through the depth and width of our coverage, we have differentiated ourselves in an aggregation- dominated market, and provided deal engineers across the industry a competitive edge. We have addressed the imbalance in reportage on companies from this demographically diverse and challenging region, which has frequently been underserved by the media - both international and regional.",
+   },
+   {
+      title: "Flagship events",
+      description:
+         "Our flagship annual event the Asia PE-VC Summit is held in Singapore, and has quickly gained a reputation for being one of the most sought after gatherings of principals from the world of private capital investing, and startups in the region. Apart from content that gets to the heart of the most vital themes and discussions animating the industry, the Asia PE-VC Summit has established itself as a vital networking opportunity.",
+   },
+   {
+      title: "Diversity and Inclusion",
+      description:
+         "We provide deals data, intelligence, and perspective on some of the world's most opaque markets. Our editorial coverage tracks private asset classes (PE, VC, debt) and the arc of startups & unicorns that are disrupting the status quo, and have played a pivotal role in formalising the economies of the countries that they operate in.",
+   },
+   {
+      title: "Deep Dives",
+      description:
+         "DealStreetAsia's offering has expanded to include Data Vantage: a research and analytics practice, which provides in-depth reports on companies and sectors at the vanguard of private capital funding in the region; quarterly tracking of Asia's most significant investments; and access to valuations and key financials of Southeast Asia-based venture backed companies.",
+   },
+   {
+      title: "Branded Content",
+      description:
+         "We also have a range of branded content and advertising solutions - including custom research, webinars, and articles to help our partners reach our audience of decision makers from the world of private equity, venture capital, and startup",
+   },
+   {
+      title: "Ethical Journalism",
+      description:
+         "Our breaking stories have been followed by all leading media, including Bloomberg, Reuters, CNBC, TechCrunch, and Business Times, among others.",
+   },
+];

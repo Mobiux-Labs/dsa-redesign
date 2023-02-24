@@ -40,11 +40,11 @@ export default function Footer({}) {
                      />
                   </div>
                   <div className="links flex text-darkblue gap-[45px] font-medium ml-[30px]">
-                     <Link href={""}>About Us</Link>
-                     <Link href={""}>Team</Link>
-                     <Link href={""}>Advertise</Link>
-                     <Link href={""}>Join us</Link>
-                     <Link href={""}>Contact</Link>
+                     <Link href={"/about-us/"}>About Us</Link>
+                     <Link href={"/meet-the-team/"}>Team</Link>
+                     <Link href={"/advertise-with-us/"}>Advertise</Link>
+                     <Link href={"/careers/"}>Join us</Link>
+                     <Link href={"/contact/us"}>Contact</Link>
                      <Link href={"/blogs/"}>Blog</Link>
                      <Link href={""}>FAQ</Link>
                   </div>
