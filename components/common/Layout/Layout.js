@@ -20,7 +20,7 @@ export default function Layout({
       exit: { y: 0, opacity: 1 },
       transition: {
          type: "just",
-         duration: 0.4,
+         duration: 0.2,
       },
    };
 
