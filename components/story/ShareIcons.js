@@ -15,7 +15,7 @@ export default function ShareIcons({ story, bookmarked }) {
    async function handleBookmark() {
       if (!session) return;
       startAnimation();
-      let uri = router.query.uri;
+      let uri = router.asPath.split("/")[2];
       let res = await bookMarkArticle(
          session.email,
          uri,
