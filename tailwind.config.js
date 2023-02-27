@@ -115,7 +115,7 @@ module.exports = {
          "fade-in": "fade-in 0.3s ease-in-out",
          "slide-top": "slide-top 0.3s ease-in-out",
          "arrow-translate": "arrow-translate 0.3s ease-in-out infinite",
-         "slide-up": "slide-up 0.3s ease-in-out",
+         "slide-up": "slide-up 0.1s ease-in-out",
       },
    },
    plugins: [require("flowbite/plugin")],
