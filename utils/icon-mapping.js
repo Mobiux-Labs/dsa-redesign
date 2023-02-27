@@ -34,6 +34,7 @@ import { openness } from "@/components/icons/openness";
 import { collectivelyVested } from "@/components/icons/collectivelyVested";
 import { quality } from "@/components/icons/quality";
 import { plant } from "@/components/icons/plant";
+import { job } from "@/components/icons/job";
 
 const icons = {
    arrow: arrow,
@@ -72,6 +73,7 @@ const icons = {
    collectivelyVested: collectivelyVested,
    quality: quality,
    plant: plant,
+   job: job,
 };
 
 function replaceFillAndStroke(svgCode, color, dontReplaceColor = false) {

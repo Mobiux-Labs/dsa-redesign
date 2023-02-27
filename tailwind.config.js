@@ -91,6 +91,7 @@ module.exports = {
       boxShadow: {
          "3xl": "0px 4px 4px 0px rgba(197, 197, 197, 0.15)",
          plancard: "0px 4px 30px rgba(184, 183, 183, 0.2)",
+         top: "0px -4px 4px 0px #C5C5C526",
       },
       keyframes: {
          "fade-in": {
@@ -105,11 +106,16 @@ module.exports = {
             "0%": { transform: "translateX(0)" },
             "100%": { transform: "translateX(10px)" },
          },
+         "slide-up": {
+            "0%": { opacity: 0, transform: "translateY(10px)" },
+            "100%": { opacity: 1, transform: "translateY(0)" },
+         },
       },
       animation: {
          "fade-in": "fade-in 0.3s ease-in-out",
          "slide-top": "slide-top 0.3s ease-in-out",
          "arrow-translate": "arrow-translate 0.3s ease-in-out infinite",
+         "slide-up": "slide-up 0.3s ease-in-out",
       },
    },
    plugins: [require("flowbite/plugin")],
