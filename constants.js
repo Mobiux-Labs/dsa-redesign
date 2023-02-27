@@ -312,65 +312,63 @@ export const aboutUsFeatures = [
    },
 ];
 
-export const team = [
+export const jobs = [
    {
-      name: "John Doe",
-      role: "Editorial Assistant",
-      image_url: "https://randomuser.me/api/portraits/men/1.jpg",
-      linkedin: "https://www.linkedin.com/in/johndoe/",
-      twitter: "https://twitter.com/johndoe",
-      email: "johndoe@email.com",
-      bio: "John is an experienced Editorial Assistant with a passion for literature and a keen eye for detail. He is responsible for managing the editorial workflow and ensuring that all content is accurate, engaging, and delivered on time.",
-      dept: "Editorial & Research",
+      title: "Senior Reporter",
+      team: "Editorial and Research",
+      location: "Singapore",
    },
    {
-      name: "Jane Smith",
-      role: "Marketing Manager",
-      image_url: "https://randomuser.me/api/portraits/women/2.jpg",
-      linkedin: "https://www.linkedin.com/in/janesmith/",
-      twitter: "https://twitter.com/janesmith",
-      email: "janesmith@email.com",
-      bio: "Jane is a results-driven Marketing Manager with a proven track record of success in developing and executing marketing strategies. She is responsible for overseeing all marketing activities and driving revenue growth for the company.",
-      dept: "Operations, Sales & Marketing",
+      title: "Reporter",
+      team: "Editorial and Research",
+      location: "Singapore",
    },
    {
-      name: "David Lee",
-      role: "Research Analyst",
-      image_url: "https://randomuser.me/api/portraits/men/3.jpg",
-      linkedin: "https://www.linkedin.com/in/davidlee/",
-      twitter: "https://twitter.com/davidlee",
-      email: "davidlee@email.com",
-      bio: "David is a highly skilled Research Analyst with a strong background in data analysis and research methodologies. He is responsible for conducting market research and providing insights to support strategic decision-making.",
-      dept: "Editorial & Research",
+      title: "Research Analyst",
+      team: "Editorial and Research",
+      location: "Singapore",
    },
    {
-      name: "Emily Taylor",
-      role: "Sales Executive",
-      image_url: "https://randomuser.me/api/portraits/women/4.jpg",
-      linkedin: "https://www.linkedin.com/in/emilytaylor/",
-      twitter: "https://twitter.com/emilytaylor",
-      email: "emilytaylor@email.com",
-      bio: "Emily is a dynamic Sales Executive with a proven track record of success in driving sales and exceeding targets. She is responsible for building and maintaining relationships with clients and identifying new business opportunities.",
-      dept: "Operations, Sales & Marketing",
+      title: "Data Analyst",
+      team: "Editorial and Research",
+      location: "Singapore",
    },
    {
-      name: "Michael Brown",
-      role: "Content Strategist",
-      image_url: "https://randomuser.me/api/portraits/men/5.jpg",
-      linkedin: "https://www.linkedin.com/in/michaelbrown/",
-      twitter: "https://twitter.com/michaelbrown",
-      email: "michaelbrown@email.com",
-      bio: "Michael is a creative and strategic Content Strategist with a deep understanding of audience insights and content marketing best practices. He is responsible for developing and executing content strategies that drive engagement and build brand awareness.",
-      dept: "Editorial & Research",
+      title: "Editorial Intern",
+      team: "Editorial and Research",
+      location: "Singapore",
+   },
+];
+
+export const careerFeatures = [
+   {
+      title: "Cultural Diversity",
+      icon: "culturalDiversity",
+      description:
+         "We are a diverse team of people from different backgrounds, cultures, and nationalities. We believe that diversity is a strength and we are committed to creating an inclusive environment for all our employees.",
    },
    {
-      name: "Sarah Johnson",
-      role: "Operations Manager",
-      image_url: "https://randomuser.me/api/portraits/women/6.jpg",
-      linkedin: "https://www.linkedin.com/in/sarahjohnson/",
-      twitter: "https://twitter.com/sarahjohnson",
-      email: "sarahjohnson@email.com",
-      bio: "Sarah is a highly skilled Operations Manager with a strong background in operations management and business administration. She is responsible for overseeing the day-to-day operations of the company and ensuring that all business processes are efficient and effective.",
-      dept: "Operations, Sales & Marketing",
+      title: "Openness & Integrity",
+      icon: "openness",
+      description:
+         "We are open to new ideas and opinions. We believe in transparency and honesty in our work and relationships. We are committed to doing the right thing, even when it is difficult.",
+   },
+   {
+      title: "Collectively Vested",
+      icon: "collectivelyVested",
+      description:
+         "We are a team of people who are collectively vested in the success of the company. We are committed to working together to achieve our goals.",
+   },
+   {
+      title: "Quality over Quantity",
+      icon: "quality",
+      description:
+         "We are committed to producing high-quality work. We are focused on delivering value to our customers and stakeholders.",
+   },
+   {
+      title: "Grow as you go",
+      icon: "plant",
+      description:
+         "We are committed to the growth and development of our employees. We provide opportunities for our employees to learn and grow.",
    },
 ];

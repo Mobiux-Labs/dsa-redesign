@@ -71,7 +71,7 @@ export default function AboutUsPage(props) {
                      story.
                   </p>
                   <Link
-                     href={""}
+                     href={"/meet-the-team"}
                      className="flex items-center mt-[20px] text-base text-blue font-medium gap-[5px]"
                   >
                      Meet Our Team <CustomIcon name="arrow" dontReplaceColor />{" "}

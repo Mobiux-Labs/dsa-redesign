@@ -29,6 +29,11 @@ import { lineArrowDown } from "@/components/icons/line-arrow-down";
 import { opinion } from "@/components/icons/opinion";
 import { checkMark } from "@/components/icons/check-mark";
 import { emailOutline } from "@/components/icons/email-outline";
+import { culturalDiversity } from "@/components/icons/culturalDiversity";
+import { openness } from "@/components/icons/openness";
+import { collectivelyVested } from "@/components/icons/collectivelyVested";
+import { quality } from "@/components/icons/quality";
+import { plant } from "@/components/icons/plant";
 
 const icons = {
    arrow: arrow,
@@ -62,6 +67,11 @@ const icons = {
    opinion: opinion,
    checkMark: checkMark,
    emailOutline: emailOutline,
+   culturalDiversity: culturalDiversity,
+   openness: openness,
+   collectivelyVested: collectivelyVested,
+   quality: quality,
+   plant: plant,
 };
 
 function replaceFillAndStroke(svgCode, color, dontReplaceColor = false) {
