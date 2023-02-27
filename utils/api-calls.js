@@ -241,3 +241,11 @@ export async function getBlog(req, slug) {
    const data = await res.json();
    return data;
 }
+
+export async function getTeamMemebers(req) {
+   let url = `${baseUrl}/api/content/team/members/`;
+   const res = await fetch(url, { headers: createHeader(req) });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}

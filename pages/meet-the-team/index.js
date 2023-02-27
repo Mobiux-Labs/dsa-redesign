@@ -3,6 +3,7 @@ import { getUserSession } from "@/utils/user";
 import Image from "next/image";
 import { loader, trimUrl } from "@/utils/helper";
 import TeamTab from "@/components/meet-the-team/TeamTab";
+import { getTeamMemebers } from "@/utils/api-calls";
 
 export default function TeamPage(props) {
    let imageUrl = `https://media.dealstreetasia.com/uploads/Website/team-img.png`;
@@ -37,7 +38,7 @@ export default function TeamPage(props) {
                </p>
             </div>
 
-            <TeamTab />
+            <TeamTab data={props.teamData} />
          </div>
       </Layout>
    );
@@ -45,5 +46,6 @@ export default function TeamPage(props) {
 
 export async function getServerSideProps(context) {
    let session = await getUserSession(context.req);
-   return { props: { session } };
+   let teamData = await getTeamMemebers(context.req);
+   return { props: { session, teamData } };
 }

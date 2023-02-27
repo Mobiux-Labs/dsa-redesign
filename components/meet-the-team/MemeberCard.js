@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function MemberCard({ member }) {
+   console.log(member);
    const [isAnimating, setIsAnimating] = useState(false);
 
    return (
@@ -41,9 +42,27 @@ export default function MemberCard({ member }) {
                {member.role}
             </p>
             <div className="flex icons mt-[30px] gap-[15px]">
-               <CustomIcon name={"linkedin"} color="#fff" />
-               <CustomIcon name={"twitter"} color="#fff" />
-               <CustomIcon name={"emailOutline"} color="#fff" />
+               <a href={member.linkedin_url}>
+                  <CustomIcon
+                     name={"linkedin"}
+                     color="#fff"
+                     className="cursor-pointer"
+                  />
+               </a>
+               <a href={member.twitter_url}>
+                  <CustomIcon
+                     name={"twitter"}
+                     color="#fff"
+                     className="cursor-pointer"
+                  />
+               </a>
+               <a href={`mailto:${member.email}`}>
+                  <CustomIcon
+                     name={"emailOutline"}
+                     color="#fff"
+                     className="cursor-pointer"
+                  />
+               </a>
             </div>
             <p className="mt-[25px] text-white font-serif text-lg leading-[28px]">
                {member.bio}
