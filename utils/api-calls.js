@@ -249,3 +249,20 @@ export async function getTeamMemebers(req) {
    const data = await res.json();
    return data;
 }
+
+export async function followCategory(slug, name, link, email) {
+   const body = {
+      category_slug: slug,
+      category_title: name,
+      category_url: link,
+      email: email,
+   };
+   let url = `/api/subs/favourite/`;
+   const res = await fetch(url, {
+      headers: createHeader(),
+      body: JSON.stringify(body),
+      method: "POST",
+   });
+   if (!res.ok) return null;
+   return res;
+}

@@ -14,3 +14,40 @@ export const SeeMoreButton = ({ href = "" }) => {
       </Link>
    );
 };
+
+export const FollowButton = ({
+   className = "",
+   onClick,
+   isFollowing,
+   isFollowLoading,
+}) => {
+   let buttonText = isFollowing ? "Following" : "Follow +";
+   return (
+      <div>
+         <button
+            className={`cursor-pointer follow-btn  px-[8px] py-[5px] font-semibold text-base text-blue border-[2px] border-blue rounded-md leading-[17px] ${className} ${
+               isFollowing
+                  ? `bg-blue text-white border-blue flex items-center gap-[10px]`
+                  : ""
+            }} ${
+               isFollowLoading
+                  ? "opacity-50 pointer-events-none cursor-pointer"
+                  : ""
+            }}`}
+            onClick={onClick}
+            disabled={isFollowLoading}
+         >
+            {buttonText}
+            {isFollowing ? (
+               <CustomIcon
+                  name={"checkMark"}
+                  color={"#fff"}
+                  className="ml-[10px]"
+               />
+            ) : (
+               ""
+            )}
+         </button>
+      </div>
+   );
+};

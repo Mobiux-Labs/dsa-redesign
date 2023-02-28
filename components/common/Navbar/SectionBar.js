@@ -113,16 +113,6 @@ function RegionSelector({}) {
 function SectionButton({ imgSrc, name, link, slug, isFavourite = false }) {
    const router = useRouter();
    async function handleCategoryClick(link) {
-      const res = await fetch(`/api/subs/favourite/`, {
-         method: "POST",
-         headers: createHeader(),
-         body: JSON.stringify({
-            category_slug: slug,
-            category_title: name,
-            category_url: link,
-            email: "roshin@mobiux.in",
-         }),
-      });
       router.push(link);
    }
 
