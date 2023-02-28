@@ -1,7 +1,7 @@
 import { faqs } from "@/constants";
 import { Accordion } from "@mantine/core";
 
-export default function FAQ({}) {
+export default function FAQ({ withHeading = true }) {
    let accordionStyles = {
       content: {
          fontFamily: "Mate",
@@ -28,9 +28,11 @@ export default function FAQ({}) {
    };
    return (
       <div className="my-[100px]">
-         <h2 className="text-heading font-bold text-center text-3xl leading-[55px]">
-            Frequently Asked Questions
-         </h2>
+         {withHeading ? (
+            <h2 className="text-heading font-bold text-center text-3xl leading-[55px]">
+               Frequently Asked Questions
+            </h2>
+         ) : null}
          <Accordion
             variant="separated"
             className="mt-[50px]"
