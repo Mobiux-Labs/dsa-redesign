@@ -44,9 +44,9 @@ export default function Footer({}) {
                      <Link href={"/meet-the-team/"}>Team</Link>
                      <Link href={"/advertise-with-us/"}>Advertise</Link>
                      <Link href={"/careers/"}>Join us</Link>
-                     <Link href={"/contact/us"}>Contact</Link>
+                     <Link href={"/contact-us/"}>Contact</Link>
                      <Link href={"/blogs/"}>Blog</Link>
-                     <Link href={""}>FAQ</Link>
+                     <Link href={"/faq/"}>FAQ</Link>
                   </div>
                </div>
                <div className="right">
