@@ -1,7 +1,6 @@
 import Layout from "@/components/common/Layout/Layout";
 import { getPartnerContentStory, getLastReadStories } from "@/utils/api-calls";
 import { getUserSession } from "@/utils/user";
-import LeaderboardAd from "@/components/common/Ads/Leaderboard";
 import CategoryBadge from "@/components/common/Content/CategoryBadge";
 import AuthorInfo from "@/components/story/AuthorInfo";
 import ShareIcons from "@/components/story/ShareIcons";
@@ -10,8 +9,9 @@ import PopularReads from "@/components/story/PopularReads";
 import HorizontalSection from "@/components/home/HorizontalSection";
 import Image from "next/image";
 import RelatedStories from "@/components/story/Related";
-import { redirectTo404 } from "@/constants";
+import { advertLocations, redirectTo404 } from "@/constants";
 import { loader } from "@/utils/helper";
+import Advert from "@/components/common/Ads/Advert";
 
 export default function PartnerContentStory(props) {
    const { story } = props;
@@ -21,7 +21,10 @@ export default function PartnerContentStory(props) {
          <div className="w-[800px] mx-auto">
             {/* Advertisement */}
             <div className="mt-[10px] mb-[40px]">
-               <LeaderboardAd withoutPadding />
+               <Advert
+                  adLocation={advertLocations.bottom_article.name}
+                  withoutPadding
+               />
             </div>
             <CategoryBadge category={story?.category} />
             <h1 className="text-heading font-bold text-3xl leading-[55px] mt-[5px]">
@@ -58,7 +61,10 @@ export default function PartnerContentStory(props) {
             ) : null}
             {/* Advertisement */}
             <div className="mt-[80px]">
-               <LeaderboardAd withoutPadding />
+               <Advert
+                  adLocation={advertLocations.bottom_article.name}
+                  withoutPadding
+               />
             </div>
          </div>
          {/* Favourites and popular reads */}

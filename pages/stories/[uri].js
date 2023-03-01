@@ -6,8 +6,7 @@ import {
    getLastReadStories,
    setStoryViews,
 } from "@/utils/api-calls";
-import { redirectTo404 } from "@/constants";
-import LeaderboardAd from "@/components/common/Ads/Leaderboard";
+import { advertLocations, redirectTo404 } from "@/constants";
 import CategoryBadge from "@/components/common/Content/CategoryBadge";
 import Image from "next/image";
 import RelatedStories from "@/components/story/Related";
@@ -24,6 +23,7 @@ import {
    validateGiftKey,
 } from "@/utils/article-helpers";
 import Blocker from "@/components/story/Blocker";
+import Advert from "@/components/common/Ads/Advert";
 
 export default function StoryPage(props) {
    const story = props.storyData;
@@ -40,7 +40,10 @@ export default function StoryPage(props) {
          <div className="w-[800px] mx-auto">
             {/* Advertisement */}
             <div className="mt-[10px] mb-[40px]">
-               <LeaderboardAd withoutPadding />
+               <Advert
+                  withoutPadding
+                  adLocation={advertLocations.bottom_article.name}
+               />
             </div>
             <CategoryBadge category={story?.category} />
             <h1 className="text-heading font-bold text-3xl leading-[55px] mt-[5px]">
@@ -80,7 +83,10 @@ export default function StoryPage(props) {
             ) : null}
             {/* Advertisement */}
             <div className="mt-[80px]">
-               <LeaderboardAd withoutPadding />
+               <Advert
+                  withoutPadding
+                  adLocation={advertLocations.bottom_article.name}
+               />
             </div>
          </div>
          {/* Favourites and popular reads */}

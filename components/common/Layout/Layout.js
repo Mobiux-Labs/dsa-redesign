@@ -1,4 +1,3 @@
-import LeaderboardAd from "../Ads/Leaderboard";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import SectionBar from "../Navbar/SectionBar";
@@ -7,6 +6,8 @@ import SignupModal from "@/components/auth/SignupModal";
 import UnSubscribeNlModal from "@/components/newsletter/UnSubscribeModal";
 import { motion } from "framer-motion";
 import SubscribeNlModal from "@/components/newsletter/SubscribeModa";
+import Advert from "../Ads/Advert";
+import { advertLocations } from "@/constants";
 
 export default function Layout({
    children,
@@ -26,7 +27,9 @@ export default function Layout({
 
    return (
       <>
-         {withLeaderBoardAd ? <LeaderboardAd /> : null}
+         {withLeaderBoardAd ? (
+            <Advert adLocation={advertLocations.home_page_leader.name} />
+         ) : null}
          <div className="sticky top-0 z-[100]">
             <Navbar intialSession={session} />
          </div>

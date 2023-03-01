@@ -7,14 +7,18 @@ import Link from "next/link";
 import { useSession } from "@/utils/context";
 import { useRouter } from "next/router";
 
-export default function LeaderboardAd({ withoutPadding = false }) {
+export default function Advert({
+   withoutPadding = false,
+   adLocation,
+   type = "leaderboard",
+}) {
    const [currentAd, setCurrentAd] = useState(null);
    const [adLoaded, setAdLoaded] = useState(false);
    const [session] = useSession();
    const router = useRouter();
 
    const fetchAds = async () => {
-      const ads = await getAdverts(advertLocations.home_page_leader.name);
+      const ads = await getAdverts(adLocation);
       if (ads?.length) return ads;
       return null;
    };
@@ -50,7 +54,7 @@ export default function LeaderboardAd({ withoutPadding = false }) {
    const onImageLoad = () =>
       handleAdvertLoad(currentAd, session, router.asPath, document);
 
-   return (
+   return type == "leaderboard" ? (
       <div
          className={`bg-[#d5d5d519] ${
             withoutPadding
@@ -87,6 +91,38 @@ export default function LeaderboardAd({ withoutPadding = false }) {
             </MultipleObserver>
          ) : (
             <div className="h-[93px] w-[931px] bg-[#d5d5d519] mx-auto"></div>
+         )}
+      </div>
+   ) : (
+      <div className="h-[250px] w-full bg-gray rounded-lg flex items-center justify-center text-white">
+         {" "}
+         {adLoaded ? (
+            <MultipleObserver>
+               {isVideo() ? (
+                  <Link href={currentAd?.ad_url}>
+                     <video
+                        style={{ objectFit: "cover" }}
+                        autoPlay
+                        loop
+                        src={currentAd.image_url}
+                        muted
+                        playsInline
+                        onLoadedData={onImageLoad}
+                     ></video>
+                  </Link>
+               ) : (
+                  <Link href={currentAd?.ad_url}>
+                     <img
+                        src={currentAd.image_url}
+                        alt=""
+                        className="rounded-md"
+                        onLoad={onImageLoad}
+                     />
+                  </Link>
+               )}
+            </MultipleObserver>
+         ) : (
+            <div className="h-[250px] w-[250px] bg-[#d5d5d519] mx-auto"></div>
          )}
       </div>
    );

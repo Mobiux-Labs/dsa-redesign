@@ -1,10 +1,9 @@
 import { useCompactTheme } from "@/utils/context";
-import Image from "next/image";
-import Sidebar from "../common/Ads/Sidebar";
-import CategoryBadge from "../common/Content/CategoryBadge";
 import MainStoryCard from "../common/Content/MainStoryCard";
 import StoryCard from "../common/Content/StoryCard";
 import { useState } from "react";
+import Advert from "../common/Ads/Advert";
+import { advertLocations } from "@/constants";
 
 export default function TopZone({ stories }) {
    return (
@@ -97,7 +96,10 @@ function RightSection({ justin, trending }) {
                ))}
             {/* Sidebar ad */}
             <div className="mt-[37px]">
-               <Sidebar />
+               <Advert
+                  adLocation={advertLocations.home_page_section_1_sidebar.name}
+                  type="sidebar"
+               />
             </div>
          </div>
       </div>
