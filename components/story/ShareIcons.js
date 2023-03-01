@@ -4,6 +4,13 @@ import { useSession } from "@/utils/context";
 import { bookMarkArticle } from "@/utils/api-calls";
 import { useRouter } from "next/router";
 import { getUserSession } from "@/utils/user";
+import {
+   TwitterShareButton,
+   LinkedinShareButton,
+   WhatsappShareButton,
+   EmailShareButton,
+} from "next-share";
+import { baseUrl } from "@/constants";
 
 export default function ShareIcons({ story, bookmarked }) {
    const [session, setSession] = useSession();
@@ -11,6 +18,7 @@ export default function ShareIcons({ story, bookmarked }) {
    const [bookmark, setBookmark] = useState(bookmarked || false);
    const [isAnimating, setIsAnimating] = useState(false);
    const router = useRouter();
+   const pageUrl = `${baseUrl}/${router.asPath.split("?")[0]}`;
 
    async function handleBookmark() {
       if (!session) return;
@@ -47,38 +55,46 @@ export default function ShareIcons({ story, bookmarked }) {
 
    return (
       <div className="flex gap-[30px] align-center">
-         <CustomIcon
-            name={"linkedin"}
-            color={hoveringIcon == "linkedin" ? "#35a7df" : "#8D8D8D"}
-            height={16}
-            onMouseLeave={() => setHoveringIcon(false)}
-            onMouseEnter={() => setHoveringIcon("linkedin")}
-            className="cursor-pointer"
-         />
-         <CustomIcon
-            name={"twitter"}
-            color={hoveringIcon == "twitter" ? "#35a7df" : "#8D8D8D"}
-            height={16}
-            onMouseLeave={() => setHoveringIcon(false)}
-            onMouseEnter={() => setHoveringIcon("twitter")}
-            className="cursor-pointer"
-         />
-         <CustomIcon
-            name={"whatsapp"}
-            color={hoveringIcon == "whatsapp" ? "#35a7df" : "#8D8D8D"}
-            height={16}
-            onMouseLeave={() => setHoveringIcon(false)}
-            onMouseEnter={() => setHoveringIcon("whatsapp")}
-            className="cursor-pointer"
-         />
-         <CustomIcon
-            name={"email"}
-            color={hoveringIcon == "email" ? "#35a7df" : "#8D8D8D"}
-            height={16}
-            onMouseLeave={() => setHoveringIcon(false)}
-            onMouseEnter={() => setHoveringIcon("email")}
-            className="cursor-pointer"
-         />
+         <LinkedinShareButton url={pageUrl}>
+            <CustomIcon
+               name={"linkedin"}
+               color={hoveringIcon == "linkedin" ? "#35a7df" : "#8D8D8D"}
+               height={16}
+               onMouseLeave={() => setHoveringIcon(false)}
+               onMouseEnter={() => setHoveringIcon("linkedin")}
+               className="cursor-pointer"
+            />
+         </LinkedinShareButton>
+         <TwitterShareButton url={pageUrl} title={story?.post_title}>
+            <CustomIcon
+               name={"twitter"}
+               color={hoveringIcon == "twitter" ? "#35a7df" : "#8D8D8D"}
+               height={16}
+               onMouseLeave={() => setHoveringIcon(false)}
+               onMouseEnter={() => setHoveringIcon("twitter")}
+               className="cursor-pointer"
+            />
+         </TwitterShareButton>
+         <WhatsappShareButton url={pageUrl} title={story?.post_title}>
+            <CustomIcon
+               name={"whatsapp"}
+               color={hoveringIcon == "whatsapp" ? "#35a7df" : "#8D8D8D"}
+               height={16}
+               onMouseLeave={() => setHoveringIcon(false)}
+               onMouseEnter={() => setHoveringIcon("whatsapp")}
+               className="cursor-pointer"
+            />
+         </WhatsappShareButton>
+         <EmailShareButton url={pageUrl} subject={story?.post_title}>
+            <CustomIcon
+               name={"email"}
+               color={hoveringIcon == "email" ? "#35a7df" : "#8D8D8D"}
+               height={16}
+               onMouseLeave={() => setHoveringIcon(false)}
+               onMouseEnter={() => setHoveringIcon("email")}
+               className="cursor-pointer"
+            />
+         </EmailShareButton>
          <CustomIcon
             name={"download"}
             color={hoveringIcon == "download" ? "#35a7df" : "#8D8D8D"}

@@ -90,7 +90,11 @@ export default function Advert({
                )}
             </MultipleObserver>
          ) : (
-            <div className="h-[93px] w-[931px] bg-[#d5d5d519] mx-auto"></div>
+            <div
+               className={`${
+                  withoutPadding ? "h-[93px]" : "h-[93px] w-[931px]"
+               } bg-[#d5d5d519] mx-auto rounded-md`}
+            ></div>
          )}
       </div>
    ) : (
