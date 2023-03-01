@@ -31,9 +31,9 @@ export default function Home(props) {
             <CarouselBanner />
             {session?.loggedIn
                ? favourites.map(
-                    (section) =>
+                    (section, index) =>
                        props?.data[section].length > 0 && (
-                          <div>
+                          <div key={index}>
                              <div className="mt-[100px]"></div>
                              <HomePageSection
                                 stories={props?.data[section]}

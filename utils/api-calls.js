@@ -266,3 +266,21 @@ export async function followCategory(slug, name, link, email) {
    if (!res.ok) return null;
    return res;
 }
+
+export async function getAdverts(location) {
+   let url = `/api/subs/ad-manager/?location=${location}`;
+   const res = await fetch(url, { headers: createHeader() });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}
+
+export async function recordAdvertImpression(advertId, pageURL) {
+   const body = { advert_id: advertId, page_url: pageURL };
+   const res = await fetch(`/api/subs/ad-manager/impression/`, {
+      method: "POST",
+      body: JSON.stringify(body),
+   });
+   const message = await res.json().message;
+   return message;
+}

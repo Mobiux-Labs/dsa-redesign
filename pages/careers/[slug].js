@@ -33,7 +33,7 @@ export default function IndividualJobPage(props) {
    }, [ref]);
 
    return (
-      <Layout session={props.session}>
+      <Layout session={props.session} showSectionBar={false}>
          <div className="w-[800px] mx-auto">
             <div className="text-center">
                <p className="text-content font-semibold uppercase text-sm mb-[5px]">

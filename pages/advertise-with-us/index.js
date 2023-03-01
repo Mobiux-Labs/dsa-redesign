@@ -13,7 +13,7 @@ export default function AdvertisePage(props) {
    let logosRow2 = `https://media.dealstreetasia.com/uploads/Website/logos-1.png`;
    let logosRow3 = `https://media.dealstreetasia.com/uploads/Website/logos-3.png`;
    return (
-      <Layout session={props.session}>
+      <Layout session={props.session} showSectionBar={false}>
          <div className="text-center">
             <p className="text-content font-semibold uppercase text-sm mb-[5px]">
                Advertise

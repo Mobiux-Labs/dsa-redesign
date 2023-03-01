@@ -7,7 +7,7 @@ import FAQ from "@/components/pricing/FAQ";
 export default function FAQPage(props) {
    let data = ["General", "Subscription", "Account"];
    return (
-      <Layout session={props.session}>
+      <Layout session={props.session} showSectionBar={false}>
          <div className="px-[220px] text-left">
             <p className="text-content text-center font-semibold uppercase text-sm mb-[5px]">
                FAQ

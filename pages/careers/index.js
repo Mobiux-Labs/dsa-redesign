@@ -9,7 +9,7 @@ export default function CareersPage(props) {
    let heroImage =
       "https://media.dealstreetasia.com/uploads/Website/carrers.png";
    return (
-      <Layout session={props.session}>
+      <Layout session={props.session} showSectionBar={false}>
          <div className="mx-[120px]">
             <div className="text-center">
                <p className="text-content font-semibold uppercase text-sm mb-[5px]">

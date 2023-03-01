@@ -6,6 +6,7 @@ import {
    newsletters,
 } from "@/constants";
 import moment from "moment/moment";
+import { recordAdvertImpression } from "./api-calls";
 
 export function getTimeAgo(datetime) {
    return moment(datetime).fromNow();
@@ -151,11 +152,25 @@ export function createBulkPricingObject(planData) {
 }
 
 export function formatPrice(price) {
-   price = price / 100;
-   return price.toLocaleString("en-US", {
+   const floatPrice = price / 100;
+   return floatPrice.toLocaleString("en-US", {
       style: "currency",
       currency: "USD",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
    });
 }
+
+export function containsInArray(arr, url) {
+   return arr.some((element) => url.includes(element));
+}
+
+export function isTabActive(document) {
+   return document.visibilityState === "visible";
+}
+
+export const handleAdvertLoad = async (ad, session, pageUrl, document) => {
+   if (!session || !session?.loggedIn) return;
+   if (!isTabActive(document)) return;
+   recordAdvertImpression(ad?.id, pageUrl);
+};

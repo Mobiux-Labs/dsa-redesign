@@ -64,8 +64,8 @@ function LeftSection({ headlines, title, showBorder, hasRightSection }) {
                            ? 3
                            : 5
                      )
-                     .map((story) => (
-                        <StoryCard story={story} />
+                     .map((story, index) => (
+                        <StoryCard story={story} key={index} />
                      ))
                }
             </div>

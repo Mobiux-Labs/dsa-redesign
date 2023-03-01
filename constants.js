@@ -372,3 +372,62 @@ export const careerFeatures = [
          "We are committed to the growth and development of our employees. We provide opportunities for our employees to learn and grow.",
    },
 ];
+
+export const advertLocations = {
+   home_page_leader: {
+      name: "home-page-leader",
+   },
+   home_page_section_1_sidebar: {
+      name: "home-page-section-1-sidebar",
+   },
+   home_page_section_2_sidebar: {
+      name: "home-page-section-2-sidebar",
+   },
+   story_page_registered_only: {
+      name: "story-page-registered-only",
+   },
+   story_page_subscribed_only: {
+      name: "story-page-subscribed-only",
+   },
+   story_page_r_and_a_subscribers_only: {
+      name: "story-page-r-and-a-subscribers-only",
+   },
+   story_listing_india: {
+      name: "story-listing-india",
+   },
+   story_listing_indonesia: {
+      name: "story-listing-indonesia",
+   },
+   story_listing_singapore: {
+      name: "story-listing-singapore",
+   },
+   story_listing_unicorns: {
+      name: "story-listing-unicorns",
+   },
+   story_listing_e_commerce_and_consumer_internet: {
+      name: "story-listing-ecommerce-consumer-internet",
+   },
+   story_listing_financial_services: {
+      name: "story-listing-financial-services",
+   },
+   bottom_article: {
+      name: "bottom-article",
+   },
+};
+
+export const videoFormats = [
+   "mp4",
+   "webm",
+   "ogg",
+   "ogv",
+   "m4v",
+   "flv",
+   "wmv",
+   "avi",
+   "mov",
+   "mpg",
+   "mpeg",
+   "3gp",
+];
+
+export const adRotateInterval = process.env.NEXT_PUBLIC_ADROTATE_INTERVAL;

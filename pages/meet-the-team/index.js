@@ -8,7 +8,7 @@ import { getTeamMemebers } from "@/utils/api-calls";
 export default function TeamPage(props) {
    let imageUrl = `https://media.dealstreetasia.com/uploads/Website/team-img.png`;
    return (
-      <Layout session={props.session}>
+      <Layout session={props.session} showSectionBar={false}>
          <div className="text-center">
             <p className="text-content font-semibold uppercase text-sm mb-[5px]">
                About us
