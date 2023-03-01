@@ -9,19 +9,28 @@ import PopularReads from "@/components/story/PopularReads";
 import HorizontalSection from "@/components/home/HorizontalSection";
 import Image from "next/image";
 import RelatedStories from "@/components/story/Related";
-import { advertLocations, redirectTo404 } from "@/constants";
+import { advertLocations, baseUrl, redirectTo404 } from "@/constants";
 import { loader } from "@/utils/helper";
 import Advert from "@/components/common/Ads/Advert";
 import ArticleSEO from "@/components/common/SEO/ArticleSEO";
 import ArticleJsonLdComponent from "@/components/common/SEO/ArticleJsonLd";
+import BreadcrumbJsonLdComponent from "@/components/common/SEO/BreadcrumbJsonLd";
+import { useRouter } from "next/router";
 
 export default function PartnerContentStory(props) {
    const { story } = props;
    let hasRelatedStories = story?.related_stories?.length > 0;
+   let router = useRouter();
+   let pageUrl = baseUrl + router.asPath;
+
    return (
       <Layout session={props.session} withLeaderBoardAd={false}>
          <ArticleSEO article={story} />
          <ArticleJsonLdComponent article={story} />
+         <BreadcrumbJsonLdComponent
+            pageUrl={pageUrl}
+            title={story?.post_title}
+         />
          <div className="w-[800px] mx-auto">
             {/* Advertisement */}
             <div className="mt-[10px] mb-[40px]">

@@ -35,6 +35,24 @@ export default function ArticleSEO({ article }) {
             site: "@DealStreetAsia",
             cardType: "summary_large_image",
          }}
+         additionalMetaTags={[
+            {
+               property: "mobile-web-app-capable",
+               content: "yes",
+            },
+            {
+               property: "apple-mobile-web-app-capable",
+               content: "yes",
+            },
+            {
+               property: "apple-mobile-web-app-status-bar-style",
+               content: "black",
+            },
+            {
+               property: "apple-mobile-web-app-title",
+               content: "DealStreetAsia",
+            },
+         ]}
       />
    );
 }

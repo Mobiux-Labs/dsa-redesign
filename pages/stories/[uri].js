@@ -6,7 +6,7 @@ import {
    getLastReadStories,
    setStoryViews,
 } from "@/utils/api-calls";
-import { advertLocations, redirectTo404 } from "@/constants";
+import { advertLocations, baseUrl, redirectTo404 } from "@/constants";
 import CategoryBadge from "@/components/common/Content/CategoryBadge";
 import Image from "next/image";
 import RelatedStories from "@/components/story/Related";
@@ -26,11 +26,15 @@ import Blocker from "@/components/story/Blocker";
 import Advert from "@/components/common/Ads/Advert";
 import ArticleSEO from "@/components/common/SEO/ArticleSEO";
 import ArticleJsonLdComponent from "@/components/common/SEO/ArticleJsonLd";
+import BreadcrumbJsonLdComponent from "@/components/common/SEO/BreadcrumbJsonLd";
+import { useRouter } from "next/router";
 
 export default function StoryPage(props) {
    const story = props.storyData;
    const hasRelatedStories = story?.related_stories?.length > 0;
    const restricted = props.contentRestrictions;
+   const router = useRouter();
+   let pageUrl = baseUrl + router.asPath;
 
    useEffect(() => {
       addTablePressFeatures();
@@ -41,6 +45,10 @@ export default function StoryPage(props) {
       <Layout session={props.session} withLeaderBoardAd={false}>
          <ArticleSEO article={story} />
          <ArticleJsonLdComponent article={story} />
+         <BreadcrumbJsonLdComponent
+            pageUrl={pageUrl}
+            title={story?.post_title}
+         />
          <div className="w-[800px] mx-auto">
             {/* Advertisement */}
             <div className="mt-[10px] mb-[40px]">

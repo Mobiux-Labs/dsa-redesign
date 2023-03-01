@@ -7,8 +7,8 @@ export default function RelatedStories({ stories }) {
             Related Reads
          </h2>
          <div className="gap-[50px] flex flex-col">
-            {stories?.map((story) => (
-               <div>
+            {stories?.map((story, index) => (
+               <div key={index}>
                   <StoryCard key={story?.post_id} story={story} />
                </div>
             ))}
