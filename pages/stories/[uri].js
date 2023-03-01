@@ -24,6 +24,8 @@ import {
 } from "@/utils/article-helpers";
 import Blocker from "@/components/story/Blocker";
 import Advert from "@/components/common/Ads/Advert";
+import ArticleSEO from "@/components/common/SEO/ArticleSEO";
+import ArticleJsonLdComponent from "@/components/common/SEO/ArticleJsonLd";
 
 export default function StoryPage(props) {
    const story = props.storyData;
@@ -37,6 +39,8 @@ export default function StoryPage(props) {
 
    return (
       <Layout session={props.session} withLeaderBoardAd={false}>
+         <ArticleSEO article={story} />
+         <ArticleJsonLdComponent article={story} />
          <div className="w-[800px] mx-auto">
             {/* Advertisement */}
             <div className="mt-[10px] mb-[40px]">

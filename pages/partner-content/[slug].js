@@ -12,12 +12,16 @@ import RelatedStories from "@/components/story/Related";
 import { advertLocations, redirectTo404 } from "@/constants";
 import { loader } from "@/utils/helper";
 import Advert from "@/components/common/Ads/Advert";
+import ArticleSEO from "@/components/common/SEO/ArticleSEO";
+import ArticleJsonLdComponent from "@/components/common/SEO/ArticleJsonLd";
 
 export default function PartnerContentStory(props) {
    const { story } = props;
    let hasRelatedStories = story?.related_stories?.length > 0;
    return (
       <Layout session={props.session} withLeaderBoardAd={false}>
+         <ArticleSEO article={story} />
+         <ArticleJsonLdComponent article={story} />
          <div className="w-[800px] mx-auto">
             {/* Advertisement */}
             <div className="mt-[10px] mb-[40px]">

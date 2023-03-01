@@ -3,12 +3,12 @@ import "@/styles/globals.css";
 import "@/styles/common.scss";
 import { useState } from "react";
 import { ThemeContext, SessionContext, ModalContext } from "@/utils/context";
-import { DefaultSeo } from "next-seo";
 import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
 import ProgressIndicator from "@/components/common/NProgress";
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
+import DefaultHead from "@/components/common/SEO/Default";
 
 export default function App({ Component, pageProps }) {
    const [compactTheme, setCompactTheme] = useState(true);
@@ -19,7 +19,7 @@ export default function App({ Component, pageProps }) {
    return (
       <MantineProvider>
          <CustomHead />
-         <DefaultSeo title="DealStreetAsia - Asia focused financial news and intelligence platform" />
+         <DefaultHead />
          <ThemeContext.Provider value={[compactTheme, setCompactTheme]}>
             <ModalContext.Provider value={[modal, setModal]}>
                <SessionContext.Provider value={[session, setSession]}>
