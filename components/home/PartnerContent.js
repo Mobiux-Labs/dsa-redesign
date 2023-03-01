@@ -56,7 +56,7 @@ export default function PartnerContent({ stories }) {
             </div>
          </div>
          {/* See more button */}
-         <SeeMoreButton />
+         <SeeMoreButton href="/partner-content/" />
       </div>
    );
 }

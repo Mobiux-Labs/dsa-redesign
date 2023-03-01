@@ -3,7 +3,7 @@ import { SeeMoreButton } from "../common/Buttons";
 import MainStoryCard from "../common/Content/MainStoryCard";
 import StoryCard from "../common/Content/StoryCard";
 
-export default function HomePageSection({ title, stories, rightSection }) {
+export default function HomePageSection({ title, stories, rightSection, url }) {
    const [compactTheme] = useCompactTheme();
    return (
       <div
@@ -17,13 +17,14 @@ export default function HomePageSection({ title, stories, rightSection }) {
             title={title}
             showBorder={rightSection}
             hasRightSection={rightSection}
+            url={url}
          />
          {rightSection}
       </div>
    );
 }
 
-function LeftSection({ headlines, title, showBorder, hasRightSection }) {
+function LeftSection({ headlines, title, showBorder, hasRightSection, url }) {
    const [compactTheme] = useCompactTheme();
    const mainStory = headlines[0];
    return (
@@ -70,7 +71,7 @@ function LeftSection({ headlines, title, showBorder, hasRightSection }) {
                }
             </div>
             <div className="mt-30">
-               <SeeMoreButton />
+               <SeeMoreButton href={url} />
             </div>
          </div>
       </div>

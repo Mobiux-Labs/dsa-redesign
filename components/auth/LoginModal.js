@@ -82,9 +82,7 @@ function InputForm({ setModal }) {
       else if (!res.status) setError("Invalid email or password.");
       else {
          setError("");
-         const userSession = await getUserSession();
-         setSession(userSession);
-         setModal();
+         window.location.reload();
       }
       setLoading(false);
    }

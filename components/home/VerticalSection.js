@@ -8,6 +8,8 @@ export default function VerticalSection({
    leftTitle,
    rightTitle,
    imageSize,
+   leftUrl,
+   rightUrl,
 }) {
    const [compactTheme] = useCompactTheme();
    return (
@@ -31,10 +33,10 @@ export default function VerticalSection({
          {/* See more buttons for both the sections */}
          <div className="head text-heading text-3xl font-bold col-span-3 pb-[45px] grid grid-cols-3 mt-[40px] z-[1000]">
             <div className="col-span-2">
-               <SeeMoreButton href={""} />
+               <SeeMoreButton href={leftUrl} />
             </div>
             <div className="pl-[30px]">
-               <SeeMoreButton href={""} />
+               <SeeMoreButton href={rightUrl} />
             </div>
          </div>
       </div>

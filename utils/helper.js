@@ -43,6 +43,11 @@ export const getTitleFromSlug = (slug) => {
    return section.title;
 };
 
+export const getUrlFromSlug = (slug) => {
+   let section = sections.find((section) => section.slug === slug);
+   return section.link;
+};
+
 export function parseFullName(fullName) {
    const names = fullName.split(" ");
    if (names.length >= 2) {

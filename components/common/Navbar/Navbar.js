@@ -15,7 +15,7 @@ export default function Navbar({ intialSession }) {
    async function handleLogout() {
       const res = await logoutUser();
       if (!res) return;
-      setSession(null);
+      window.location.reload();
    }
 
    useEffect(() => {

@@ -10,7 +10,11 @@ import PartnerContent from "@/components/home/PartnerContent";
 import HorizontalSection from "@/components/home/HorizontalSection";
 import { useSession } from "@/utils/context";
 import { useEffect } from "react";
-import { getTitleFromSlug, getUniqueFavourites } from "@/utils/helper";
+import {
+   getTitleFromSlug,
+   getUniqueFavourites,
+   getUrlFromSlug,
+} from "@/utils/helper";
 
 export default function Home(props) {
    const [session, setSession] = useSession();
@@ -25,6 +29,7 @@ export default function Home(props) {
             <div className="mt-[100px]"></div>
             <HomePageSection
                stories={props?.data["venture-capital"]}
+               url={"/section/venture-capital/"}
                title={"Venture Capital"}
                rightSection={!session.loggedIn ? <TopTopicsSection /> : null}
             />
@@ -38,6 +43,7 @@ export default function Home(props) {
                              <HomePageSection
                                 stories={props?.data[section]}
                                 title={getTitleFromSlug(section)}
+                                url={getUrlFromSlug(section)}
                              />
                           </div>
                        )
@@ -57,6 +63,8 @@ export default function Home(props) {
                leftStories={props.data.unicorns}
                rightStories={props.data["deal-investment"]}
                imageSize={"sm"}
+               leftUrl={"/section/unicorns/"}
+               rightUrl={"/section/deal-investment/"}
             />
          </div>
          <div className="mt-[100px]"></div>
