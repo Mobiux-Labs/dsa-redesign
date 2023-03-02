@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import DropdownArrowIcon from "../common/DropdownArrow";
 import { useRouter } from "next/router";
 import { removeElementFromArray } from "@/utils/helper";
+import { dropdownStyles } from "@/constants";
 
 export default function FiltersAndSorts({
    initialCountries,
@@ -21,21 +22,6 @@ export default function FiltersAndSorts({
    );
    const [sortBy, setSortBy] = useState(initialSortBy || "recent");
    const router = useRouter();
-
-   let dropdownStyles = {
-      dropdown: {
-         borderRadius: "0",
-      },
-      item: {
-         fontFamily: "Montserrat",
-         fontSize: "14px",
-         padding: "5px 10px",
-         color: "#B3B3B3",
-      },
-      placeholder: {
-         fontWeight: "600",
-      },
-   };
    let sortByOptions = [
       { label: "Sort By: Latest", value: "recent" },
       { label: "Sort By: Relevant", value: "relevant" },

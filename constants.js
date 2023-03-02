@@ -431,3 +431,18 @@ export const videoFormats = [
 ];
 
 export const adRotateInterval = process.env.NEXT_PUBLIC_ADROTATE_INTERVAL;
+
+export const dropdownStyles = {
+   dropdown: {
+      borderRadius: "0",
+   },
+   item: {
+      fontFamily: "Montserrat",
+      fontSize: "14px",
+      padding: "5px 10px",
+      color: "#B3B3B3",
+   },
+   placeholder: {
+      fontWeight: "600",
+   },
+};

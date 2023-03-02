@@ -267,3 +267,14 @@ button.expand-table-button {
    border: 1px solid #c8c8c8;
    border-radius: 5px;
 }
+
+.nav-dropdown .mantine-Input-wrapper {
+   bottom: 5px;
+   color: black;
+   width: 106px;
+   margin-right: 30px;
+
+   input::placeholder {
+      color: #363e48;
+   }
+}

@@ -14,7 +14,7 @@ import { getCategoryTitle } from "@/utils/helper";
 import { useState } from "react";
 import { FollowButton } from "@/components/common/Buttons";
 import { useRouter } from "next/router";
-import { useSession } from "@/utils/context";
+import { useSession, useModal } from "@/utils/context";
 
 export default function CategoryPage(props) {
    const stories = props.data;
@@ -24,6 +24,7 @@ export default function CategoryPage(props) {
    const [session, setSession] = useSession();
    const [isFollowing, setIsFollowing] = useState(props?.isFollowing);
    const [isFollowingLoading, setIsFollowingLoading] = useState(false);
+   const [modal, setModal] = useModal();
 
    const updateSession = async () => {
       let session = await getUserSession();
@@ -31,13 +32,15 @@ export default function CategoryPage(props) {
    };
 
    const handleFollow = async () => {
+      if (!props.session?.loggedIn) {
+         setModal("login");
+         return;
+      }
       setIsFollowingLoading(true);
-      let link = router.asPath;
-      if (!props.session?.loggedIn) return;
       await followCategory(
          props.slug,
          props.category,
-         link,
+         router.asPath,
          props.session?.email
       );
       updateSession();

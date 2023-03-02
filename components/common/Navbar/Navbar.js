@@ -1,16 +1,37 @@
-import { Icon, logoUrl } from "@/constants";
+import { logoUrl } from "@/constants";
 import Link from "next/link";
 import Image from "next/image";
 import { useSession, useModal } from "@/utils/context";
 import { logoutUser } from "@/utils/auth";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import CustomIcon from "@/utils/icon-mapping";
+import { Select } from "@mantine/core";
+import DropdownArrowIcon from "../DropdownArrow";
+import { dropdownStyles } from "@/constants";
 
 export default function Navbar({ intialSession }) {
    const [session, setSession] = useSession();
    const [modal, setModal] = useModal();
    const router = useRouter();
+   const insightsValues = [
+      { label: "Reports", value: "/reports/" },
+      { label: "Data Stories", value: "/story-section/data-stories/" },
+      { label: "Deal Monitors", value: "/story-section/deal-monitors/" },
+   ];
+   let styles = {
+      input: {
+         fontFamily: "Montserrat",
+         border: "none",
+      },
+      item: {
+         ...dropdownStyles.item,
+         color: "#000",
+      },
+      dropdown: {
+         boxShadow: "none",
+      },
+   };
 
    async function handleLogout() {
       const res = await logoutUser();
@@ -47,30 +68,38 @@ export default function Navbar({ intialSession }) {
             <div className="nav-links flex">
                <Link
                   href="data.dealstreetasia.com"
-                  className="mr-[35px] text-darkblue"
+                  className="mr-[35px] text-heading"
                >
                   Data Vantage
                </Link>
                <Link
                   href="/partner-content/"
-                  className="mr-[35px] text-darkblue"
+                  className="mr-[35px] text-heading"
                >
                   Partner Content
                </Link>
                <Link
                   href="data.dealstreetasia.com"
-                  className="mr-[35px] text-darkblue"
+                  className="mr-[35px] text-heading"
                >
                   Events
                </Link>
-               <Link
-                  href="data.dealstreetasia.com"
-                  className="mr-[35px] text-darkblue"
-               >
-                  Reports
-               </Link>
-               <Link href="/newsletters" className="mr-[35px] text-darkblue">
+               <Select
+                  placeholder="Insights"
+                  data={insightsValues}
+                  className="rounded-md nav-dropdown"
+                  rightSection={<DropdownArrowIcon color="#363E48" />}
+                  styles={styles}
+                  shadow="none"
+               />
+               <Link href="/newsletters" className="mr-[35px] text-heading">
                   Newsletters
+               </Link>
+               <Link
+                  href="/deals-barometer/"
+                  className="mr-[35px] text-heading"
+               >
+                  Deals Barometer
                </Link>
             </div>
             <div className="search-icon">

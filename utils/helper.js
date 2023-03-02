@@ -82,8 +82,10 @@ export function removeElementFromArray(arr, elem) {
 export function getCategoryTitle(slug, category) {
    if (category == "section" || category == "sector") {
       return categories.find((category) => category.value === slug)?.label;
-   } else {
+   } else if (category == "countries") {
       return regions.find((region) => region.value === slug)?.label;
+   } else {
+      return categories.find((category) => category.value === slug)?.label;
    }
 }
 

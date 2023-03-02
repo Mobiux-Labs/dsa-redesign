@@ -1,3 +1,6 @@
+import { trimUrl } from "@/utils/helper";
+import Link from "next/link";
+
 export default function YouMightLike({ stories }) {
    return (
       <div className="pl-[20px]">
@@ -18,12 +21,16 @@ export default function YouMightLike({ stories }) {
                      index != 3 ? "border-b-[1px] border-lightgray" : ""
                   } `}
                >
-                  <div className="cursor-pointer flex gap-[20px]">
-                     <p>{index + 1}</p>
-                     <h3
-                        dangerouslySetInnerHTML={{ __html: story?.post_title }}
-                     />
-                  </div>
+                  <Link href={trimUrl(story?.post_url)}>
+                     <div className="cursor-pointer flex gap-[20px]">
+                        <p>{index + 1}</p>
+                        <h3
+                           dangerouslySetInnerHTML={{
+                              __html: story?.post_title,
+                           }}
+                        />
+                     </div>
+                  </Link>
                </div>
             ))}
          </div>
