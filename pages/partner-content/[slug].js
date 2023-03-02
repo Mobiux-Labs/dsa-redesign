@@ -16,42 +16,34 @@ import ArticleSEO from "@/components/common/SEO/ArticleSEO";
 import ArticleJsonLdComponent from "@/components/common/SEO/ArticleJsonLd";
 import BreadcrumbJsonLdComponent from "@/components/common/SEO/BreadcrumbJsonLd";
 import { useRouter } from "next/router";
+import { EditArticleButton } from "@/components/common/Buttons";
 
 export default function PartnerContentStory(props) {
    const { story } = props;
    let hasRelatedStories = story?.related_stories?.length > 0;
    let router = useRouter();
    let pageUrl = baseUrl + router.asPath;
+   let loggedIntoWP = props?.session?.loggedIntoWP;
 
    return (
       <Layout session={props.session} withLeaderBoardAd={false}>
          <ArticleSEO article={story} />
          <ArticleJsonLdComponent article={story} />
-         <BreadcrumbJsonLdComponent
-            pageUrl={pageUrl}
-            title={story?.post_title}
-         />
+         <BreadcrumbJsonLdComponent pageUrl={pageUrl} title={story?.post_title} />
          <div className="w-[800px] mx-auto">
             {/* Advertisement */}
             <div className="mt-[10px] mb-[40px]">
-               <Advert
-                  adLocation={advertLocations.bottom_article.name}
-                  withoutPadding
-               />
+               <Advert adLocation={advertLocations.bottom_article.name} withoutPadding />
             </div>
             <CategoryBadge category={story?.category} />
-            <h1 className="text-heading font-bold text-3xl leading-[55px] mt-[5px]">
-               {story?.post_title}
-            </h1>
+            <h1 className="text-heading font-bold text-3xl leading-[55px] mt-[5px]">{story?.post_title}</h1>
             {/* Author info and the share icons */}
             <div className="flex justify-between py-[20px] items-center sticky bg-white top-[80px]">
                <AuthorInfo story={story} />
                <ShareIcons story={story} />
             </div>
             {/* Excerpt */}
-            <p className="font-serif font-medium leading-[28px] text-content">
-               {story?.post_excerpt}
-            </p>
+            <p className="font-serif font-medium leading-[28px] text-content">{story?.post_excerpt}</p>
             {/* Image */}
             <Image
                className="my-[30px] h-[488px] w-full object-cover rounded-md"
@@ -69,15 +61,10 @@ export default function PartnerContentStory(props) {
             {props.showBlocker ? <Blocker /> : null}
             <hr className="my-[80px] border-t-1 border-gray" />
             {/* Related stories */}
-            {hasRelatedStories ? (
-               <RelatedStories stories={story?.related_stories} />
-            ) : null}
+            {hasRelatedStories ? <RelatedStories stories={story?.related_stories} /> : null}
             {/* Advertisement */}
             <div className="mt-[80px]">
-               <Advert
-                  adLocation={advertLocations.bottom_article.name}
-                  withoutPadding
-               />
+               <Advert adLocation={advertLocations.bottom_article.name} withoutPadding />
             </div>
          </div>
          {/* Favourites and popular reads */}
@@ -88,12 +75,10 @@ export default function PartnerContentStory(props) {
 
          {/* Last read */}
          {props.lastReadStories?.length > 0 ? (
-            <HorizontalSection
-               stories={props.lastReadStories}
-               title="Last Read"
-               background={false}
-            />
+            <HorizontalSection stories={props.lastReadStories} title="Last Read" background={false} />
          ) : null}
+         {/* Edit button for WP editors */}
+         {loggedIntoWP ? <EditArticleButton articleId={story?.id} /> : null}
       </Layout>
    );
 }

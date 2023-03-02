@@ -15,39 +15,31 @@ export const SeeMoreButton = ({ href = "" }) => {
    );
 };
 
-export const FollowButton = ({
-   className = "",
-   onClick,
-   isFollowing,
-   isFollowLoading,
-}) => {
+export const FollowButton = ({ className = "", onClick, isFollowing, isFollowLoading }) => {
    let buttonText = isFollowing ? "Following" : "Follow +";
    return (
       <div>
          <button
             className={`cursor-pointer follow-btn  px-[8px] py-[5px] font-semibold text-base text-blue border-[2px] border-blue rounded-md leading-[17px] ${className} ${
-               isFollowing
-                  ? `bg-blue text-white border-blue flex items-center gap-[10px]`
-                  : ""
-            }} ${
-               isFollowLoading
-                  ? "opacity-50 pointer-events-none cursor-pointer"
-                  : ""
-            }}`}
+               isFollowing ? `bg-blue text-white border-blue flex items-center gap-[10px]` : ""
+            }} ${isFollowLoading ? "opacity-50 pointer-events-none cursor-pointer" : ""}}`}
             onClick={onClick}
             disabled={isFollowLoading}
          >
             {buttonText}
-            {isFollowing ? (
-               <CustomIcon
-                  name={"checkMark"}
-                  color={"#fff"}
-                  className="ml-[10px]"
-               />
-            ) : (
-               ""
-            )}
+            {isFollowing ? <CustomIcon name={"checkMark"} color={"#fff"} className="ml-[10px]" /> : ""}
          </button>
       </div>
+   );
+};
+
+export const EditArticleButton = ({ articleId }) => {
+   return (
+      <Link href={`/wp-admin/post.php?post=${articleId}&action=edit`}>
+         <div className="cursor-pointer fixed bottom-[20px] right-[20px] bg-content z-[10000] text-white px-[10px] py-[5px] rounded-sm text-base font-medium font-outfit ">
+            <CustomIcon name="edit" dontReplaceColor />
+            <span>Edit Article</span>
+         </div>
+      </Link>
    );
 };

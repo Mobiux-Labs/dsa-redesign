@@ -35,7 +35,6 @@ export default function SignupModal({}) {
                <InputForm setModal={setModal} />
             </div>
          </Modal>
-         {modal == "signup" && <CloseButton setModal={setModal} />}
       </div>
    );
 }

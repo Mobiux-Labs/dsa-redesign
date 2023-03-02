@@ -20,25 +20,18 @@ export default function LoginModal({}) {
             closeOnClickOutside={false}
          >
             <div className="py-30 px-50 text-center">
-               <h3 className="font-bold text-2xl text-heading">
-                  Login to your account
-               </h3>
+               <h3 className="font-bold text-2xl text-heading">Login to your account</h3>
                <SocialMediaLinks />
                <div className="inline-flex items-center justify-center w-full mb-[25px]">
                   <hr className="w-full h-[1px] bg-lightgray border-0 rounded dark:bg-gray-700" />
                   <div className="absolute px-[5px] -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
-                     <p className="text-sm text-smalltext">
-                        or login via email
-                     </p>
+                     <p className="text-sm text-smalltext">or login via email</p>
                   </div>
                </div>
                <InputForm setModal={setModal} />
-               <p className=" text-sm text-smalltext">
-                  We will never share your information with third parties.
-               </p>
+               <p className=" text-sm text-smalltext">We will never share your information with third parties.</p>
             </div>
          </Modal>
-         {modal == "login" && <CloseButton setModal={setModal} />}
       </div>
    );
 }
@@ -46,9 +39,7 @@ export default function LoginModal({}) {
 function SocialMediaLinks() {
    return (
       <div className="mt-30 mb-[25px] text-center">
-         <p className="text-sm text-smalltext mb-[15px]">
-            Login with Social Media
-         </p>
+         <p className="text-sm text-smalltext mb-[15px]">Login with Social Media</p>
          <div className="icons flex gap-[15px] justify-center">
             <div className="icon h-[40px] w-[40px] bg-darkblue rounded-full grid place-items-center cursor-pointer">
                <CustomIcon name={"google"} color={"#fff"} height={16} />
@@ -116,10 +107,7 @@ function InputForm({ setModal }) {
          <div className="mt-10 flex justify-between">
             <p className="text-smalltext text-sm text-left">
                New Member?{" "}
-               <span
-                  className="text-blue cursor-pointer"
-                  onClick={() => setModal("signup")}
-               >
+               <span className="text-blue cursor-pointer" onClick={() => setModal("signup")}>
                   Sign Up
                </span>
             </p>
@@ -140,12 +128,10 @@ function InputForm({ setModal }) {
    );
 }
 
-export function CloseButton({ setModal }) {
+export function CloseModalButton() {
+   const [modal, setModal] = useModal();
    return (
-      <div
-         className="cursor-pointer absolute z-[101] right-[80px] top-[80px]"
-         onClick={() => setModal()}
-      >
+      <div className="cursor-pointer absolute z-[101] right-[80px] top-[80px]" onClick={() => setModal()}>
          <CustomIcon name={"close"} color={"#fff"} height={16} />
       </div>
    );

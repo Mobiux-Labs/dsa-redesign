@@ -1,11 +1,7 @@
 import Layout from "@/components/common/Layout/Layout";
 import { getUserSession } from "@/utils/user";
 import { loader, separateSlugId } from "@/utils/helper";
-import {
-   getFullStoryData,
-   getLastReadStories,
-   setStoryViews,
-} from "@/utils/api-calls";
+import { getFullStoryData, getLastReadStories, setStoryViews } from "@/utils/api-calls";
 import { advertLocations, baseUrl, redirectTo404 } from "@/constants";
 import CategoryBadge from "@/components/common/Content/CategoryBadge";
 import Image from "next/image";
@@ -28,12 +24,14 @@ import ArticleSEO from "@/components/common/SEO/ArticleSEO";
 import ArticleJsonLdComponent from "@/components/common/SEO/ArticleJsonLd";
 import BreadcrumbJsonLdComponent from "@/components/common/SEO/BreadcrumbJsonLd";
 import { useRouter } from "next/router";
+import { EditArticleButton } from "@/components/common/Buttons";
 
 export default function StoryPage(props) {
    const story = props.storyData;
    const hasRelatedStories = story?.related_stories?.length > 0;
    const restricted = props.contentRestrictions;
    const router = useRouter();
+   let loggedIntoWP = props?.session?.loggedIntoWP;
    let pageUrl = baseUrl + router.asPath;
 
    useEffect(() => {
@@ -45,34 +43,21 @@ export default function StoryPage(props) {
       <Layout session={props.session} withLeaderBoardAd={false}>
          <ArticleSEO article={story} />
          <ArticleJsonLdComponent article={story} />
-         <BreadcrumbJsonLdComponent
-            pageUrl={pageUrl}
-            title={story?.post_title}
-         />
+         <BreadcrumbJsonLdComponent pageUrl={pageUrl} title={story?.post_title} />
          <div className="w-[800px] mx-auto">
             {/* Advertisement */}
             <div className="mt-[10px] mb-[40px]">
-               <Advert
-                  withoutPadding
-                  adLocation={advertLocations.bottom_article.name}
-               />
+               <Advert withoutPadding adLocation={advertLocations.bottom_article.name} />
             </div>
             <CategoryBadge category={story?.category} />
-            <h1 className="text-heading font-bold text-3xl leading-[55px] mt-[5px]">
-               {story?.post_title}
-            </h1>
+            <h1 className="text-heading font-bold text-3xl leading-[55px] mt-[5px]">{story?.post_title}</h1>
             {/* Author info and the share icons */}
             <div className="flex justify-between py-[20px] items-center sticky bg-white top-[80px]">
                <AuthorInfo story={story} />
-               <ShareIcons
-                  story={story}
-                  bookmarked={props?.session?.bookmarked}
-               />
+               <ShareIcons story={story} bookmarked={props?.session?.bookmarked} />
             </div>
             {/* Excerpt */}
-            <p className="font-serif font-medium leading-[28px] text-content">
-               {story?.post_excerpt}
-            </p>
+            <p className="font-serif font-medium leading-[28px] text-content">{story?.post_excerpt}</p>
             {/* Image */}
             <Image
                className="my-[30px] h-[488px] w-full object-cover rounded-md"
@@ -90,17 +75,19 @@ export default function StoryPage(props) {
             {props.showBlocker ? <Blocker /> : null}
             <hr className="my-[80px] border-t-1 border-gray" />
             {/* Related stories */}
-            {hasRelatedStories ? (
-               <RelatedStories stories={story?.related_stories} />
-            ) : null}
+            {hasRelatedStories ? <RelatedStories stories={story?.related_stories} /> : null}
             {/* Advertisement */}
             <div className="mt-[80px]">
-               <Advert
-                  withoutPadding
-                  adLocation={advertLocations.bottom_article.name}
-               />
+               <Advert withoutPadding adLocation={advertLocations.bottom_article.name} />
             </div>
          </div>
+
+         {/* if there is a message to show */}
+         {props?.contentRestrictions?.message ? (
+            <div className="bg-bluebadgebg font-serif text-lg leading-[28px] text-black py-[16px] sticky bottom-0 mt-[20px]">
+               <p className="text-center">{props.contentRestrictions.message}</p>
+            </div>
+         ) : null}
          {/* Favourites and popular reads */}
          <div className="flex  px-[120px] my-[100px]">
             <FromFavourites stories={story?.trending} />
@@ -109,12 +96,11 @@ export default function StoryPage(props) {
 
          {/* Last read */}
          {props.lastReadStories?.length > 0 ? (
-            <HorizontalSection
-               stories={props.lastReadStories}
-               title="Last Read"
-               background={false}
-            />
+            <HorizontalSection stories={props.lastReadStories} title="Last Read" background={false} />
          ) : null}
+
+         {/* Edit button for WP editors */}
+         {loggedIntoWP ? <EditArticleButton articleId={story?.id} /> : null}
       </Layout>
    );
 }
@@ -128,25 +114,16 @@ export async function getServerSideProps(context) {
    const storyData = await getFullStoryData(context.req, id, uri);
    if (!storyData) return redirectTo404;
    const lastReadStories = await getLastReadStories(context.req);
-   let contentRestrictions = await getContentRestrictions(
-      storyData,
-      session,
-      context.res
-   );
+   let contentRestrictions = await getContentRestrictions(storyData, session, context.res);
    console.log(contentRestrictions);
 
    // If the content is restricted due to any reason but there is a gift key, then validate it
    if (contentRestrictions.restricted && giftKey) {
-      const validGiftKey = await validateGiftKey(
-         giftKey,
-         storyData.id,
-         context.req
-      );
+      const validGiftKey = await validateGiftKey(giftKey, storyData.id, context.req);
       if (validGiftKey) contentRestrictions.restricted = false;
    }
 
-   if (contentRestrictions.restricted)
-      storyData.post_content = getMiniContent(storyData.post_content);
+   if (contentRestrictions.restricted) storyData.post_content = getMiniContent(storyData.post_content);
    storyData.post_content = `<article>${storyData.post_content}</article>`;
 
    return {

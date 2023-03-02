@@ -1,6 +1,6 @@
 import { useModal } from "@/utils/context";
 import { Modal } from "@mantine/core";
-import { CloseButton } from "@/components/auth/LoginModal";
+import { CloseModalButton } from "@/components/auth/LoginModal";
 import { newsletters } from "@/constants";
 import { useSession } from "@/utils/context";
 import { setNlPreference } from "@/utils/api-calls";
@@ -55,12 +55,9 @@ export default function UnSubscribeNlModal({}) {
             closeOnClickOutside={false}
          >
             <div className="p-[30px] bg-white w-fit translate-x-[-25%]">
-               <h3 className="text-heading text-2xl leading-[35px] font-bold mb-[25px]">
-                  Unsubscribe?
-               </h3>
+               <h3 className="text-heading text-2xl leading-[35px] font-bold mb-[25px]">Unsubscribe?</h3>
                <p className="font-serif text-lg leading-[28px] text-content whitespace-nowrap">
-                  Are you sure you want to Unsubscribe from ‘
-                  {getNewsletterName()}’ newsletter and miss out on all the
+                  Are you sure you want to Unsubscribe from ‘{getNewsletterName()}’ newsletter and miss out on all the
                   latest updates?
                </p>
                <div className="text-blue flex items-center justify-end gap-[30px] text-base font-medium mt-[40px] w-full">
@@ -76,9 +73,6 @@ export default function UnSubscribeNlModal({}) {
                </div>
             </div>
          </Modal>
-         {modal?.includes("unsubscribe_nl") ? (
-            <CloseButton setModal={setModal} />
-         ) : null}
       </div>
    );
 }

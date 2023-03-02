@@ -1,20 +1,17 @@
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import SectionBar from "../Navbar/SectionBar";
-import LoginModal from "@/components/auth/LoginModal";
+import LoginModal, { CloseModalButton } from "@/components/auth/LoginModal";
 import SignupModal from "@/components/auth/SignupModal";
 import UnSubscribeNlModal from "@/components/newsletter/UnSubscribeModal";
 import { motion } from "framer-motion";
 import SubscribeNlModal from "@/components/newsletter/SubscribeModa";
 import Advert from "../Ads/Advert";
 import { advertLocations } from "@/constants";
+import { useModal } from "@/utils/context";
+import { EditArticleButton } from "../Buttons";
 
-export default function Layout({
-   children,
-   showSectionBar = true,
-   session,
-   withLeaderBoardAd = true,
-}) {
+export default function Layout({ children, showSectionBar = true, session, withLeaderBoardAd = true }) {
    let motionOptions = {
       initial: { y: 0, opacity: 0 },
       animate: { y: 0, opacity: 1 },
@@ -25,11 +22,11 @@ export default function Layout({
       },
    };
 
+   const [modal, setModal] = useModal();
+
    return (
       <>
-         {withLeaderBoardAd ? (
-            <Advert adLocation={advertLocations.home_page_leader.name} />
-         ) : null}
+         {withLeaderBoardAd ? <Advert adLocation={advertLocations.home_page_leader.name} /> : null}
          <div className="sticky top-0 z-[100]">
             <Navbar intialSession={session} />
          </div>
@@ -37,8 +34,11 @@ export default function Layout({
          <motion.div {...motionOptions}>
             <div className="py-[40px]">{children}</div>
          </motion.div>
-         <LoginModal />
-         <SignupModal />
+         <>
+            <LoginModal />
+            <SignupModal />
+            {modal ? <CloseModalButton /> : null}
+         </>
          <UnSubscribeNlModal />
          <SubscribeNlModal />
          <Footer />

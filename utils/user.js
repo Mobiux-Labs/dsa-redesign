@@ -2,12 +2,7 @@ import { createHeader } from "./network";
 import { baseUrl, newsletters } from "@/constants";
 import { removeUndefined } from "./helper";
 
-function getSubscribedNewsletters(
-   dailyBrief,
-   weekThatWas,
-   vantagePoint,
-   dataVantage
-) {
+function getSubscribedNewsletters(dailyBrief, weekThatWas, vantagePoint, dataVantage) {
    let subscribedNewsletters = [];
    if (dailyBrief) subscribedNewsletters.push(newsletters.daily_brief.slug);
    if (weekThatWas) subscribedNewsletters.push(newsletters.week_that_was.slug);
@@ -26,6 +21,7 @@ export async function getUserSession(req) {
    let events, offers;
    let subscribedNewsletters = [];
    let userFavourites = [];
+   let loggedIntoWP = false;
    if (req) {
       res = await fetch(baseUrl + "/subs/", {
          headers: createHeader(req),
@@ -49,16 +45,12 @@ export async function getUserSession(req) {
          offers = res.offers;
          userFavourites = res.user_favourites;
          bookmarked = res.bookmarked;
+         loggedIntoWP = res?.logged_into_wp_as_admin;
          if (res.plan !== null) {
             plan = res.plan;
             subscribed = true;
          }
-         subscribedNewsletters = getSubscribedNewsletters(
-            dailyBriefNl,
-            weekThatWasNl,
-            vantagePointNl,
-            dataVantageNl
-         );
+         subscribedNewsletters = getSubscribedNewsletters(dailyBriefNl, weekThatWasNl, vantagePointNl, dataVantageNl);
       }
    }
    let returnObj = {
@@ -78,6 +70,7 @@ export async function getUserSession(req) {
       events,
       offers,
       bookmarked,
+      loggedIntoWP,
    };
    return removeUndefined(returnObj);
 }

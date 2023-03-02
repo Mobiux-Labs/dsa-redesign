@@ -65,23 +65,14 @@ export default function Navbar({ intialSession }) {
          </div>
          {/* Nav Links with the search icon */}
          <div className="flex justify-between w-full py-[32px]">
-            <div className="nav-links flex">
-               <Link
-                  href="data.dealstreetasia.com"
-                  className="mr-[35px] text-heading"
-               >
+            <div className="nav-links flex items-center">
+               <Link href="data.dealstreetasia.com" className="mr-[35px] text-heading">
                   Data Vantage
                </Link>
-               <Link
-                  href="/partner-content/"
-                  className="mr-[35px] text-heading"
-               >
+               <Link href="/partner-content/" className="mr-[35px] text-heading">
                   Partner Content
                </Link>
-               <Link
-                  href="data.dealstreetasia.com"
-                  className="mr-[35px] text-heading"
-               >
+               <Link href="data.dealstreetasia.com" className="mr-[35px] text-heading">
                   Events
                </Link>
                <Select
@@ -95,14 +86,11 @@ export default function Navbar({ intialSession }) {
                <Link href="/newsletters" className="mr-[35px] text-heading">
                   Newsletters
                </Link>
-               <Link
-                  href="/deals-barometer/"
-                  className="mr-[35px] text-heading"
-               >
+               <Link href="/deals-barometer/" className="mr-[35px] text-heading">
                   Deals Barometer
                </Link>
             </div>
-            <div className="search-icon">
+            <div className="search-icon flex items-center">
                <Link href="/search/">
                   <CustomIcon name={"search"} color="#B3B3B3" />
                </Link>
@@ -114,27 +102,17 @@ export default function Navbar({ intialSession }) {
          <div className="flex items-center">
             {/* Show login button if not loggedin */}
             {!session?.loggedIn ? (
-               <a
-                  className="mx-[25px] text-blue font-semibold cursor-pointer"
-                  onClick={() => setModal("login")}
-               >
+               <a className="mx-[25px] text-blue font-semibold cursor-pointer" onClick={() => setModal("login")}>
                   Login
                </a>
             ) : (
-               <div
-                  href={""}
-                  className={"h-[18px] w-[18px] mx-[15px] cursor-pointer"}
-                  onClick={() => handleLogout()}
-               >
+               <div href={""} className={"h-[18px] w-[18px] mx-[15px] cursor-pointer"} onClick={() => handleLogout()}>
                   <CustomIcon name={"avatar"} color="#B3B3B3" />
                </div>
             )}
             {/* Show subscribe button only if user is not subscribed */}
             {!session?.subscribed ? (
-               <Link
-                  href="/plans"
-                  className="bg-blue text-white px-[15px] py-[10px] rounded-sm"
-               >
+               <Link href="/plans" className="bg-blue text-white px-[15px] py-[10px] rounded-sm">
                   Subscribe
                </Link>
             ) : null}

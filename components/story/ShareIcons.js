@@ -1,6 +1,6 @@
 import CustomIcon from "@/utils/icon-mapping";
 import { useState, useEffect } from "react";
-import { useSession } from "@/utils/context";
+import { useModal, useSession } from "@/utils/context";
 import { bookMarkArticle } from "@/utils/api-calls";
 import { useRouter } from "next/router";
 import { getUserSession } from "@/utils/user";
@@ -14,6 +14,7 @@ import { baseUrl } from "@/constants";
 
 export default function ShareIcons({ story, bookmarked }) {
    const [session, setSession] = useSession();
+   const [modal, setModal] = useModal();
    const [hoveringIcon, setHoveringIcon] = useState(false);
    const [bookmark, setBookmark] = useState(bookmarked || false);
    const [isAnimating, setIsAnimating] = useState(false);
@@ -21,7 +22,10 @@ export default function ShareIcons({ story, bookmarked }) {
    const pageUrl = `${baseUrl}/${router.asPath.split("?")[0]}`;
 
    async function handleBookmark() {
-      if (!session) return;
+      if (!session?.loggedIn) {
+         setModal("login");
+         return;
+      }
       startAnimation();
       let uri = router.asPath.split("/")[2];
       let res = await bookMarkArticle(

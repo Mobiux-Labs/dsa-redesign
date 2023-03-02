@@ -1,6 +1,6 @@
 import { useModal } from "@/utils/context";
 import { Modal } from "@mantine/core";
-import { CloseButton } from "@/components/auth/LoginModal";
+import { CloseModalButton } from "@/components/auth/LoginModal";
 
 export default function SubscribeNlModal({}) {
    const [modal, setModal] = useModal();
@@ -24,9 +24,7 @@ export default function SubscribeNlModal({}) {
             closeOnClickOutside={false}
          >
             <div className="p-[30px] bg-white w-fit">
-               <h3 className="text-heading text-2xl leading-[35px] font-bold mb-[25px]">
-                  Yay!
-               </h3>
+               <h3 className="text-heading text-2xl leading-[35px] font-bold mb-[25px]">Yay!</h3>
                <p className="font-serif text-lg leading-[28px] text-content whitespace-nowrap">
                   You are now subscribed to ‘{getNewsletterName()}’ newsletter!
                </p>
@@ -43,9 +41,6 @@ export default function SubscribeNlModal({}) {
                </div>
             </div>
          </Modal>
-         {modal?.includes("_subscribe_nl") ? (
-            <CloseButton setModal={setModal} />
-         ) : null}
       </div>
    );
 }
