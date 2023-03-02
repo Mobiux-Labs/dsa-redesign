@@ -17,6 +17,7 @@ import ArticleJsonLdComponent from "@/components/common/SEO/ArticleJsonLd";
 import BreadcrumbJsonLdComponent from "@/components/common/SEO/BreadcrumbJsonLd";
 import { useRouter } from "next/router";
 import { EditArticleButton } from "@/components/common/Buttons";
+import Tags from "@/components/story/Tags";
 
 export default function PartnerContentStory(props) {
    const { story } = props;
@@ -24,6 +25,7 @@ export default function PartnerContentStory(props) {
    let router = useRouter();
    let pageUrl = baseUrl + router.asPath;
    let loggedIntoWP = props?.session?.loggedIntoWP;
+   let tags = story?.tags;
 
    return (
       <Layout session={props.session} withLeaderBoardAd={false}>
@@ -43,7 +45,7 @@ export default function PartnerContentStory(props) {
                <ShareIcons story={story} />
             </div>
             {/* Excerpt */}
-            <p className="font-serif font-medium leading-[28px] text-content">{story?.post_excerpt}</p>
+            <p className="font-serif font-medium leading-[28px] text-content text-lg">{story?.post_excerpt}</p>
             {/* Image */}
             <Image
                className="my-[30px] h-[488px] w-full object-cover rounded-md"
@@ -59,6 +61,7 @@ export default function PartnerContentStory(props) {
             />
             {/* Blocker if applicable */}
             {props.showBlocker ? <Blocker /> : null}
+            {tags ? <Tags tags={tags} className="mt-[25px]" /> : null}
             <hr className="my-[80px] border-t-1 border-gray" />
             {/* Related stories */}
             {hasRelatedStories ? <RelatedStories stories={story?.related_stories} /> : null}

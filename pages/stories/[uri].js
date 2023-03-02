@@ -1,6 +1,6 @@
 import Layout from "@/components/common/Layout/Layout";
 import { getUserSession } from "@/utils/user";
-import { loader, separateSlugId } from "@/utils/helper";
+import { loader, separateSlugId, trimUrl } from "@/utils/helper";
 import { getFullStoryData, getLastReadStories, setStoryViews } from "@/utils/api-calls";
 import { advertLocations, baseUrl, redirectTo404 } from "@/constants";
 import CategoryBadge from "@/components/common/Content/CategoryBadge";
@@ -25,6 +25,7 @@ import ArticleJsonLdComponent from "@/components/common/SEO/ArticleJsonLd";
 import BreadcrumbJsonLdComponent from "@/components/common/SEO/BreadcrumbJsonLd";
 import { useRouter } from "next/router";
 import { EditArticleButton } from "@/components/common/Buttons";
+import Tags from "@/components/story/Tags";
 
 export default function StoryPage(props) {
    const story = props.storyData;
@@ -33,6 +34,8 @@ export default function StoryPage(props) {
    const router = useRouter();
    let loggedIntoWP = props?.session?.loggedIntoWP;
    let pageUrl = baseUrl + router.asPath;
+   let editedBy = story?.edited_by;
+   let tags = story?.tags;
 
    useEffect(() => {
       addTablePressFeatures();
@@ -73,6 +76,9 @@ export default function StoryPage(props) {
             />
             {/* Blocker if applicable */}
             {props.showBlocker ? <Blocker /> : null}
+            {/* Edited by and tags */}
+            {editedBy ? <EditedBy editors={editedBy} /> : null}
+            {tags ? <Tags tags={tags} className="mt-[25px]" /> : null}
             <hr className="my-[80px] border-t-1 border-gray" />
             {/* Related stories */}
             {hasRelatedStories ? <RelatedStories stories={story?.related_stories} /> : null}
@@ -102,6 +108,22 @@ export default function StoryPage(props) {
          {/* Edit button for WP editors */}
          {loggedIntoWP ? <EditArticleButton articleId={story?.id} /> : null}
       </Layout>
+   );
+}
+
+function EditedBy({ editors }) {
+   return (
+      <p className="font-serif text-lg text-content leading-[28px]">
+         Edited by:{" "}
+         {editors.map((editor, index) => {
+            return (
+               <a key={index} href={trimUrl(editor?.link)} className="text-darkblue font-bold">
+                  {editor.name}
+                  {index != editors.length - 1 ? ", " : ""}
+               </a>
+            );
+         })}
+      </p>
    );
 }
 
