@@ -12,21 +12,13 @@ export default function Blocker({}) {
                "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 16.15%, #FFFFFF 45.31%, #FFFFFF 100%)",
          }}
       >
-         <h3 className="text-darkblue text-3xl font-bold leading-[55px] mb-[15px]">
-            Subscribe to read this story
-         </h3>
-         <Link
-            href="/user/plans"
-            className="bg-blue text-white px-[15px] py-[10px] rounded-sm"
-         >
+         <h3 className="text-darkblue text-3xl font-bold leading-[55px] mb-[15px]">Subscribe to read this story</h3>
+         <Link href="/plans/" className="bg-blue text-white px-[15px] py-[10px] rounded-sm">
             Subscribe
          </Link>
-         <p className="mt-[10px]">
+         <p className="mt-[10px] font-serif">
             Already a subscriber?{" "}
-            <span
-               className="text-blue cursor-pointer"
-               onClick={() => setModal("login")}
-            >
+            <span className="text-blue cursor-pointer" onClick={() => setModal("login")}>
                Login
             </span>
          </p>

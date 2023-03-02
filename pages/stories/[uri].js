@@ -39,7 +39,7 @@ export default function StoryPage(props) {
 
    useEffect(() => {
       addTablePressFeatures();
-      restricted && setStoryViews(props.uri, story.premium, story.research);
+      setStoryViews(props.uri, story.premium, story.research);
    }, []);
 
    return (
@@ -147,6 +147,7 @@ export async function getServerSideProps(context) {
 
    if (contentRestrictions.restricted) storyData.post_content = getMiniContent(storyData.post_content);
    storyData.post_content = `<article>${storyData.post_content}</article>`;
+   let showBlocker = contentRestrictions.restricted;
 
    return {
       props: {
@@ -155,6 +156,7 @@ export async function getServerSideProps(context) {
          session,
          lastReadStories,
          contentRestrictions,
+         showBlocker,
       },
    };
 }

@@ -7,14 +7,12 @@ export async function addTablePressFeatures() {
    if (tables.length > 0) {
       // Add tablepress script and css
       const tablepressScript = document.createElement("script");
-      tablepressScript.src =
-         "https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js";
+      tablepressScript.src = "https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js";
       tablepressScript.async = true;
       document.body.appendChild(tablepressScript);
       const tablepressCss = document.createElement("link");
       tablepressCss.rel = "stylesheet";
-      tablepressCss.href =
-         "https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css";
+      tablepressCss.href = "https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css";
       document.body.appendChild(tablepressCss);
    }
    [...tables].forEach(async (table) => {
@@ -49,18 +47,13 @@ const getTablePressOptionsForTable = async (tableId) => {
       const data = await res.json();
       return data.options;
    } catch (e) {
-      console.error(
-         "Error searching for tablepress options for table: ",
-         tableId
-      );
+      console.error("Error searching for tablepress options for table: ", tableId);
       return {};
    }
 };
 
 const addExpandTableButton = (tableId) => {
-   let tableWrapper =
-      document.querySelector(`#${tableId}_wrapper`) ??
-      document.querySelector(`#${tableId}`);
+   let tableWrapper = document.querySelector(`#${tableId}_wrapper`) ?? document.querySelector(`#${tableId}`);
    let expandTableButton = document.createElement("button");
    expandTableButton.classList.add("expand-table-button");
    expandTableButton.innerHTML = "Expand Table";
@@ -105,20 +98,16 @@ function getPosition(string, subString, index) {
 export function getContentRestrictions(story, session, req) {
    let isResearch = story?.research;
    let isPremium = story?.premium;
-   let isFree = !isResearch && !isPremium;
    console.log("isResearch: ", isResearch);
    console.log("isPremium: ", isPremium);
-   console.log("isFree: ", isFree);
    if (isResearch) return researchContentRestrictions(session, req);
    if (isPremium) return premiumContentRestrictions(session, req);
-   if (isFree) return freeContentRestrictions(session, req);
-   return { restricted: true, message: "" };
+   return freeContentRestrictions(session, req);
 }
 
 async function researchContentRestrictions(session, req) {
    if (!session.loggedIn) return { restricted: true, message: "" };
-   if (session.subscribed && session.plan.includes("Research"))
-      return { restricted: false, message: "" };
+   if (session.subscribed && session.plan.includes("Research")) return { restricted: false, message: "" };
    let researchStoriesRead = await storiesRead(req, "research");
    // A user subscribed to a non-research plan can read 1 research story-per-month
    if (researchStoriesRead >= 1) return { restricted: true, message: "" };

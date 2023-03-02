@@ -18,13 +18,7 @@ export async function getTrendingStories(req) {
    return data;
 }
 
-export async function getCategoryStories(
-   category,
-   slug,
-   req,
-   numberOfPosts = 9,
-   page = 1
-) {
+export async function getCategoryStories(category, slug, req, numberOfPosts = 9, page = 1) {
    const wpUrl = req ? wpApiUrl : wpApiUrl.replace(baseUrl, "");
    const fetchUrl = `${wpUrl}/post/list/?taxonomy_type=${category}&taxonomy=${slug}&numberposts=${numberOfPosts}&page=${page}`;
    const res = await fetch(fetchUrl, { headers: createHeader(req) });
@@ -68,24 +62,21 @@ export async function anonymousStoriesViewed(req) {
    if (!res.ok) return null;
    res = await res.json();
    return res["story_ids"].length;
-   return 0;
 }
 
-export async function setStoryViews(uri, premiumContent, researchContent) {
+export async function setStoryViews(uri, premium, research) {
    uri = `/stories/${uri}`;
-   let res = await fetch(`/subs/`, {
-      headers: { "Content-type": "application/x-www-form-urlencoded" },
+   let res = await fetch(`${baseUrl}/subs/`, {
+      headers: { "Content-type": "application/x-www-form-urlencoded", ...createHeader() },
       method: "POST",
-      body: JSON.stringify({ uri, premiumContent, researchContent }),
+      body: JSON.stringify({ uri, premium, research }),
    });
    if (!res.ok) return null;
    return res;
 }
 
 export async function getNewsletters(req, slug, page = 1) {
-   let url = `${
-      req ? backendUrl : backendUrl.replace(baseUrl, "")
-   }/new/newsletter/${slug}/${page}/`;
+   let url = `${req ? backendUrl : backendUrl.replace(baseUrl, "")}/new/newsletter/${slug}/${page}/`;
    const res = await fetch(url, { headers: createHeader(req) });
    if (!res.ok) return null;
    const data = await res.json();
@@ -100,11 +91,7 @@ export async function getNewsletterEdition(req, id) {
    return data;
 }
 
-export async function getPartnerContentStories(
-   req,
-   page = 1,
-   numberOfPosts = 9
-) {
+export async function getPartnerContentStories(req, page = 1, numberOfPosts = 9) {
    const url = `${
       req ? wpApiUrl : wpApiUrl.replace(baseUrl, "")
    }/partner-content/list/?page=${page}&numberposts=${numberOfPosts}`;
@@ -122,16 +109,7 @@ export async function getPartnerContentStory(req, slug) {
    return data;
 }
 
-export const getSearchResults = async (
-   req,
-   query,
-   page = 1,
-   sortBy,
-   countries,
-   sections,
-   sectors,
-   storySections
-) => {
+export const getSearchResults = async (req, query, page = 1, sortBy, countries, sections, sectors, storySections) => {
    let base = `${req ? backendUrl : backendUrl.replace(baseUrl, "")}`;
    if (countries) countries = countries.join(",");
    if (sections) sections = sections.join(",");
@@ -197,15 +175,7 @@ export async function getPlanData(req) {
    return data;
 }
 
-export async function bookMarkArticle(
-   email,
-   uri,
-   slug,
-   story_id,
-   post_type,
-   post_title,
-   premium
-) {
+export async function bookMarkArticle(email, uri, slug, story_id, post_type, post_title, premium) {
    if (!email) return;
    let url = `${backendUrl.replace(baseUrl, "")}/new/bookmark/`;
    const res = await fetch(url, {
