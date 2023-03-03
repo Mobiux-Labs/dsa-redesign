@@ -257,3 +257,11 @@ export async function recordAdvertImpression(advertId, pageURL) {
    const message = await res.json().message;
    return message;
 }
+
+export async function checkUserForSocialLogin() {
+   let url = "/subs/checkuser/";
+   const res = await fetch(url, { headers: createHeader() });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}

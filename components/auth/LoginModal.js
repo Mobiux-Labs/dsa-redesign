@@ -4,6 +4,7 @@ import { loginUser } from "@/utils/auth";
 import { useState } from "react";
 import { getUserSession } from "@/utils/user";
 import CustomIcon from "@/utils/icon-mapping";
+import { checkUserForSocialLogin } from "@/utils/api-calls";
 
 export default function LoginModal({}) {
    const [modal, setModal] = useModal();
@@ -36,20 +37,72 @@ export default function LoginModal({}) {
 }
 
 function SocialMediaLinks() {
+   const checkWindowClosed = (myWindow, provider) => {
+      var checkWindow = setInterval(async function () {
+         if (myWindow.closed == true) {
+            const data = await checkUserForSocialLogin();
+            if (data.popup === "false") {
+               if (data.user !== "anonymous") location.reload();
+            }
+            clearInterval(checkWindow);
+         }
+      }, 300);
+   };
+   const socialLogin = (provider) => {
+      let myWindow;
+      if (provider === "facebook") {
+         myWindow = window.open(
+            "/accounts/facebook/login/?next=/subs/test/",
+            "",
+            "width=1000,height=500,top=200,left=100"
+         );
+      } else if (provider === "twitter") {
+         myWindow = window.open(
+            "/accounts/twitter/login/?next=/subs/test/",
+            "",
+            "width=1000,height=500,top=200,left=100"
+         );
+      } else if (provider === "google") {
+         myWindow = window.open(
+            "/accounts/google/login/?next=/subs/test/",
+            "",
+            "width=1000,height=500,top=200,left=100"
+         );
+      } else {
+         myWindow = window.open(
+            "/accounts/linkedin_oauth2/login/?next=/subs/test/",
+            "",
+            "width=1000,height=500,top=200,left=100"
+         );
+      }
+      checkWindowClosed(myWindow, provider);
+   };
    return (
       <div className="mt-30 mb-[25px] text-center">
          <p className="text-sm text-smalltext mb-[15px]">Login with Social Media</p>
          <div className="icons flex gap-[15px] justify-center">
-            <div className="icon h-[40px] w-[40px] bg-darkblue rounded-full grid place-items-center cursor-pointer">
+            <div
+               className="icon h-[40px] w-[40px] bg-darkblue rounded-full grid place-items-center cursor-pointer"
+               onClick={() => socialLogin("google")}
+            >
                <CustomIcon name={"google"} color={"#fff"} height={16} />
             </div>
-            <div className="icon h-[40px] w-[40px] bg-darkblue rounded-full grid place-items-center cursor-pointer">
+            <div
+               className="icon h-[40px] w-[40px] bg-darkblue rounded-full grid place-items-center cursor-pointer"
+               onClick={() => socialLogin("twitter")}
+            >
                <CustomIcon name={"twitter"} color={"#fff"} height={16} />
             </div>
-            <div className="icon h-[40px] w-[40px] bg-darkblue rounded-full grid place-items-center cursor-pointer">
+            <div
+               className="icon h-[40px] w-[40px] bg-darkblue rounded-full grid place-items-center cursor-pointer"
+               onClick={() => socialLogin("facebook")}
+            >
                <CustomIcon name={"facebook"} color={"#fff"} height={16} />
             </div>
-            <div className="icon h-[40px] w-[40px] bg-darkblue rounded-full grid place-items-center cursor-pointer">
+            <div
+               className="icon h-[40px] w-[40px] bg-darkblue rounded-full grid place-items-center cursor-pointer"
+               onClick={() => socialLogin("linkedin")}
+            >
                <CustomIcon name={"linkedin"} color={"#fff"} height={16} />
             </div>
          </div>
