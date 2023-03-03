@@ -57,22 +57,23 @@ export async function storiesRead(req, storyType) {
 
 export async function anonymousStoriesViewed(req) {
    let res = await fetch(`${baseUrl}/subs/usage/30/`, {
-      headers: createHeader(),
+      headers: createHeader(req),
    });
    if (!res.ok) return null;
    res = await res.json();
+   console.log(res);
    return res["story_ids"].length;
 }
 
 export async function setStoryViews(uri, premium, research) {
    uri = `/stories/${uri}`;
-   let res = await fetch(`${baseUrl}/subs/`, {
-      headers: { "Content-type": "application/x-www-form-urlencoded", ...createHeader() },
+   let res = await fetch("/subs/", {
       method: "POST",
-      body: JSON.stringify({ uri, premium, research }),
+      headers: { "Content-type": "application/x-www-form-urlencoded" },
+      body: JSON.stringify({ uri: uri, premium: premium, research: research }),
    });
-   if (!res.ok) return null;
-   return res;
+   if (res.status === 200) return res;
+   return;
 }
 
 export async function getNewsletters(req, slug, page = 1) {

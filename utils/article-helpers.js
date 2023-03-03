@@ -111,7 +111,7 @@ async function researchContentRestrictions(session, req) {
    let researchStoriesRead = await storiesRead(req, "research");
    // A user subscribed to a non-research plan can read 1 research story-per-month
    if (researchStoriesRead >= 1) return { restricted: true, message: "" };
-   return { restricted: false, message: "One research story left this month" };
+   return { restricted: false, message: "Last research story for the month" };
 }
 
 async function premiumContentRestrictions(session, req) {
@@ -120,17 +120,17 @@ async function premiumContentRestrictions(session, req) {
    let premiumStoriesRead = await storiesRead(req, "premium");
    // A non subsscribed(loggedin) user can only view 1 premium story per month
    if (premiumStoriesRead >= 1) return { restricted: true, message: "" };
-   return { restricted: false, message: "One premium story left this month" };
+   return { restricted: false, message: "Last premium story for the month" };
 }
 
 async function freeContentRestrictions(session, req) {
    if (session.loggedIn) return { restricted: false, message: "" };
    let freeStoriesRead = await anonymousStoriesViewed(req);
-   console.log("freeStoriesRead: ", freeStoriesRead);
    // A non logged in user can only view 3 free stories per month
-   if (freeStoriesRead >= 3) return { restricted: true, message: "" };
+   if (freeStoriesRead >= 2) return { restricted: true, message: "" };
    // Show a banner to show the user has only 3 free stories left
-   return { restricted: false, message: "Three free stories left this month" };
+   let freeStoriesLeft = 3 - freeStoriesRead;
+   return { restricted: false, message: `${freeStoriesLeft} free stories left this month` };
 }
 
 export async function validateGiftKey(key, storyId, req) {

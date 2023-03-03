@@ -136,7 +136,7 @@ export async function getServerSideProps(context) {
    const storyData = await getFullStoryData(context.req, id, uri);
    if (!storyData) return redirectTo404;
    const lastReadStories = await getLastReadStories(context.req);
-   let contentRestrictions = await getContentRestrictions(storyData, session, context.res);
+   let contentRestrictions = await getContentRestrictions(storyData, session, context.req);
    console.log(contentRestrictions);
 
    // If the content is restricted due to any reason but there is a gift key, then validate it
