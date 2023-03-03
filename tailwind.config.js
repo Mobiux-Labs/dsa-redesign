@@ -1,10 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-   content: [
-      "./pages/**/*.{js,ts,jsx,tsx}",
-      "./components/**/*.{js,ts,jsx,tsx}",
-      "./node_modules/flowbite/**/*.js",
-   ],
+   content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}", "./node_modules/flowbite/**/*.js"],
    theme: {
       extend: {
          colors: {
@@ -102,6 +98,10 @@ module.exports = {
             "0%": { opacity: 0, transform: "translateY(-10px)" },
             "100%": { opacity: 1, transform: "translateY(0)" },
          },
+         "banner-slide-top": {
+            "0%": { opacity: 0, transform: "translateY(-10px)" },
+            "100%": { opacity: 1, transform: "translateY(0)" },
+         },
          "arrow-translate": {
             "0%": { transform: "translateX(0)" },
             "100%": { transform: "translateX(10px)" },
@@ -116,6 +116,7 @@ module.exports = {
          "slide-top": "slide-top 0.3s ease-in-out",
          "arrow-translate": "arrow-translate 0.3s ease-in-out infinite",
          "slide-up": "slide-up 0.1s ease-in-out",
+         "delayed-slide-top": "banner-slide-top 0.3s ease-in-out 1s forwards",
       },
    },
    plugins: [require("flowbite/plugin")],

@@ -9,7 +9,6 @@ import SubscribeNlModal from "@/components/newsletter/SubscribeModa";
 import Advert from "../Ads/Advert";
 import { advertLocations } from "@/constants";
 import { useModal } from "@/utils/context";
-import { EditArticleButton } from "../Buttons";
 
 export default function Layout({ children, showSectionBar = true, session, withLeaderBoardAd = true }) {
    let motionOptions = {

@@ -90,7 +90,7 @@ export default function StoryPage(props) {
 
          {/* if there is a message to show */}
          {props?.contentRestrictions?.message ? (
-            <div className="bg-bluebadgebg font-serif text-lg leading-[28px] text-black py-[16px] sticky bottom-0 mt-[20px]">
+            <div className="bg-bluebadgebg font-serif text-lg leading-[28px] text-black py-[16px] sticky bottom-0 mt-[20px] animate-delayed-slide-top opacity-0">
                <p className="text-center">{props.contentRestrictions.message}</p>
             </div>
          ) : null}

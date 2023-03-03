@@ -17,7 +17,6 @@ export default function LoginModal({}) {
             centered
             radius={0}
             zIndex={100}
-            closeOnClickOutside={false}
          >
             <div className="py-30 px-50 text-center">
                <h3 className="font-bold text-2xl text-heading">Login to your account</h3>
@@ -79,59 +78,60 @@ function InputForm({ setModal }) {
    }
 
    return (
-      <form className="w-full" onSubmit={(e) => handleSubmit(e)}>
-         <input
-            type="email"
-            placeholder="Email ID"
-            required
-            onChange={(e) => {
-               if (error) setError("");
-               setEmail(e.target.value);
-            }}
-            className={`w-full mb-20 rounded-md border-1 border-solid border-smalltext py-[14px] px-[15px] placeholder:text-smalltext bg-inputbg focus:ring-0 focus:border-smalltext ${
-               error ? "border-red" : "border-smalltext"
-            }`}
-         />
-         <input
-            type="password"
-            placeholder="Password"
-            required
-            onChange={(e) => {
-               if (error) setError("");
-               setPassword(e.target.value);
-            }}
-            className={`w-full rounded-md border-1 border-solid border-r-[1px] border-smalltext py-[14px] px-[15px] placeholder:text-smalltext bg-inputbg focus:ring-0 focus:border-smalltext ${
-               error ? "border-red" : "border-smalltext"
-            }`}
-         />
-         <div className="mt-10 flex justify-between">
-            <p className="text-smalltext text-sm text-left">
-               New Member?{" "}
-               <span className="text-blue cursor-pointer" onClick={() => setModal("signup")}>
-                  Sign Up
-               </span>
-            </p>
-            <p className="text-blue text-sm">Forgot Password?</p>
-         </div>
-         <button
-            disabled={loading}
-            type="submit"
-            className={`text-white bg-blue ${
-               loading ? "bg-gray" : "bg-blue"
-            }f font-medium py-[11px] px-[30px] rounded-sm mt-[40px] mb-[40px]`}
-         >
-            Login
-         </button>
-
-         <p className="text-red-500 text-sm text-center mb-[40px]">{error}</p>
-      </form>
+      <div>
+         <form className="w-full" onSubmit={(e) => handleSubmit(e)}>
+            <input
+               type="email"
+               placeholder="Email ID"
+               required
+               onChange={(e) => {
+                  if (error) setError("");
+                  setEmail(e.target.value);
+               }}
+               className={`w-full mb-20 rounded-md border-1 border-solid border-smalltext py-[14px] px-[15px] placeholder:text-smalltext bg-inputbg focus:ring-0 focus:border-smalltext ${
+                  error ? "border-red" : "border-smalltext"
+               }`}
+            />
+            <input
+               type="password"
+               placeholder="Password"
+               required
+               onChange={(e) => {
+                  if (error) setError("");
+                  setPassword(e.target.value);
+               }}
+               className={`w-full rounded-md border-1 border-solid border-r-[1px] border-smalltext py-[14px] px-[15px] placeholder:text-smalltext bg-inputbg focus:ring-0 focus:border-smalltext ${
+                  error ? "border-red" : "border-smalltext"
+               }`}
+            />
+            <div className="mt-10 flex justify-between">
+               <p className="text-smalltext text-sm text-left">
+                  New Member?{" "}
+                  <span className="text-blue cursor-pointer" onClick={() => setModal("signup")}>
+                     Sign Up
+                  </span>
+               </p>
+               <p className="text-blue text-sm">Forgot Password?</p>
+            </div>
+            <button
+               disabled={loading}
+               type="submit"
+               className={`text-white bg-blue ${
+                  loading ? "bg-gray" : "bg-blue"
+               }f font-medium py-[11px] px-[30px] rounded-sm mt-[40px] mb-[40px]`}
+            >
+               Login
+            </button>
+            <p className="text-red-500 text-sm text-center mb-[40px]">{error}</p>
+         </form>
+      </div>
    );
 }
 
 export function CloseModalButton() {
    const [modal, setModal] = useModal();
    return (
-      <div className="cursor-pointer absolute z-[101] right-[80px] top-[80px]" onClick={() => setModal()}>
+      <div className="cursor-pointer absolute z-[1010] right-[80px] top-[80px]" onClick={() => setModal()}>
          <CustomIcon name={"close"} color={"#fff"} height={16} />
       </div>
    );
