@@ -72,6 +72,18 @@ export const sections = [
       link: "/section/opinion",
       icon: "opinion",
    },
+   {
+      title: "Data Stories",
+      slug: "data-led-stories",
+      zone: "homepage-block-data-led-stories",
+      link: "/story-section/data-led-stories",
+   },
+   {
+      title: "Deal Monitors",
+      slug: "deal-monitors",
+      zone: "homepage-block-deal-monitors",
+      link: "/story-section/deal-monitors",
+   },
 ];
 
 export const newsletters = {

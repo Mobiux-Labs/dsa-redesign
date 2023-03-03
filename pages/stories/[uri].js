@@ -31,7 +31,7 @@ import TaggedNewsletterForm from "@/components/story/TaggedNewsletterForm";
 export default function StoryPage(props) {
    const story = props.storyData;
    const hasRelatedStories = story?.related_stories?.length > 0;
-   const restricted = props.contentRestrictions;
+   const restriction = props.contentRestrictions;
    const router = useRouter();
    let loggedIntoWP = props?.session?.loggedIntoWP;
    let pageUrl = baseUrl + router.asPath;
@@ -40,7 +40,7 @@ export default function StoryPage(props) {
    let taggedNewsletter = story?.tagged_newsletter;
 
    const isSubscribedToTaggedNewsletter = () => {
-      if (!taggedNewsletter) return false;
+      if (!taggedNewsletter || taggedNewsletter == "") return true;
       let subscribedNewsletters = props?.session?.subscribedNewsletters;
       if (!subscribedNewsletters) return false;
       return subscribedNewsletters.includes(taggedNewsletter);
@@ -100,9 +100,9 @@ export default function StoryPage(props) {
          </div>
 
          {/* if there is a message to show */}
-         {props?.contentRestrictions?.message ? (
+         {restriction?.message ? (
             <div className="bg-bluebadgebg font-serif text-lg leading-[28px] text-black py-[16px] sticky bottom-0 mt-[20px] animate-delayed-slide-top opacity-0">
-               <p className="text-center">{props.contentRestrictions.message}</p>
+               <p className="text-center">{restriction?.message}</p>
             </div>
          ) : null}
          {/* Favourites and popular reads */}

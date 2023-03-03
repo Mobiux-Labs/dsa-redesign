@@ -10,11 +10,7 @@ import PartnerContent from "@/components/home/PartnerContent";
 import HorizontalSection from "@/components/home/HorizontalSection";
 import { useSession } from "@/utils/context";
 import { useEffect } from "react";
-import {
-   getTitleFromSlug,
-   getUniqueFavourites,
-   getUrlFromSlug,
-} from "@/utils/helper";
+import { getTitleFromSlug, getUniqueFavourites, getUrlFromSlug } from "@/utils/helper";
 
 export default function Home(props) {
    const [session, setSession] = useSession();
@@ -37,7 +33,8 @@ export default function Home(props) {
             {session?.loggedIn
                ? favourites.map(
                     (section, index) =>
-                       props?.data[section].length > 0 && (
+                       props?.data[section].length > 0 &&
+                       getTitleFromSlug(section) && (
                           <div key={index}>
                              <div className="mt-[100px]"></div>
                              <HomePageSection
@@ -51,10 +48,7 @@ export default function Home(props) {
                : null}
          </div>
          <div className="mt-[100px]"></div>
-         <HorizontalSection
-            stories={props.data["private-equity"]}
-            title={"Private Equity"}
-         />
+         <HorizontalSection stories={props.data["private-equity"]} title={"Private Equity"} />
          <div className="mt-[100px]"></div>
          <div className="px-[120px]">
             <VerticalSection
@@ -69,11 +63,7 @@ export default function Home(props) {
          </div>
          <div className="mt-[100px]"></div>
          {/* Horizontal scrolling section */}
-         <HorizontalSection
-            stories={props.data.people}
-            title={"People"}
-            imageOnEveryStory
-         />
+         <HorizontalSection stories={props.data.people} title={"People"} imageOnEveryStory />
          {/* Partner content stories */}
          <div className="px-[120px]">
             <PartnerContent stories={props.data["partner_content"]} />

@@ -1,10 +1,4 @@
-import {
-   baseUrl,
-   categories,
-   regions,
-   sections,
-   newsletters,
-} from "@/constants";
+import { baseUrl, categories, regions, sections, newsletters } from "@/constants";
 import moment from "moment/moment";
 import { recordAdvertImpression } from "./api-calls";
 
@@ -25,26 +19,20 @@ export const removeUndefined = (obj) => {
 
 export const getUniqueFavourites = (favourites) => {
    if (!favourites) return [];
-   let constantSections = [
-      "people",
-      "unicorns",
-      "venture-capital",
-      "private-equity",
-      "deal-investment",
-   ];
-   let uniqueFavourites = favourites.filter(
-      (favourite) => !constantSections.includes(favourite)
-   );
+   let constantSections = ["people", "unicorns", "venture-capital", "private-equity", "deal-investment"];
+   let uniqueFavourites = favourites.filter((favourite) => !constantSections.includes(favourite));
    return uniqueFavourites;
 };
 
 export const getTitleFromSlug = (slug) => {
    let section = sections.find((section) => section.slug === slug);
+   if (!section) return;
    return section.title;
 };
 
 export const getUrlFromSlug = (slug) => {
    let section = sections.find((section) => section.slug === slug);
+   if (!section) return "";
    return section.link;
 };
 
@@ -90,17 +78,13 @@ export function getCategoryTitle(slug, category) {
 }
 
 export function replaceCDN(url) {
-   return url
-      ? url.replace("dealstreetwebsite.s3.amazonaws", "media.dealstreetasia")
-      : "";
+   return url ? url.replace("dealstreetwebsite.s3.amazonaws", "media.dealstreetasia") : "";
 }
 
 export function loader({ src, width, height, quality }) {
    //If src has ?fit=, then add &, else start with ?
    const condition = src.includes("?fit=") ? "&" : "?";
-   let newSrc =
-      replaceCDN(src) +
-      `${condition}resize=${width},${height}&q=${quality || 75}`;
+   let newSrc = replaceCDN(src) + `${condition}resize=${width},${height}&q=${quality || 75}`;
    return newSrc;
 }
 

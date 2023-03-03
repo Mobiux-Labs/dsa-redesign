@@ -32,7 +32,9 @@ export async function getLastReadStories(req) {
       headers: createHeader(req),
    });
    if (!res.ok) return null;
-   const data = await res.json();
+   let data = await res.json();
+   // remove the first story from the list
+   data.shift();
    return data;
 }
 

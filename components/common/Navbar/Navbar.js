@@ -16,7 +16,7 @@ export default function Navbar({ intialSession }) {
    const router = useRouter();
    const insightsValues = [
       { label: "Reports", value: "/reports/" },
-      { label: "Data Stories", value: "/story-section/data-stories/" },
+      { label: "Data Stories", value: "/story-section/data-led-stories/" },
       { label: "Deal Monitors", value: "/story-section/deal-monitors/" },
    ];
    let styles = {
@@ -80,7 +80,13 @@ export default function Navbar({ intialSession }) {
                   data={insightsValues}
                   className="rounded-md nav-dropdown"
                   rightSection={<DropdownArrowIcon color="#363E48" />}
+                  itemComponent={(item) => (
+                     <a href={item.value} className="nav-dropdown-item">
+                        {item.label}
+                     </a>
+                  )}
                   styles={styles}
+                  value={"Insights"}
                   shadow="none"
                />
                <Link href="/newsletters" className="mr-[35px] text-heading">
