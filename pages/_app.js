@@ -1,7 +1,7 @@
-import { logoUrl } from "@/constants";
+import { logoUrl, gtmId } from "@/constants";
 import "@/styles/globals.css";
 import "@/styles/common.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ThemeContext, SessionContext, ModalContext } from "@/utils/context";
 import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
@@ -39,10 +39,7 @@ function CustomHead() {
       <Head>
          <link rel="icon" type="image/x-icon" href={logoUrl} />
          <link rel="preconnect" href="https://fonts.gstatic.com" />
-         <link
-            rel="stylesheet"
-            href="https://unpkg.com/flowbite@1.4.5/dist/flowbite.min.css"
-         />
+         <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.5/dist/flowbite.min.css" />
       </Head>
    );
 }

@@ -2,16 +2,12 @@ import { useEffect, useState } from "react";
 import MultipleObserver from "@/utils/observer";
 import { getAdverts } from "@/utils/api-calls";
 import { adRotateInterval, advertLocations, videoFormats } from "@/constants";
-import { containsInArray, handleAdvertLoad } from "@/utils/helper";
+import { addAdImpressionTodataLayer, containsInArray, handleAdvertLoad } from "@/utils/helper";
 import Link from "next/link";
 import { useSession } from "@/utils/context";
 import { useRouter } from "next/router";
 
-export default function Advert({
-   withoutPadding = false,
-   adLocation,
-   type = "leaderboard",
-}) {
+export default function Advert({ withoutPadding = false, adLocation, type = "leaderboard" }) {
    const [currentAd, setCurrentAd] = useState(null);
    const [adLoaded, setAdLoaded] = useState(false);
    const [session] = useSession();
@@ -51,21 +47,26 @@ export default function Advert({
       return false;
    };
 
-   const onImageLoad = () =>
-      handleAdvertLoad(currentAd, session, router.asPath, document);
+   const onImageLoad = () => {
+      let res = handleAdvertLoad(currentAd, session, router.asPath, document);
+      if (!res) return;
+      addAdImpressionTodataLayer(currentAd, adLocation);
+   };
+
+   const handleAdvertClick = () => {
+      addAdImpressionTodataLayer(currentAd, adLocation, "click");
+   };
 
    return type == "leaderboard" ? (
       <div
          className={`bg-[#d5d5d519] ${
-            withoutPadding
-               ? "py-0"
-               : "py-[25px] mx-auto rounded-sm flex justify-center items-center"
+            withoutPadding ? "py-0" : "py-[25px] mx-auto rounded-sm flex justify-center items-center"
          }`}
       >
          {adLoaded ? (
             <MultipleObserver>
                {isVideo() ? (
-                  <Link href={currentAd?.ad_url}>
+                  <Link href={currentAd?.ad_url} onClick={() => handleAdvertClick()}>
                      <video
                         style={{ objectFit: "cover" }}
                         width={931}
@@ -79,7 +80,7 @@ export default function Advert({
                      ></video>
                   </Link>
                ) : (
-                  <Link href={currentAd?.ad_url}>
+                  <Link href={currentAd?.ad_url} onClick={() => handleAdvertClick()}>
                      <img
                         src={currentAd.image_url + "?fit=931,93"}
                         alt=""
@@ -91,9 +92,7 @@ export default function Advert({
             </MultipleObserver>
          ) : (
             <div
-               className={`${
-                  withoutPadding ? "h-[93px]" : "h-[93px] w-[931px]"
-               } bg-[#d5d5d519] mx-auto rounded-md`}
+               className={`${withoutPadding ? "h-[93px]" : "h-[93px] w-[931px]"} bg-[#d5d5d519] mx-auto rounded-md`}
             ></div>
          )}
       </div>
@@ -116,12 +115,7 @@ export default function Advert({
                   </Link>
                ) : (
                   <Link href={currentAd?.ad_url}>
-                     <img
-                        src={currentAd.image_url}
-                        alt=""
-                        className="rounded-md"
-                        onLoad={onImageLoad}
-                     />
+                     <img src={currentAd.image_url} alt="" className="rounded-md" onLoad={onImageLoad} />
                   </Link>
                )}
             </MultipleObserver>

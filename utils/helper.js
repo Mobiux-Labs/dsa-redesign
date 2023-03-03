@@ -164,4 +164,16 @@ export const handleAdvertLoad = async (ad, session, pageUrl, document) => {
    if (!session || !session?.loggedIn) return;
    if (!isTabActive(document)) return;
    recordAdvertImpression(ad?.id, pageUrl);
+   return true;
+};
+
+export const addAdImpressionTodataLayer = (ad, location, action = "impression") => {
+   window.dataLayer = window.dataLayer || [];
+   let event = {
+      event: "banner",
+      bannerAction: action,
+      bannerName: ad?.name,
+      location: location,
+   };
+   window.dataLayer.push(event);
 };

@@ -436,3 +436,5 @@ export const dropdownStyles = {
       fontWeight: "600",
    },
 };
+
+export const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
