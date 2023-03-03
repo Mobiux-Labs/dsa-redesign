@@ -26,6 +26,7 @@ import BreadcrumbJsonLdComponent from "@/components/common/SEO/BreadcrumbJsonLd"
 import { useRouter } from "next/router";
 import { EditArticleButton } from "@/components/common/Buttons";
 import Tags from "@/components/story/Tags";
+import TaggedNewsletterForm from "@/components/story/TaggedNewsletterForm";
 
 export default function StoryPage(props) {
    const story = props.storyData;
@@ -36,6 +37,14 @@ export default function StoryPage(props) {
    let pageUrl = baseUrl + router.asPath;
    let editedBy = story?.edited_by;
    let tags = story?.tags;
+   let taggedNewsletter = story?.tagged_newsletter;
+
+   const isSubscribedToTaggedNewsletter = () => {
+      if (!taggedNewsletter) return false;
+      let subscribedNewsletters = props?.session?.subscribedNewsletters;
+      if (!subscribedNewsletters) return false;
+      return subscribedNewsletters.includes(taggedNewsletter);
+   };
 
    useEffect(() => {
       addTablePressFeatures();
@@ -55,7 +64,7 @@ export default function StoryPage(props) {
             <CategoryBadge category={story?.category} />
             <h1 className="text-heading font-bold text-3xl leading-[55px] mt-[5px]">{story?.post_title}</h1>
             {/* Author info and the share icons */}
-            <div className="flex justify-between py-[20px] items-center sticky bg-white top-[80px]">
+            <div className="flex justify-between py-[20px] items-center sticky bg-white top-[80px] z-[1000]">
                <AuthorInfo story={story} />
                <ShareIcons story={story} bookmarked={props?.session?.bookmarked} />
             </div>
@@ -69,6 +78,8 @@ export default function StoryPage(props) {
                height={488}
                loader={loader}
             />
+            {/* Newsletter form if the story is tagged under any newsletter and the user is not subscribed to particular newsletter */}
+            {isSubscribedToTaggedNewsletter() ? null : <TaggedNewsletterForm taggedNewsletter={taggedNewsletter} />}
             {/* Content */}
             <div
                className="font-serif text-content text-lg leading-[28px] article-content"
@@ -137,7 +148,6 @@ export async function getServerSideProps(context) {
    if (!storyData) return redirectTo404;
    const lastReadStories = await getLastReadStories(context.req);
    let contentRestrictions = await getContentRestrictions(storyData, session, context.req);
-   console.log(contentRestrictions);
 
    // If the content is restricted due to any reason but there is a gift key, then validate it
    if (contentRestrictions.restricted && giftKey) {

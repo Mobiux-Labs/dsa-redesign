@@ -1,5 +1,4 @@
-export const logoUrl =
-   "https://media.dealstreetasia.com/uploads/2019/05/logo@2x.png";
+export const logoUrl = "https://media.dealstreetasia.com/uploads/2019/05/logo@2x.png";
 
 // For the section bar on the top, DO NOT USE IT FOR ANYTHING ELSE
 export const sections = [
@@ -79,26 +78,25 @@ export const newsletters = {
    daily_brief: {
       name: "The Daily Brief",
       slug: "daily_brief",
-      description:
-         "All our headlines in a 24 hour cycle, covering the most significant developments in SE Asia, India, Greater China and the World, crunched into one neat email sent to you at the top of the morning. This is a daily newsletter, with the exception of a Sunday run.",
+      description: "",
    },
    data_vantage: {
       name: "Data Vantage",
       slug: "data_vantage",
       description:
-         "A twice-weekly, data-led newsletter that will keep you abreast of the region’s constantly evolving markets and shed light on the most important and regionally relevant deal and investment developments through the expert lens of the DATA VANTAGE team.",
+         "This is a web version of our twice-weekly, data-led newsletter Data Vantage. You can subscribe to it by filling in your email address below.",
    },
    week_that_was: {
       name: "The Week That Was",
       slug: "week_that_was",
       description:
-         "Our editors recap the most significant developments and perspectives that come to the fore after the closing of a week, and wind it into a single narrative fit for a one-glance consumption.",
+         "You are reading the web version of The Week That Was, a Sunday newsletter in which our editors recap the most significant developments from the past seven days. You can subscribe to it by filling out your email address below",
    },
    vantage_point: {
       name: "Vantage Point",
       slug: "vantage_point",
       description:
-         "Authored by Angus Mackintosh, this weekly newsletter highlights top developments and trends across Southeast Asia's digital economy and ecosystem, without losing sight of the solid links between the online and offline worlds.",
+         "This is the web version of our Vantage Point newsletter. Authored by Angus Mackintosh, it highlights the top trends across SE Asia’s digital economy. Get this newsletter delivered to your inbox every Monday, by filling in your email address below.",
    },
 };
 
@@ -111,19 +109,15 @@ export const siteKey = process.env.NEXT_PUBLIC_SITE_KEY;
 
 // Description should be at-least 150 characters
 export const categoryDesciptions = {
-   "private-equity":
-      "Private equity news, deals, analysis and more from DealStreetAsia",
-   "venture-capital":
-      "Venture capital news, deals, analysis and more from DealStreetAsia",
+   "private-equity": "Private equity news, deals, analysis and more from DealStreetAsia",
+   "venture-capital": "Venture capital news, deals, analysis and more from DealStreetAsia",
    unicorns: "Unicorns news, deals, analysis and more from DealStreetAsia",
    "q-a": "Q & A news, deals, analysis and more from DealStreetAsia",
-   "deal-investment":
-      "Deals news, deals, analysis and more from DealStreetAsia",
+   "deal-investment": "Deals news, deals, analysis and more from DealStreetAsia",
    ipos: "IPOs and Markets news, deals, analysis and more from DealStreetAsia",
    analysis: "Analysis news, deals, analysis and more from DealStreetAsia",
    opinion: "Opinion news, deals, analysis and more from DealStreetAsia",
-   "policy-and-regulations":
-      "Policy and Regulations news, deals, analysis and more from DealStreetAsia",
+   "policy-and-regulations": "Policy and Regulations news, deals, analysis and more from DealStreetAsia",
    people: "People news, deals, analysis and more from DealStreetAsia",
    india: "India news, deals, analysis and more from DealStreetAsia",
    china: "China news, deals, analysis and more from DealStreetAsia",
@@ -195,8 +189,7 @@ export const categories = [
    },
 ];
 
-export const defaultNlToSubscribe =
-   process.env.NEXT_PUBLIC_DEFAULT_NL_TO_SUBSCRIBE;
+export const defaultNlToSubscribe = process.env.NEXT_PUBLIC_DEFAULT_NL_TO_SUBSCRIBE;
 
 export const basicPlanDetails = [
    "Premium News Subscription",
@@ -247,8 +240,7 @@ export const faqs = [
       answer: `You can buy a 1 month trial subscription for $208*. <br/>You can also sample an extensive and in-depth report for free.`,
    },
    {
-      question:
-         "I am a Basic subscriber, how can I access DealStreetAsia – Professional products ?",
+      question: "I am a Basic subscriber, how can I access DealStreetAsia – Professional products ?",
       answer: `Log into your account and click to view your personal user dashboard. You will see an option to upgrade your subscription to DealStreetAsia – Professional. Click on that link to view the top up options listed for you to upgrade. Pick up a suitable plan to access DealStreetAsia – Professional.`,
    },
    {
@@ -266,8 +258,7 @@ export const faqs = [
       To find out more, please refer to our Terms and Conditions.`,
    },
    {
-      question:
-         "How do I avail Asia PE-VC Summit discounts from one/two/three year packages?",
+      question: "How do I avail Asia PE-VC Summit discounts from one/two/three year packages?",
       answer: `You will receive a promotional code with the welcome e-mail post purchase, which you can then use on eligible events.<br/>
       Please remember that the purchase is to be made by using the same registered email address attached to your DealStreetAsia - Basic subscription.<br/>
       Our admin holds the right to revoke any subscriber discounted ticket purchased with an email address not in our subscription database`,
@@ -415,20 +406,7 @@ export const advertLocations = {
    },
 };
 
-export const videoFormats = [
-   "mp4",
-   "webm",
-   "ogg",
-   "ogv",
-   "m4v",
-   "flv",
-   "wmv",
-   "avi",
-   "mov",
-   "mpg",
-   "mpeg",
-   "3gp",
-];
+export const videoFormats = ["mp4", "webm", "ogg", "ogv", "m4v", "flv", "wmv", "avi", "mov", "mpg", "mpeg", "3gp"];
 
 export const adRotateInterval = process.env.NEXT_PUBLIC_ADROTATE_INTERVAL;
 
