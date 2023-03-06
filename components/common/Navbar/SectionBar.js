@@ -43,35 +43,23 @@ export default function SectionBar({}) {
             draggable={false}
             slidesPerView={"auto"}
          >
-            {sections.map((section) => (
-               <SwiperSlide
-                  style={{ width: "fit-content", paddingRight: "40px" }}
-                  key={section.title}
-               >
+            {sections.map((section, index) => (
+               <SwiperSlide style={{ width: "fit-content", paddingRight: "40px" }} key={index}>
                   <SectionButton
                      key={section.title}
                      imgSrc={section.icon}
                      name={section.title}
                      link={section.link}
                      slug={section.slug}
-                     isFavourite={session?.userFavourites?.includes(
-                        section.slug
-                     )}
+                     isFavourite={session?.userFavourites?.includes(section.slug)}
                   />
                </SwiperSlide>
             ))}
          </Swiper>
          {/* Right Arrow to scroll the buttons */}
          <div className="w-[120px] h-[52px] flex items-center justify-start">
-            <button
-               className="ml-[25px] z-10"
-               onClick={() => swiperRef.current?.slideNext()}
-            >
-               <CustomIcon
-                  name={"swipeController"}
-                  color={"fff"}
-                  className="rotate-180"
-               />
+            <button className="ml-[25px] z-10" onClick={() => swiperRef.current?.slideNext()}>
+               <CustomIcon name={"swipeController"} color={"fff"} className="rotate-180" />
             </button>
          </div>
       </div>
@@ -82,11 +70,7 @@ function RegionSelector({}) {
    const router = useRouter();
    return (
       <div className="cursor-pointer flex flex-col mr-[40px] ml-[20px]">
-         <CustomIcon
-            name={"location"}
-            color={"#B3B3B3"}
-            className="mx-auto w-full flex justify-center"
-         />
+         <CustomIcon name={"location"} color={"#B3B3B3"} className="mx-auto w-full flex justify-center" />
          <Select
             placeholder="Select Region"
             data={regions}
@@ -98,13 +82,7 @@ function RegionSelector({}) {
             }}
             onChange={(value) => router.push(`/countries/${value}`)}
             className="region-selector ml-[8px]"
-            rightSection={
-               <CustomIcon
-                  name={"dropdown"}
-                  dontReplaceColor
-                  className="top-[3px] relative"
-               />
-            }
+            rightSection={<CustomIcon name={"dropdown"} dontReplaceColor className="top-[3px] relative" />}
          />
       </div>
    );
@@ -121,19 +99,8 @@ function SectionButton({ imgSrc, name, link, slug, isFavourite = false }) {
          className="cursor-pointer h-full flex items-center justify-center flex-col"
          onClick={() => handleCategoryClick(link)}
       >
-         <CustomIcon
-            name={imgSrc}
-            alt={name}
-            className="h-[16px]"
-            color={isFavourite ? "#35a7df" : "#B3B3B3"}
-         />
-         <span
-            className={`mr-[8px] mt-[12px] whitespace-nowrap ${
-               isFavourite ? "text-blue" : ""
-            }`}
-         >
-            {name}
-         </span>
+         <CustomIcon name={imgSrc} alt={name} className="h-[16px]" color={isFavourite ? "#35a7df" : "#B3B3B3"} />
+         <span className={`mr-[8px] mt-[12px] whitespace-nowrap ${isFavourite ? "text-blue" : ""}`}>{name}</span>
       </div>
    );
 }

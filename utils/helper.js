@@ -172,7 +172,7 @@ export const recordAdImpressionOnGTM = (ad, location, action = "impression") => 
    let event = {
       event: "banner",
       bannerAction: action,
-      bannerName: ad?.name,
+      bannerName: ad?.name || ad?.title,
       location: location,
    };
    pushToDataLayer(event);
