@@ -17,7 +17,7 @@ export default function LoginModal({}) {
             withCloseButton={false}
             centered
             radius={0}
-            zIndex={100}
+            zIndex={600}
          >
             <div className="py-30 px-50 text-center">
                <h3 className="font-bold text-2xl text-heading">Login to your account</h3>

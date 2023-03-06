@@ -18,13 +18,11 @@ export default function SignupModal({}) {
             withCloseButton={false}
             centered
             radius={0}
-            zIndex={100}
+            zIndex={600}
             closeOnClickOutside={false}
          >
             <div className="py-30 px-50 text-center overflow-hidden">
-               <h3 className="font-bold text-2xl text-heading">
-                  Create your account
-               </h3>
+               <h3 className="font-bold text-2xl text-heading">Create your account</h3>
                <SocialMediaLinks />
                <div className="inline-flex items-center justify-center w-full mb-[25px]">
                   <hr className="w-full h-[1px] bg-lightgray border-0 rounded dark:bg-gray-700" />
@@ -42,9 +40,7 @@ export default function SignupModal({}) {
 function SocialMediaLinks() {
    return (
       <div className="mt-30 mb-[25px] text-center">
-         <p className="text-sm text-smalltext mb-[15px]">
-            Signup with Social Media
-         </p>
+         <p className="text-sm text-smalltext mb-[15px]">Signup with Social Media</p>
          <div className="icons flex gap-[15px] justify-center">
             <div className="icon h-[40px] w-[40px] bg-darkblue rounded-full grid place-items-center cursor-pointer">
                <CustomIcon name={"google"} color={"#fff"} height={16} />
@@ -87,14 +83,7 @@ function InputForm({ setModal }) {
       e.preventDefault();
       if (validateForm()) {
          recaptchaObj.execute();
-         const res = await signupUser(
-            name,
-            email,
-            password,
-            preference,
-            tosAgreement,
-            recaptchaObj.getResponse()
-         );
+         const res = await signupUser(name, email, password, preference, tosAgreement, recaptchaObj.getResponse());
          if (!res || !res.status) {
             setLoading(false);
             return;
@@ -111,9 +100,7 @@ function InputForm({ setModal }) {
 
    const validateForm = () => {
       let nameValid = /^[a-zA-Z]+$/.test(name);
-      let emailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
-         email
-      );
+      let emailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
       let passwordValid = password.length >= 8 && password === confirmPassword;
       if (!nameValid) {
          setError((prev) => ({
@@ -178,10 +165,7 @@ function InputForm({ setModal }) {
          <div className="mt-10 flex justify-between">
             <p className="text-smalltext text-sm text-left">
                Already a Memeber?{" "}
-               <span
-                  className="text-blue cursor-pointer"
-                  onClick={() => setModal("login")}
-               >
+               <span className="text-blue cursor-pointer" onClick={() => setModal("login")}>
                   Login
                </span>
             </p>
@@ -193,10 +177,7 @@ function InputForm({ setModal }) {
                className="w-[14px] h-[14px] text-blue bg-gray-100 border-content rounded focus:ring-blue focus:ring-1 dark:bg-gray-700 dark:border-gray-600"
                onChange={(e) => setPreference(e.target.checked)}
             />
-            <label
-               for="newsletter-checkbox"
-               className="text-sm text-smalltext ml-[6px]"
-            >
+            <label for="newsletter-checkbox" className="text-sm text-smalltext ml-[6px]">
                Signup for newsletters & latest updates on email
             </label>
          </div>
@@ -207,14 +188,8 @@ function InputForm({ setModal }) {
                className="w-[14px] h-[14px] text-blue bg-gray-100 border-content rounded focus:ring-blue focus:ring-1 dark:bg-gray-700 dark:border-gray-600"
                onChange={(e) => setTosAgreement(e.target.checked)}
             />
-            <label
-               for="newsletter-checkbox"
-               className="text-sm text-smalltext ml-[6px]"
-            >
-               I have read and I accept the{" "}
-               <span className="text-blue cursor-pointer">
-                  Terms and Conditions
-               </span>
+            <label for="newsletter-checkbox" className="text-sm text-smalltext ml-[6px]">
+               I have read and I accept the <span className="text-blue cursor-pointer">Terms and Conditions</span>
             </label>
          </div>
          <button
@@ -240,10 +215,7 @@ function InputForm({ setModal }) {
 
 function CloseButton({ setModal }) {
    return (
-      <div
-         className="cursor-pointer absolute z-[101] right-[80px] top-[80px]"
-         onClick={() => setModal()}
-      >
+      <div className="cursor-pointer absolute z-[101] right-[80px] top-[80px]" onClick={() => setModal()}>
          <CustomIcon icon="close" color={"fff"} />
       </div>
    );

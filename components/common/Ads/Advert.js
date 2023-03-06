@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import MultipleObserver from "@/utils/observer";
 import { getAdverts } from "@/utils/api-calls";
 import { adRotateInterval, advertLocations, videoFormats } from "@/constants";
-import { addAdImpressionTodataLayer, containsInArray, handleAdvertLoad } from "@/utils/helper";
+import { containsInArray, handleAdvertLoad, recordAdImpressionOnGTM } from "@/utils/helper";
 import Link from "next/link";
 import { useSession } from "@/utils/context";
 import { useRouter } from "next/router";
@@ -50,11 +50,11 @@ export default function Advert({ withoutPadding = false, adLocation, type = "lea
    const onImageLoad = () => {
       let res = handleAdvertLoad(currentAd, session, router.asPath, document);
       if (!res) return;
-      addAdImpressionTodataLayer(currentAd, adLocation);
+      recordAdImpressionOnGTM(currentAd, adLocation);
    };
 
    const handleAdvertClick = () => {
-      addAdImpressionTodataLayer(currentAd, adLocation, "click");
+      recordAdImpressionOnGTM(currentAd, adLocation, "click");
    };
 
    return type == "leaderboard" ? (

@@ -18,6 +18,8 @@ import BreadcrumbJsonLdComponent from "@/components/common/SEO/BreadcrumbJsonLd"
 import { useRouter } from "next/router";
 import { EditArticleButton } from "@/components/common/Buttons";
 import Tags from "@/components/story/Tags";
+import { useEffect } from "react";
+import { recordUserDataToGTM } from "@/utils/analytics";
 
 export default function PartnerContentStory(props) {
    const { story } = props;
@@ -26,6 +28,10 @@ export default function PartnerContentStory(props) {
    let pageUrl = baseUrl + router.asPath;
    let loggedIntoWP = props?.session?.loggedIntoWP;
    let tags = story?.tags;
+
+   useEffect(() => {
+      recordUserDataToGTM(props?.session);
+   }, []);
 
    return (
       <Layout session={props.session} withLeaderBoardAd={false}>

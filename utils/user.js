@@ -14,7 +14,8 @@ function getSubscribedNewsletters(dailyBrief, weekThatWas, vantagePoint, dataVan
 export async function getUserSession(req) {
    let loggedIn = false;
    let subscribed = false;
-   let type, bookmarked;
+   let researchPlan = false;
+   let subscriptionType, bookmarked;
    let plan, userId;
    let res, email;
    let name, dailyBriefNl, dataVantageNl, weekThatWasNl, vantagePointNl;
@@ -35,7 +36,7 @@ export async function getUserSession(req) {
          email = res.email;
          loggedIn = true;
          userId = res.id;
-         type = res.subscription_type;
+         subscriptionType = res.subscription_type;
          name = res.name;
          dailyBriefNl = res.daily_brief_nl;
          dataVantageNl = res.data_vantage_nl;
@@ -46,6 +47,7 @@ export async function getUserSession(req) {
          userFavourites = res.user_favourites;
          bookmarked = res.bookmarked;
          loggedIntoWP = res?.logged_into_wp_as_admin;
+         researchPlan = res?.research;
          if (res.plan !== null) {
             plan = res.plan;
             subscribed = true;
@@ -59,7 +61,7 @@ export async function getUserSession(req) {
       plan,
       userId,
       email,
-      type,
+      type: subscriptionType,
       name,
       dailyBriefNl,
       dataVantageNl,

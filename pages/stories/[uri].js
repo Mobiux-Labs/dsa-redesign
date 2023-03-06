@@ -27,6 +27,7 @@ import { useRouter } from "next/router";
 import { EditArticleButton } from "@/components/common/Buttons";
 import Tags from "@/components/story/Tags";
 import TaggedNewsletterForm from "@/components/story/TaggedNewsletterForm";
+import { recordStoryDataToGTM, recordUserDataToGTM } from "@/utils/analytics";
 
 export default function StoryPage(props) {
    const story = props.storyData;
@@ -49,6 +50,8 @@ export default function StoryPage(props) {
    useEffect(() => {
       addTablePressFeatures();
       setStoryViews(props.uri, story.premium, story.research);
+      recordStoryDataToGTM(story);
+      recordUserDataToGTM(props?.session);
    }, []);
 
    return (
@@ -64,7 +67,7 @@ export default function StoryPage(props) {
             <CategoryBadge category={story?.category} />
             <h1 className="text-heading font-bold text-3xl leading-[55px] mt-[5px]">{story?.post_title}</h1>
             {/* Author info and the share icons */}
-            <div className="flex justify-between py-[20px] items-center sticky bg-white top-[80px] z-[1000]">
+            <div className="flex justify-between py-[20px] items-center sticky bg-white top-[80px] z-[500]">
                <AuthorInfo story={story} />
                <ShareIcons story={story} bookmarked={props?.session?.bookmarked} />
             </div>

@@ -1,5 +1,6 @@
 import { baseUrl, categories, regions, sections, newsletters } from "@/constants";
 import moment from "moment/moment";
+import pushToDataLayer from "./analytics";
 import { recordAdvertImpression } from "./api-calls";
 
 export function getTimeAgo(datetime) {
@@ -167,13 +168,19 @@ export const handleAdvertLoad = async (ad, session, pageUrl, document) => {
    return true;
 };
 
-export const addAdImpressionTodataLayer = (ad, location, action = "impression") => {
-   window.dataLayer = window.dataLayer || [];
+export const recordAdImpressionOnGTM = (ad, location, action = "impression") => {
    let event = {
       event: "banner",
       bannerAction: action,
       bannerName: ad?.name,
       location: location,
    };
-   window.dataLayer.push(event);
+   pushToDataLayer(event);
+};
+
+export const getUserType = (session) => {
+   if (!session || !session?.loggedIn) return "anonymous";
+   if (session?.subscribed && session?.researchPlan) return "subscribed-research";
+   if (session?.subscribed) return "subscribed";
+   return "registered";
 };
