@@ -1,16 +1,12 @@
-import useSWR from "swr";
-import { fetcher, handleAdvertLoad, recordAdImpressionOnGTM } from "@/utils/helper";
+import { recordAdImpressionOnGTM } from "@/utils/helper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
 import MultipleObserver from "@/utils/observer";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import { carouselInterval } from "@/constants";
 import { Skeleton } from "@mantine/core";
 import { useRef, useState, useEffect } from "react";
-import { useSession } from "@/utils/context";
-import { useRouter } from "next/router";
 import { getActiveCarouselBanners } from "@/utils/api-calls";
 
 export default function CarouselBanner({ banner }) {
@@ -21,8 +17,6 @@ export default function CarouselBanner({ banner }) {
       },
    };
    const swiperRef = useRef(null);
-   const [session] = useSession();
-   const router = useRouter();
    const [data, setData] = useState([]);
 
    const fetchData = async () => {
