@@ -438,3 +438,4 @@ export const dropdownStyles = {
 };
 
 export const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
+export const carouselInterval = process.env.NEXT_PUBLIC_CAROUSEL_INTERVAL;

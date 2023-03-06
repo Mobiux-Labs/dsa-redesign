@@ -79,6 +79,7 @@ module.exports = {
          "4xl": "36px",
       },
       fontWeight: {
+         light: "300",
          normal: "400",
          medium: "500",
          semibold: "600",

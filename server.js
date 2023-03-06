@@ -19,6 +19,20 @@ const devProxy = {
          }
       ),
    },
+   "/api/content": {
+      target: "https://new.dealstreetasia.com",
+      pathRewrite: {
+         "^/api/content": "/api/content",
+      },
+      changeOrigin: true,
+      auth: "betauser:dsabeta",
+      selfHandleResponse: true,
+      onProxyRes: responseInterceptor(
+         async (responseBuffer, proxyRes, req, res) => {
+            return responseBuffer;
+         }
+      ),
+   },
    "/subs": {
       target: "https://new.dealstreetasia.com",
       pathRewrite: {

@@ -292,3 +292,18 @@ button.expand-table-button {
    word-wrap: nowrap;
    cursor: pointer;
 }
+
+.main-carousel {
+   .swiper-pagination-bullet {
+      width: 18px !important;
+      height: 3px !important;
+      border-radius: 5px !important;
+      opacity: 0.3 !important;
+      background-color: white !important;
+   }
+
+   .swiper-pagination-bullet-active {
+      opacity: 0.75 !important;
+      background: white !important;
+   }
+}

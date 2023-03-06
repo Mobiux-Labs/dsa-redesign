@@ -265,3 +265,11 @@ export async function checkUserForSocialLogin() {
    const data = await res.json();
    return data;
 }
+
+export async function getActiveCarouselBanners() {
+   let url = `/api/content/website/carousel/`;
+   const res = await fetch(url, { headers: createHeader() });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}
