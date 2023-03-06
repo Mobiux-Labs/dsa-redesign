@@ -6,6 +6,7 @@ import { Pagination, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { carouselInterval } from "@/constants";
+import { Skeleton } from "@mantine/core";
 
 export default function CarouselBanner({ banner }) {
    const customPagination = {
@@ -18,7 +19,7 @@ export default function CarouselBanner({ banner }) {
    let url = "/api/content/website/carousel/";
    const { data, error } = useSWR(url, fetcher, { revalidateIfStale: false, revalidateOnFocus: false });
    if (error) return <div></div>;
-   if (!data) return <div>Loading</div>;
+   if (!data) return <CarouselSkeleton />;
 
    return (
       <div className="my-[100px] main-carousel">
@@ -83,6 +84,17 @@ function VideoComponent({ url }) {
    return (
       <div className="z-[5] absolute h-full w-full inset-0 rounded-md">
          <video className="h-full w-full bg-center object-cover rounded-md" src={url} autoPlay muted loop></video>
+      </div>
+   );
+}
+
+function CarouselSkeleton() {
+   return (
+      <div className="h-[400px] w-full bg-gray rounded-md my-[100px] p-[30px]">
+         <Skeleton height={26} radius={5} mb={5} width={70} />
+         <Skeleton height={60} width={"50%"} radius={5} mb={5} mt={15} />
+         <Skeleton height={20} radius={5} width={"30%"} mt={10} />
+         <Skeleton height={35} radius={5} width={"10%"} mt={30} />
       </div>
    );
 }
