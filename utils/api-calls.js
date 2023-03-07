@@ -294,3 +294,21 @@ export async function setGiftInvitation(email) {
    let response = await res.json();
    return response;
 }
+
+export async function fetchInvitesLeft(req) {
+   let url = `${backendUrl}/gifts/discount/`;
+   const res = await fetch(url, { headers: createHeader(req) });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}
+
+export async function sendInvitation(email) {
+   let url = `/api/subs/gifts/discount/`;
+   const res = await fetch(url, {
+      headers: createHeader(),
+      method: "POST",
+      body: JSON.stringify({ email }),
+   });
+   return res;
+}
