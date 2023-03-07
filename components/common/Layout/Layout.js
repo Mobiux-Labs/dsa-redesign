@@ -9,6 +9,9 @@ import SubscribeNlModal from "@/components/newsletter/SubscribeModa";
 import Advert from "../Ads/Advert";
 import { advertLocations } from "@/constants";
 import { useModal } from "@/utils/context";
+import { getTitleForPage } from "@/utils/helper";
+import { NextSeo } from "next-seo";
+import { useRouter } from "next/router";
 
 export default function Layout({ children, showSectionBar = true, session, withLeaderBoardAd = true }) {
    let motionOptions = {
@@ -22,9 +25,18 @@ export default function Layout({ children, showSectionBar = true, session, withL
    };
 
    const [modal, setModal] = useModal();
+   const router = useRouter();
+
+   const shouldReplaceDefaultPageTitle = () => {
+      let query = router.query;
+      let path = `/${router.pathname.split("/")[1]}/${query.slug || query.id}`;
+      let title = getTitleForPage(path);
+      return title ? title : false;
+   };
 
    return (
       <>
+         {shouldReplaceDefaultPageTitle() ? <PageSEO title={shouldReplaceDefaultPageTitle()} /> : null}
          {withLeaderBoardAd ? <Advert adLocation={advertLocations.home_page_leader.name} /> : null}
          <div className="sticky top-0 z-[100]">
             <Navbar intialSession={session} />
@@ -43,4 +55,8 @@ export default function Layout({ children, showSectionBar = true, session, withL
          <Footer />
       </>
    );
+}
+
+function PageSEO({ title }) {
+   return <NextSeo title={title} />;
 }

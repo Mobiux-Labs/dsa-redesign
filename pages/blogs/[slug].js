@@ -6,27 +6,22 @@ import ShareIcons from "@/components/story/ShareIcons";
 import { loader } from "@/utils/helper";
 import Image from "next/image";
 import HorizontalSection from "@/components/home/HorizontalSection";
+import ArticleSEO from "@/components/common/SEO/ArticleSEO";
 
 export default function Blog(props) {
    let blog = props.blogData;
    return (
       <Layout session={props.session} showSectionBar={false}>
+         <ArticleSEO article={blog} />
          <div className="w-[800px] mx-auto">
-            <h1 className="text-heading font-bold text-3xl leading-[55px] mt-[5px]">
-               {blog?.post_title}
-            </h1>
+            <h1 className="text-heading font-bold text-3xl leading-[55px] mt-[5px]">{blog?.post_title}</h1>
             {/* Author info and the share icons */}
             <div className="flex justify-between py-[20px] items-center sticky bg-white top-[80px]">
                <AuthorInfo story={blog} />
-               <ShareIcons
-                  story={blog}
-                  bookmarked={props?.session?.bookmarked}
-               />
+               <ShareIcons story={blog} bookmarked={props?.session?.bookmarked} />
             </div>
             {/* Excerpt */}
-            <p className="font-serif font-medium leading-[28px] text-content">
-               {blog?.post_excerpt}
-            </p>
+            <p className="font-serif font-medium leading-[28px] text-content">{blog?.post_excerpt}</p>
             {/* Image */}
             <Image
                className="my-[30px] h-[488px] w-full object-cover rounded-md"
@@ -44,11 +39,7 @@ export default function Blog(props) {
          </div>
          {/* Last read */}
          {props.lastReadStories?.length > 0 ? (
-            <HorizontalSection
-               stories={props.lastReadStories}
-               title="Last Read"
-               background={false}
-            />
+            <HorizontalSection stories={props.lastReadStories} title="Last Read" background={false} />
          ) : null}
       </Layout>
    );

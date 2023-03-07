@@ -1,4 +1,4 @@
-import { baseUrl, categories, regions, sections, newsletters } from "@/constants";
+import { baseUrl, categories, regions, sections, newsletters, pagesAndTitles } from "@/constants";
 import moment from "moment/moment";
 import pushToDataLayer from "./analytics";
 import { recordAdvertImpression } from "./api-calls";
@@ -183,4 +183,8 @@ export const getUserType = (session) => {
    if (session?.subscribed && session?.researchPlan) return "subscribed-research";
    if (session?.subscribed) return "subscribed";
    return "registered";
+};
+
+export const getTitleForPage = (pathname) => {
+   return pagesAndTitles[pathname];
 };

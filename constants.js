@@ -166,6 +166,7 @@ export const categories = [
    },
    { value: "people", label: "People", type: "section" },
    { value: "opinion", label: "Opinion", type: "section" },
+   { value: "unicorns", label: "Unicorns", type: "section" },
    { value: "ipos", label: "IPOs and Markets", type: "section" },
    {
       value: "indonesia-pe-vc-summit-2022",
@@ -439,3 +440,21 @@ export const dropdownStyles = {
 
 export const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
 export const carouselInterval = process.env.NEXT_PUBLIC_CAROUSEL_INTERVAL;
+
+export const pagesAndTitles = {
+   "/": "DealStreetAsia - Asia focused financial news and intelligence platform",
+   "/partner-content": "Partner Content | DealStreetAsia",
+   "/about-us": "About Us | DealStreetAsia",
+   "/contact-us": "Contact Us | DealStreetAsia",
+   "/meet-the-team": "Meet the Team | DealStreetAsia",
+   "/careers": "Careers | DealStreetAsia",
+   "/advertise-with-us": "Advertise | DealStreetAsia",
+   "/blogs": "Blogs | DealStreetAsia",
+   "/faq": "FAQ | DealStreetAsia",
+   "/plans": "Subscribe | DealStreetAsia",
+   "/newsletters": "Newsletters | DealStreetAsia",
+   "/newsletters/data_vantage": "Data Vantage Newsletter | DealStreetAsia",
+   "/newsletters/daily_brief": "The Daily Brief Newsletter | DealStreetAsia",
+   "/newsletters/week_that_was": "The Week That Was Newsletter | DealStreetAsia",
+   "/newsletters/vantage_point": "Vantage Point Newsletter | DealStreetAsia",
+};

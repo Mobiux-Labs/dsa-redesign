@@ -1,11 +1,7 @@
 import Layout from "@/components/common/Layout/Layout";
 import CarouselBanner from "@/components/home/CarouselBanner";
 import PartnerContentHeadlines from "@/components/partner-content/Headlines";
-import {
-   getLastReadStories,
-   getPartnerContentStories,
-   getTrendingStories,
-} from "@/utils/api-calls";
+import { getLastReadStories, getPartnerContentStories, getTrendingStories } from "@/utils/api-calls";
 import { getUserSession } from "@/utils/user";
 import LoadMorePartnerContentStoriesSection from "@/components/partner-content/LoadMore";
 import HorizontalSection from "@/components/home/HorizontalSection";
@@ -18,9 +14,7 @@ export default function PartnerContentPage(props) {
          <div className="px-[120px]">
             {/* Title and desc */}
             <div className="mb-[50px]">
-               <h1 className="text-heading text-3xl font-bold leading-[55px]">
-                  Partner Content
-               </h1>
+               <h1 className="text-heading text-3xl font-bold leading-[55px]">Partner Content</h1>
                <p className="text-content text-lg leading-[28px] font-serif">
                   A short description of the partner content page.
                </p>
@@ -46,11 +40,7 @@ export default function PartnerContentPage(props) {
          </div>
          {/* Last read */}
          {props?.lastReadStories?.length > 0 ? (
-            <HorizontalSection
-               stories={props?.lastReadStories}
-               title="Last Read"
-               background={false}
-            />
+            <HorizontalSection stories={props?.lastReadStories} title="Last Read" background={false} />
          ) : null}
       </Layout>
    );
