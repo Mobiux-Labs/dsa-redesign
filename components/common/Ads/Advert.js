@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useSession } from "@/utils/context";
 import { useRouter } from "next/router";
 
-export default function Advert({ withoutPadding = false, adLocation, type = "leaderboard" }) {
+export default function Advert({ withoutPadding = false, adLocation, type = "leaderboard", className }) {
    const [currentAd, setCurrentAd] = useState(null);
    const [adLoaded, setAdLoaded] = useState(false);
    const [session] = useSession();
@@ -59,7 +59,7 @@ export default function Advert({ withoutPadding = false, adLocation, type = "lea
 
    return type == "leaderboard" ? (
       <div
-         className={`bg-[#d5d5d519] ${
+         className={`${className} bg-[#d5d5d519] ${
             withoutPadding ? "py-0" : "py-[25px] mx-auto rounded-sm flex justify-center items-center"
          }`}
       >
@@ -97,7 +97,7 @@ export default function Advert({ withoutPadding = false, adLocation, type = "lea
          )}
       </div>
    ) : (
-      <div className="h-[250px] w-full bg-gray rounded-lg flex items-center justify-center text-white">
+      <div className={`h-[250px] w-full bg-gray rounded-lg flex items-center justify-center text-white ${className}`}>
          {" "}
          {adLoaded ? (
             <MultipleObserver>

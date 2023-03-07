@@ -36,12 +36,8 @@ export default function StoryCard({
       sm: 147,
    };
 
-   const imageHeight = customImageHeight
-      ? customImageHeight
-      : heightSizes[imageSize];
-   const imageWidth = customImageWidth
-      ? customImageWidth
-      : widthSizes[imageSize];
+   const imageHeight = customImageHeight ? customImageHeight : heightSizes[imageSize];
+   const imageWidth = customImageWidth ? customImageWidth : widthSizes[imageSize];
 
    function getExcerpt(excerpt) {
       if (excerpt?.length > 150) {
@@ -64,27 +60,15 @@ export default function StoryCard({
          {withImage ? (
             <Link
                href={trimUrl(story?.post_url)}
-               className={` ${
-                  imagePosition == "right"
-                     ? "ml-[60px]"
-                     : imagePosition == "left"
-                     ? "mr-[20px]"
-                     : ""
-               }`}
+               className={` ${imagePosition == "right" ? "ml-[60px]" : imagePosition == "left" ? "mr-[20px]" : ""}`}
             >
-               <div
-                  className={`${
-                     imagePosition == "right" ? "mb-[15px]" : ""
-                  } max-w-full`}
-               >
+               <div className={`${imagePosition == "right" ? "mb-[15px]" : ""} max-w-full`}>
                   <Image
                      src={story?.image_url}
                      alt={story?.post_title}
                      height={imageHeight}
                      width={imageWidth}
-                     className={`rounded-md object-center object-cover ${
-                        imagePosition == "right" ? "max-w-fit" : ""
-                     }`}
+                     className={`rounded-md object-center object-cover ${imagePosition == "right" ? "max-w-fit" : ""}`}
                      style={{
                         height: imageHeight,
                         width: imageWidth,
@@ -95,15 +79,8 @@ export default function StoryCard({
                </div>
             </Link>
          ) : null}
-         <div
-            style={contentStyles}
-            className={`${
-               imagePosition == "top" && withImage ? "mt-[10px]" : ""
-            }`}
-         >
-            {withCategory ? (
-               <CategoryBadge logo={partnerLogo} category={story?.category} />
-            ) : null}
+         <div style={contentStyles} className={`${imagePosition == "top" && withImage ? "mt-[10px]" : ""}`}>
+            {withCategory ? <CategoryBadge logo={partnerLogo} category={story?.category} /> : null}
             <Link href={trimUrl(story?.post_url)}>
                <h2
                   className={`${
@@ -124,18 +101,10 @@ export default function StoryCard({
             </Link>
 
             {/* Bottom info Author, time ago and minutes read */}
-            <div
-               className={`${
-                  whiteText ? "text-white" : "text-smalltext"
-               } text-sm mt-[10px]`}
-            >
+            <div className={`${whiteText ? "text-white" : "text-smalltext"} text-sm mt-[5px] leading-[15px]`}>
                <p>
-                  <Link
-                     href={authors[0]?.data?.url ? authors[0]?.data?.url : ""}
-                  >
-                     <span className="text-capitalize hover:text-black">
-                        {authors[0]?.data?.display_name}
-                     </span>
+                  <Link href={authors[0]?.data?.url ? authors[0]?.data?.url : ""}>
+                     <span className="text-capitalize hover:text-black">{authors[0]?.data?.display_name}</span>
                   </Link>{" "}
                   | <span>{getTimeAgo(story?.post_date)}</span> |{" "}
                   <span>

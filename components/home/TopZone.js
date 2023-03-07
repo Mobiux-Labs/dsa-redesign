@@ -28,9 +28,7 @@ function LeftSection({ headlines }) {
          {/* 3 rows of 2 columns */}
          <div
             className={`grid col-span-2 pr-[50px] ${
-               compactTheme
-                  ? "gap-x-13 gap-y-20 mt-20 grid-cols-3"
-                  : "gap-x-50 gap-y-40 mt-40 grid-cols-2"
+               compactTheme ? "gap-x-13 gap-y-20 mt-20 grid-cols-3" : "gap-x-50 gap-y-40 mt-40 grid-cols-2"
             }`}
          >
             {
@@ -66,10 +64,8 @@ function RightSection({ justin, trending }) {
       startAnimation();
    }
 
-   let selectedTabHeadingStyles =
-      "text-heading text-3xl font-bold cursor-pointer transition-all duration-200 ease";
-   let unselectedTabHeadingStyles =
-      "text-gray font-bold cursor-pointer transition-all duration-200 ease";
+   let selectedTabHeadingStyles = "text-heading text-3xl font-bold cursor-pointer transition-all duration-200 ease";
+   let unselectedTabHeadingStyles = "text-gray font-bold cursor-pointer transition-all duration-200 ease";
 
    return (
       <div className="pl-[21px]">
@@ -78,10 +74,7 @@ function RightSection({ justin, trending }) {
             <p className={selectedTabHeadingStyles} onClick={() => changeTab()}>
                {selectedTab == "justin" ? "Just In" : "Trending"}
             </p>
-            <p
-               className={unselectedTabHeadingStyles}
-               onClick={() => changeTab()}
-            >
+            <p className={unselectedTabHeadingStyles} onClick={() => changeTab()}>
                {selectedTab == "justin" ? "Trending" : "Just In"}
             </p>
          </div>
@@ -95,12 +88,11 @@ function RightSection({ justin, trending }) {
                   </div>
                ))}
             {/* Sidebar ad */}
-            <div className="mt-[37px]">
-               <Advert
-                  adLocation={advertLocations.home_page_section_1_sidebar.name}
-                  type="sidebar"
-               />
-            </div>
+            <Advert
+               adLocation={advertLocations.home_page_section_1_sidebar.name}
+               type="sidebar"
+               className={"mt-[21px]"}
+            />
          </div>
       </div>
    );

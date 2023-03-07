@@ -80,7 +80,7 @@ export default function CarouselBanner({ banner }) {
                      </div>
                      {item?.show_overlay && <GradientOverlay />}
                      {item.media_type == "video" && <VideoComponent url={item?.image_url} />}
-                     <ImageComponent url={item?.image_url} />
+                     {item.media_type != "video" && <ImageComponent url={item?.image_url} />}
                   </div>
                </SwiperSlide>
             ))}
