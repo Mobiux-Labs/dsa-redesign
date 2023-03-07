@@ -273,3 +273,24 @@ export async function getActiveCarouselBanners() {
    const data = await res.json();
    return data;
 }
+
+export async function getGiftEligibilityData(req) {
+   let url = `${backendUrl}/gifts/`;
+   const res = await fetch(url, { headers: createHeader(req) });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}
+
+export async function setGiftInvitation(email) {
+   let url = `/api/subs/gifts/`;
+   let data = [{ email }];
+   const res = await fetch(url, {
+      headers: createHeader(),
+      method: "POST",
+      body: JSON.stringify(data),
+   });
+   if (!res.ok) return null;
+   let response = await res.json();
+   return response;
+}

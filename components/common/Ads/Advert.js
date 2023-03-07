@@ -48,13 +48,13 @@ export default function Advert({ withoutPadding = false, adLocation, type = "lea
    };
 
    const onImageLoad = () => {
-      let res = handleAdvertLoad(currentAd, session, router.asPath, document);
-      if (!res) return;
-      recordAdImpressionOnGTM(currentAd, adLocation);
+      // let res = handleAdvertLoad(currentAd, session, router.asPath, document);
+      // if (!res) return;
+      // recordAdImpressionOnGTM(currentAd, adLocation);
    };
 
    const handleAdvertClick = () => {
-      recordAdImpressionOnGTM(currentAd, adLocation, "click");
+      // recordAdImpressionOnGTM(currentAd, adLocation, "click");
    };
 
    return type == "leaderboard" ? (

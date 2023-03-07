@@ -90,7 +90,8 @@ export const newsletters = {
    daily_brief: {
       name: "The Daily Brief",
       slug: "daily_brief",
-      description: "",
+      description:
+         "All our headlines in a 24 hour cycle, covering the most significant developments in SE Asia, India, Greater China and the World, crunched into one neat email sent to you at the top of the morning. This is the daily newsletter, with the exception of a sunday run.",
    },
    data_vantage: {
       name: "Data Vantage",

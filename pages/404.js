@@ -31,10 +31,8 @@ export default function Custom404(props) {
 
    return (
       <Layout showSectionBar={false}>
-         <NextSeo title="Page Not Found" />
-         <h1 className="text-darkblue font-bold text-4xl text-center">
-            Oops, we couldn't find that page
-         </h1>
+         <NextSeo title="Page Not Found | DealStreetAsia" />
+         <h1 className="text-darkblue font-bold text-4xl text-center">Oops, we couldn't find that page</h1>
          <p className="mt-30 text-center font-serif text-heading text-lg">
             Don't let that stop you from reading some of our popular stories.
          </p>

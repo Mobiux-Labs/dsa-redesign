@@ -307,3 +307,16 @@ button.expand-table-button {
       background: white !important;
    }
 }
+
+.gift-btn {
+   background-color: var(--color-blue);
+   color: white;
+   font-family: "Outfit";
+   border: none;
+   padding-inline: 2rem;
+   border-radius: 5px;
+}
+
+.gift-table {
+   font-family: "Montserrat";
+}
