@@ -188,3 +188,10 @@ export const getUserType = (session) => {
 export const getTitleForPage = (pathname) => {
    return pagesAndTitles[pathname];
 };
+
+export function checkIfAlreadyGiftedAndValid(giftedArticles, id) {
+   for (let gift of giftedArticles) {
+      if (gift.articleId == id && gift.valid) return true;
+   }
+   return false;
+}

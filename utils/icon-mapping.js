@@ -35,6 +35,8 @@ import { collectivelyVested } from "@/components/icons/collectivelyVested";
 import { quality } from "@/components/icons/quality";
 import { plant } from "@/components/icons/plant";
 import { job } from "@/components/icons/job";
+import { share } from "@/components/icons/share";
+import { copy } from "@/components/icons/copy";
 
 const icons = {
    arrow: arrow,
@@ -74,6 +76,8 @@ const icons = {
    quality: quality,
    plant: plant,
    job: job,
+   share: share,
+   copy: copy,
 };
 
 function replaceFillAndStroke(svgCode, color, dontReplaceColor = false) {
@@ -85,9 +89,7 @@ function replaceFillAndStroke(svgCode, color, dontReplaceColor = false) {
    }
    const fillRegex = /fill="[^"]*"/g;
    const strokeRegex = /stroke="[^"]*"/g;
-   const newSvgCode = svgCode
-      .replace(fillRegex, `fill="${color}"`)
-      .replace(strokeRegex, `stroke="${color}"`);
+   const newSvgCode = svgCode.replace(fillRegex, `fill="${color}"`).replace(strokeRegex, `stroke="${color}"`);
    const trimmedSvgCode = newSvgCode.replace(/;+$/, "");
    return trimmedSvgCode.replace(/;+$/, "");
 }
@@ -103,18 +105,10 @@ export default function CustomIcon({
    onMouseEnter,
 }) {
    return (
-      <div
-         className={`h-${height} w-${width}`}
-         onMouseEnter={onMouseEnter}
-         onMouseLeave={onMouseLeave}
-      >
+      <div className={`h-${height} w-${width}`} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
          <div
             dangerouslySetInnerHTML={{
-               __html: replaceFillAndStroke(
-                  icons[name],
-                  color,
-                  dontReplaceColor
-               ),
+               __html: replaceFillAndStroke(icons[name], color, dontReplaceColor),
             }}
             className={className}
          />

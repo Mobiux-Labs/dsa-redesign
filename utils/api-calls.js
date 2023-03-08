@@ -345,3 +345,22 @@ export const purchasedOrHasAccessKey = async (req, reportId) => {
    const data = await res.json();
    return "authorized" === data.status;
 };
+
+export const getArticleGiftInfo = async () => {
+   const url = `/subs/trackArticleGift/`;
+   const res = await fetch(url, { headers: createHeader() });
+   if (res.status !== 200) return;
+   const data = await res.json();
+   return data;
+};
+
+export async function getGiftKey(articleId) {
+   let res = await fetch("/subs/trackArticleGift/", {
+      method: "POST",
+      headers: createHeader(),
+      body: JSON.stringify({ articleId }),
+   });
+   if (!res.ok) return null;
+   let data = await res.json();
+   return data;
+}

@@ -11,7 +11,7 @@ import AuthorInfo from "@/components/story/AuthorInfo";
 import ShareIcons from "@/components/story/ShareIcons";
 import FromFavourites from "@/components/story/FromFavourites";
 import PopularReads from "@/components/story/PopularReads";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
    addTablePressFeatures,
    getContentRestrictions,
@@ -28,6 +28,8 @@ import { EditArticleButton } from "@/components/common/Buttons";
 import Tags from "@/components/story/Tags";
 import TaggedNewsletterForm from "@/components/story/TaggedNewsletterForm";
 import { recordStoryDataToGTM, recordUserDataToGTM } from "@/utils/analytics";
+import CustomIcon from "@/utils/icon-mapping";
+import GiftModal from "@/components/story/GiftModal";
 
 export default function StoryPage(props) {
    const story = props.storyData;
@@ -39,6 +41,7 @@ export default function StoryPage(props) {
    let editedBy = story?.edited_by;
    let tags = story?.tags;
    let taggedNewsletter = story?.tagged_newsletter;
+   let showGiftOption = props.session?.loggedIn && props.session?.subscribed && !props.showBlocker && story?.premium;
 
    const isSubscribedToTaggedNewsletter = () => {
       if (!taggedNewsletter || taggedNewsletter == "") return true;
@@ -93,6 +96,8 @@ export default function StoryPage(props) {
             {/* Edited by and tags */}
             {editedBy ? <EditedBy editors={editedBy} /> : null}
             {tags ? <Tags tags={tags} className="mt-[25px]" /> : null}
+            {/* Gift option */}
+            {showGiftOption ? <GiftOption story={story} /> : null}
             <hr className="my-[80px] border-t-1 border-gray" />
             {/* Related stories */}
             {hasRelatedStories ? <RelatedStories stories={story?.related_stories} /> : null}
@@ -138,6 +143,19 @@ function EditedBy({ editors }) {
             );
          })}
       </p>
+   );
+}
+
+function GiftOption({ story }) {
+   const [showModal, setShowModal] = useState(false);
+   return (
+      <div>
+         <div className="flex items-center gap-[15px] mt-[35px]" onClick={() => setShowModal(true)}>
+            <CustomIcon name={"share"} color={"#1C70B6"} />
+            <button className="text-lg text-darkblue font-serif leading-[28px]">Gift this article</button>
+         </div>
+         <GiftModal story={story} showModal={showModal} setShowModal={setShowModal} />
+      </div>
    );
 }
 
