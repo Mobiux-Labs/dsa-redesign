@@ -13,14 +13,19 @@ export default function ReportsPage(props) {
    let reports = props.reports;
    let mainStory = reports[0];
    let storiesList = reports.slice(1, 6);
+   let hasReports = reports.length > 0;
    return (
       <Layout session={props.session}>
          <div className="text-left w-[800px] mx-auto">
             <h1 className="text-heading text-3xl font-bold leading-[55px] mb-[40px]">Reports</h1>
             <ReportFilters />
             {/* main story */}
-            <MainStory story={mainStory} />
-            <VerticalListing storiesList={storiesList} />
+            {hasReports && (
+               <div>
+                  <MainStory story={mainStory} />
+                  <VerticalListing storiesList={storiesList} />
+               </div>
+            )}
          </div>
       </Layout>
    );
@@ -32,7 +37,13 @@ function MainStory({ story }) {
    return (
       <div className="flex gap-[20px]">
          <Link href={trimUrl(story?.post_url)}>
-            <Image src={story?.image_url} height={400} width={300} loader={loader} className="rounded-md" />
+            <Image
+               src={story?.image_url}
+               height={400}
+               width={300}
+               loader={loader}
+               className="rounded-md min-w-[300px] h-[400px]"
+            />
          </Link>
          <div>
             <CategoryBadge category={story?.category} />
@@ -76,6 +87,7 @@ function MainStory({ story }) {
 
 export async function getServerSideProps(context) {
    const session = await getUserSession(context.req);
-   let reports = await getReports(context.req, 1, 6);
+   const { type, country } = context.query;
+   let reports = await getReports(context.req, 1, 6, type, country);
    return { props: { session, reports } };
 }

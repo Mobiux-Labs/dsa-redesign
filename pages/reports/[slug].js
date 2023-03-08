@@ -11,9 +11,7 @@ import ShareIcons from "@/components/story/ShareIcons";
 import { advertLocations, baseUrl } from "@/constants";
 import { getReport } from "@/utils/api-calls";
 import { isUserAuthorizedToViewReport } from "@/utils/article-helpers";
-import { loader } from "@/utils/helper";
 import { getUserSession } from "@/utils/user";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import ReportFile from "./ReportFrame";
 

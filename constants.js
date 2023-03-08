@@ -432,7 +432,6 @@ export const dropdownStyles = {
       fontFamily: "Montserrat",
       fontSize: "14px",
       padding: "5px 10px",
-      color: "#B3B3B3",
    },
    placeholder: {
       fontWeight: "600",
