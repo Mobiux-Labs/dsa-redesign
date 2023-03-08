@@ -16,6 +16,7 @@ export default function StoryCard({
    customImageWidth,
    customClass = "",
    withCategory = true,
+   isReport = false,
 }) {
    const authors = story?.authors;
    const timeToRead = story?.time_to_read;
@@ -60,7 +61,9 @@ export default function StoryCard({
          {withImage ? (
             <Link
                href={trimUrl(story?.post_url)}
-               className={` ${imagePosition == "right" ? "ml-[60px] max-lg:ml-[0px]" : imagePosition == "left" ? "mr-[20px]" : ""}`}
+               className={` ${
+                  imagePosition == "right" ? "ml-[60px] max-lg:ml-[0px]" : imagePosition == "left" ? "mr-[20px]" : ""
+               }`}
             >
                <div className={`${imagePosition == "right" ? "mb-[15px]" : ""} max-w-full`}>
                   <Image
@@ -112,6 +115,19 @@ export default function StoryCard({
                   </span>
                </p>
             </div>
+
+            {/* ONLY FOR REPORTS  */}
+            {/* Buttons to view report and summary */}
+            {isReport ? (
+               <div className="mt-[20px] flex gap-[15px]">
+                  <button className="bg-blue text-white text-base font-medium font-outfit leading-[17px] py-[6px] px-[10px] rounded-sm">
+                     View Reports
+                  </button>
+                  <button className="bg-white text-blue text-base font-medium font-outfit leading-[17px] py-[6px] px-[10px] rounded-sm border-[2px] border-blue">
+                     View Summary
+                  </button>
+               </div>
+            ) : null}
          </div>
       </div>
    );

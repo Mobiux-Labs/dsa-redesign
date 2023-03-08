@@ -77,6 +77,14 @@ const devProxy = {
       changeOrigin: true,
       auth: "betauser:dsabeta",
    },
+   "/wp-content": {
+      target: "https://new.dealstreetasia.com",
+      pathRewrite: {
+         "^/wp-content": "/wp-content",
+      },
+      changeOrigin: true,
+      auth: "betauser:dsabeta",
+   },
 };
 
 const port = parseInt(process.env.PORT, 10) || 3000;

@@ -15,9 +15,18 @@ export default function VerticalListing({ storiesList }) {
       setLoading(false);
    }
    return (
-      <div className="mt-[50px]">
+      <div className="mt-[30px]">
          {stories.map((story, index) => (
-            <StoryCard key={index} story={story} withImage imagePosition="left" customClass="mb-[30px]" />
+            <StoryCard
+               key={index}
+               story={story}
+               withImage
+               imagePosition="left"
+               customClass="mb-[20px]"
+               customImageHeight={203}
+               customImageWidth={152}
+               isReport
+            />
          ))}
          <button
             className={`font-medium text-blue mt-[50px] rounded-sm border-[1.5px] border-blue border-solid block mx-auto py-[11px] px-[20px] font-outfit ${
@@ -26,7 +35,7 @@ export default function VerticalListing({ storiesList }) {
             onClick={getMoreStories}
             disabled={loading}
          >
-            See More
+            Load More Results
          </button>
       </div>
    );

@@ -321,3 +321,11 @@ export async function getReports(req, page = 1, numberOfPosts = 6) {
    const data = await res.json();
    return data;
 }
+
+export async function getReport(req, slug) {
+   let url = `${wpApiUrl}/report/?slug=${slug}`;
+   const res = await fetch(url, { headers: createHeader(req) });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}
