@@ -329,3 +329,17 @@ export async function getReport(req, slug) {
    const data = await res.json();
    return data;
 }
+
+export const purchasedOrHasAccessKey = async (req, reportId) => {
+   const url = `${backendUrl}/check-report-authorization/`;
+   const res = await fetch(url, {
+      method: "POST",
+      headers: createHeader(req),
+      body: JSON.stringify({
+         report_id: reportId,
+      }),
+   });
+   if (res.status !== 200) return;
+   const data = await res.json();
+   return "authorized" === data.status;
+};

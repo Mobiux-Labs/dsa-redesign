@@ -10,6 +10,7 @@ import Blocker from "@/components/story/Blocker";
 import ShareIcons from "@/components/story/ShareIcons";
 import { advertLocations, baseUrl } from "@/constants";
 import { getReport } from "@/utils/api-calls";
+import { isUserAuthorizedToViewReport } from "@/utils/article-helpers";
 import { loader } from "@/utils/helper";
 import { getUserSession } from "@/utils/user";
 import Image from "next/image";
@@ -71,5 +72,15 @@ export async function getServerSideProps(context) {
    const session = await getUserSession(context.req);
    let { slug } = context.params;
    let report = await getReport(context.req, slug);
-   return { props: { session, report } };
+   let contentProtections = report?.content_protection;
+   let canView = await isUserAuthorizedToViewReport(
+      context.req,
+      session?.plan,
+      contentProtections,
+      session?.loggedIn,
+      report?.id
+   );
+   if (!canView) report.pdf_attachment_url = null;
+   let showBlocker = !canView;
+   return { props: { session, report, showBlocker } };
 }

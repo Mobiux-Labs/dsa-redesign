@@ -1,5 +1,5 @@
 import { baseUrl } from "@/constants";
-import { anonymousStoriesViewed, storiesRead } from "./api-calls";
+import { anonymousStoriesViewed, purchasedOrHasAccessKey, storiesRead } from "./api-calls";
 import { createHeader } from "./network";
 
 export async function addTablePressFeatures() {
@@ -144,3 +144,17 @@ export async function validateGiftKey(key, storyId, req) {
    let data = await res.json();
    return data?.valid;
 }
+
+export const isUserAuthorizedToViewReport = async (req, plan, contentProtections, loggedIn, reportId) => {
+   // Check if the user belongs to any one of the groups set under the content protection for each individual report by the editor
+   // Could belong to any of these "research", "premium", "free", "signed_in"
+   // contentProtections is an array of strings
+   if (!contentProtections) return false;
+   if (contentProtections.includes("free")) return true;
+   if (contentProtections.includes("signed_in") && loggedIn) return true;
+   if (contentProtections.includes("premium") && plan && plan !== "") return true;
+   if (contentProtections.includes("research") && plan && plan.includes("Research")) return true;
+   if (await purchasedOrHasAccessKey(req, reportId)) return true;
+   // TODO: Do a check if the user has bought the report.
+   return false;
+};
