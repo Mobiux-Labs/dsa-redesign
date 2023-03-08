@@ -1,20 +1,16 @@
 import StoryCard from "../Content/StoryCard";
 import { useState } from "react";
-import { getCategoryStories } from "@/utils/api-calls";
+import { getCategoryStories, getReports } from "@/utils/api-calls";
 
-export default function LoadMoreStoriesSection({
-   title,
-   storiesList,
-   category,
-   slug,
-}) {
+export default function LoadMoreStoriesSection({ title, storiesList, category, slug }) {
    const [stories, setStories] = useState(storiesList);
    const [loading, setLoading] = useState(false);
    const [page, setPage] = useState(3);
 
    async function getMoreStories() {
       setLoading(true);
-      const res = await getCategoryStories(category, slug, null, 9, page);
+      let res;
+      res = await getCategoryStories(category, slug, null, 9, page);
       setPage(page + 1);
       setStories([...stories, ...res.stories]);
       setLoading(false);
@@ -22,9 +18,7 @@ export default function LoadMoreStoriesSection({
 
    return (
       <section className="mt-[100px] px-[120px]">
-         <h2 className="text-heading font-bold text-3xl leading-[55px]">
-            More on {title}
-         </h2>
+         <h2 className="text-heading font-bold text-3xl leading-[55px]">More on {title}</h2>
          {/* Grid of stories */}
          <div className="grid grid-cols-3 gap-[30px] mt-[45px]">
             {stories?.map((story, index) => (

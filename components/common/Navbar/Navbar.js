@@ -113,7 +113,11 @@ export default function Navbar({ intialSession }) {
                      Login
                   </a>
                ) : (
-                  <div href={""} className={"h-[18px] w-[18px] mx-[15px] cursor-pointer"} onClick={() => handleLogout()}>
+                  <div
+                     href={""}
+                     className={"h-[18px] w-[18px] mx-[15px] cursor-pointer"}
+                     onClick={() => handleLogout()}
+                  >
                      <CustomIcon name={"avatar"} color="#B3B3B3" />
                   </div>
                )}
@@ -146,13 +150,39 @@ export default function Navbar({ intialSession }) {
                   />
                </div>
                <div className="flex lg:order-2">
-                  <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 lg:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get started</button>
-                  <button data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+                  <button
+                     type="button"
+                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 lg:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                     Get started
+                  </button>
+                  <button
+                     data-collapse-toggle="navbar-sticky"
+                     type="button"
+                     className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                     aria-controls="navbar-sticky"
+                     aria-expanded="false"
+                  >
                      <span className="sr-only">Open main menu</span>
-                     <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                     <svg
+                        className="w-6 h-6"
+                        aria-hidden="true"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                     >
+                        <path
+                           fillRule="evenodd"
+                           d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                           clipRule="evenodd"
+                        ></path>
+                     </svg>
                   </button>
                </div>
-               <div className="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-sticky">
+               <div
+                  className="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1"
+                  id="navbar-sticky"
+               >
                   <div className="flex flex-col justify-between w-full py-[32px]">
                      <div className="nav-links flex flex-col ">
                         <Link href="data.dealstreetasia.com" className="mr-[35px] mb-[20px] text-heading">
@@ -187,23 +217,35 @@ export default function Navbar({ intialSession }) {
                      </div>
                      <div className="search-icon flex flex-col ">
                         <Link href="/search/">
-                           <span className="flex">Search  <CustomIcon name={"search"} color="#B3B3B3" className="ml-[10px]" /></span>
+                           <span className="flex">
+                              Search <CustomIcon name={"search"} color="#B3B3B3" className="ml-[10px]" />
+                           </span>
                         </Link>
                      </div>
                   </div>
 
                   <div className="flex flex-col mb-[20px] ">
                      {!session?.loggedIn ? (
-                        <a className="mb-[10px] text-blue font-semibold cursor-pointer" onClick={() => setModal("login")}>
+                        <a
+                           className="mb-[10px] text-blue font-semibold cursor-pointer"
+                           onClick={() => setModal("login")}
+                        >
                            Login
                         </a>
                      ) : (
-                        <div href={""} className={"h-[18px] w-[18px] mx-[15px] cursor-pointer"} onClick={() => handleLogout()}>
+                        <div
+                           href={""}
+                           className={"h-[18px] w-[18px] mx-[15px] cursor-pointer"}
+                           onClick={() => handleLogout()}
+                        >
                            <CustomIcon name={"avatar"} color="#B3B3B3" />
                         </div>
                      )}
                      {!session?.subscribed ? (
-                        <Link href="/plans" className="bg-blue text-white px-[15px] py-[10px] w-auto mr-auto rounded-sm">
+                        <Link
+                           href="/plans"
+                           className="bg-blue text-white px-[15px] py-[10px] w-auto mr-auto rounded-sm"
+                        >
                            Subscribe
                         </Link>
                      ) : null}
@@ -211,8 +253,6 @@ export default function Navbar({ intialSession }) {
                </div>
             </div>
          </nav>
-
       </>
-
    );
 }

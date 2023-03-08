@@ -312,3 +312,12 @@ export async function sendInvitation(email) {
    });
    return res;
 }
+
+export async function getReports(req, page = 1, numberOfPosts = 6) {
+   let base = `${req ? wpApiUrl : wpApiUrl.replace(baseUrl, "")}`;
+   let url = `${base}/report/list/?page=${page}&numberposts=${numberOfPosts}`;
+   const res = await fetch(url, { headers: createHeader(req) });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}

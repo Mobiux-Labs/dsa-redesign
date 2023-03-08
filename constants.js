@@ -437,6 +437,13 @@ export const dropdownStyles = {
    placeholder: {
       fontWeight: "600",
    },
+   label: {
+      fontWeight: "600",
+      fontFamily: "Montserrat",
+      color: "#363E48",
+      lineHeight: "17px",
+      marginBottom: "15px",
+   },
 };
 
 export const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
@@ -458,4 +465,5 @@ export const pagesAndTitles = {
    "/newsletters/daily_brief": "The Daily Brief Newsletter | DealStreetAsia",
    "/newsletters/week_that_was": "The Week That Was Newsletter | DealStreetAsia",
    "/newsletters/vantage_point": "Vantage Point Newsletter | DealStreetAsia",
+   "/reports": "Reports | DealStreetAsia",
 };

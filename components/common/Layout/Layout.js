@@ -30,7 +30,8 @@ export default function Layout({ children, showSectionBar = true, session, withL
    const shouldReplaceDefaultPageTitle = () => {
       let query = router.query;
       let path = `/${router.pathname.split("/")[1]}/${query.slug || query.id}`;
-      let title = getTitleForPage(path);
+      let hasQuery = Object.keys(query).length > 0;
+      let title = getTitleForPage(hasQuery ? path : router.asPath);
       return title ? title : false;
    };
 
