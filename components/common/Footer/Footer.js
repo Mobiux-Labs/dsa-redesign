@@ -22,7 +22,7 @@ export default function Footer({}) {
          <div className="bottom-section relative">
             <div className="underlay-bg bg-darkblue h-[217px]  max-md:h-[220px]"></div>
             <div className="overlay absolute inset-0 bg-[#ffffffcc] px-[120px] max-md:px-[20px] max-md:py-[20px] py-[37px] flex items-center justify-between">
-               <div className="left flex max-md:flex-col  items-center h-full w-full justify-between">
+               <div className="left flex max-md:flex-col  items-center h-full w-full max-lg:justify-between">
                   <div className="logo  max-md:w-[60px] max-md:h-[100px]">
                      <Image
                         src={logoUrl}
@@ -39,8 +39,8 @@ export default function Footer({}) {
                         className="bg-blue mt-[3px] py-0.5 px-1"
                      />
                   </div>
-                  <div className="flex flex-col gap-[25px] place-items-center ">
-                     <div className="links w-full flex text-darkblue flex-wrap max-md:gap-[15px] gap-[45px] max-lg:text-base font-medium max-md:ml-[0px] ml-[30px">
+                  <div className="flex max-lg:flex-col gap-[25px] place-items-center w-full lg:ml-[20px]">
+                     <div className="links w-full flex text-darkblue flex-wrap max-lg:justify-center max-lg:gap-[15px] gap-[45px] max-lg:text-base font-medium max-md:ml-[0px] ml-[30px]">
                         <Link href={"/about-us/"}>About Us</Link>
                         <Link href={"/meet-the-team/"}>Team</Link>
                         <Link href={"/advertise-with-us/"}>Advertise</Link>
@@ -50,26 +50,26 @@ export default function Footer({}) {
                         <Link href={"/faq/"}>FAQ</Link>
                      </div>
                      <div className="right ">
-                        <div className="social-icons flex gap-[25px]">
+                        <div className="social-icons flex gap-[25px] ">
                            <CustomIcon
                               name={"linkedin"}
                               color={"#1C70B6"}
-                              height={14}
+                              height={"auto"}
                            />
                            <CustomIcon
                               name={"twitter"}
                               color={"#1C70B6"}
-                              height={14}
+                              height={"auto"}
                            />
                            <CustomIcon
                               name={"facebook"}
                               color={"#1C70B6"}
-                              height={14}
+                              height={"auto"}
                            />
                            <CustomIcon
                               name={"instagram"}
                               color={"#1C70B6"}
-                              height={14}
+                              height={"auto"}
                      />
                   </div>
                </div>
