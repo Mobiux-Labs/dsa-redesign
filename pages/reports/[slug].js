@@ -43,21 +43,13 @@ export default function Report(props) {
             </div>
             {/* Excerpt */}
             <p className="font-serif font-medium leading-[28px] text-content">{story?.post_excerpt}</p>
-            {/* Image */}
-            <Image
-               className="my-[30px] h-[488px] max-lg:h-[258px] w-full object-cover rounded-md"
-               src={story?.image_url.replace("cdn", "media")}
-               width={1000}
-               height={488}
-               loader={loader}
-            />
             {/* Content */}
             <div
                className="font-serif text-content text-lg leading-[28px] article-content"
                dangerouslySetInnerHTML={{ __html: story?.post_content }}
             />
             {/* Blocker if applicable */}
-            {props.showBlocker ? <Blocker /> : <ReportFile pdfUrl={pdfUrl} />}
+            <div className="mt-[40px]">{props.showBlocker ? <Blocker /> : <ReportFile pdfUrl={pdfUrl} />}</div>
             {/* Advertisement */}
             <div className="mt-[80px]">
                <Advert withoutPadding adLocation={advertLocations.bottom_article.name} />

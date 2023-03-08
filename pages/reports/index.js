@@ -54,12 +54,20 @@ function MainStory({ story }) {
                </p>
             </div>
             <div className="mt-[30px] flex gap-[15px]">
-               <button className="bg-blue text-white text-base font-medium font-outfit leading-[17px] py-[12px] px-[34px] rounded-sm">
-                  View Reports
-               </button>
-               <button className="bg-white text-blue text-base font-medium font-outfit leading-[17px] py-[12px] px-[34px] rounded-sm border-[2px] border-blue">
-                  View Summary
-               </button>
+               <Link
+                  href={trimUrl(story?.post_url)}
+                  className="bg-blue text-white text-base font-medium font-outfit leading-[17px] py-[12px] px-[34px] rounded-sm"
+               >
+                  View Report
+               </Link>
+               {story?.has_associated_story && (
+                  <Link
+                     href={trimUrl(story?.associated_story)}
+                     className="bg-white text-blue text-base font-medium font-outfit leading-[17px] py-[12px] px-[34px] rounded-sm border-[2px] border-blue"
+                  >
+                     View Summary
+                  </Link>
+               )}
             </div>
          </div>
       </div>

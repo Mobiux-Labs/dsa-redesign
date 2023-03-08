@@ -7,7 +7,12 @@ export default function ReportFile({ pdfUrl }) {
          runat="server"
          width="100%"
          className="mt-3 mb-4"
-         style={{ height: "80vh", border: "none", boxShadow: "1px 1px 16px rgba(0, 0, 0, 0.5)" }}
+         style={{
+            height: "80vh",
+            border: "none",
+            boxShadow: "0px 4px 30px rgba(184, 183, 183, 0.2)",
+            borderRadius: "5px",
+         }}
       ></iframe>
    );
 }
