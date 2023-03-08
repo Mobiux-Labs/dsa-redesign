@@ -44,7 +44,7 @@ export default function TaggedNewsletterForm({ taggedNewsletter }) {
                required
             />
             <button
-               className="bg-blue text-base leading-[17px] font-medium  px-[13px] text-white py-[10px]"
+               className="bg-blue whitespace-nowrap text-base leading-[17px] font-medium  px-[13px] text-white py-[10px]"
                type="submit"
                disabled={loading || success}
             >

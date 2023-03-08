@@ -12,7 +12,7 @@ import { Select } from "@mantine/core";
 import { useRouter } from "next/router";
 import { getUserSession } from "@/utils/user";
 
-export default function SectionBar({}) {
+export default function SectionBar({ }) {
    const swiperRef = useRef(null);
    const [session, setSession] = useSession();
    const [refresh, setRefresh] = useState(0);
@@ -27,49 +27,82 @@ export default function SectionBar({}) {
    }, []);
 
    return (
-      <div className="px-[120px] py-[20px] bg-[#35a7e90d] flex items-center text-darkgray">
-         <ThemeSwitchButton />
-         {/* Divider */}
-         <div className="bg-lightgray h-[38px] w-[1px] ml-[25px]"></div>
-         {/* Region selector */}
-         <RegionSelector />
-         {/* Scrollable sections buttons */}
-         <Swiper
-            className="mySwiper"
-            modules={[Navigation]}
-            onBeforeInit={(swiper) => {
-               swiperRef.current = swiper;
-            }}
-            draggable={false}
-            slidesPerView={"auto"}
-         >
-            {sections.map((section, index) => (
-               <SwiperSlide style={{ width: "fit-content", paddingRight: "40px" }} key={index}>
-                  <SectionButton
-                     key={section.title}
-                     imgSrc={section.icon}
-                     name={section.title}
-                     link={section.link}
-                     slug={section.slug}
-                     isFavourite={session?.userFavourites?.includes(section.slug)}
-                  />
-               </SwiperSlide>
-            ))}
-         </Swiper>
-         {/* Right Arrow to scroll the buttons */}
-         <div className="w-[120px] h-[52px] flex items-center justify-start">
-            <button className="ml-[25px] z-10" onClick={() => swiperRef.current?.slideNext()}>
-               <CustomIcon name={"swipeController"} color={"fff"} className="rotate-180" />
-            </button>
+      <>
+         <div className="px-[120px] max-lg:hidden py-[20px] bg-[#35a7e90d] flex items-center text-darkgray">
+            <ThemeSwitchButton />
+            {/* Divider */}
+            <div className="bg-lightgray h-[38px] w-[1px] ml-[25px]"></div>
+            {/* Region selector */}
+            <RegionSelector />
+            {/* Scrollable sections buttons */}
+            <Swiper
+               className="mySwiper"
+               modules={[Navigation]}
+               onBeforeInit={(swiper) => {
+                  swiperRef.current = swiper;
+               }}
+               draggable={false}
+               slidesPerView={"auto"}
+            >
+               {sections.map((section, index) => (
+                  <SwiperSlide style={{ width: "fit-content", paddingRight: "40px" }} key={index}>
+                     <SectionButton
+                        key={section.title}
+                        imgSrc={section.icon}
+                        name={section.title}
+                        link={section.link}
+                        slug={section.slug}
+                        isFavourite={session?.userFavourites?.includes(section.slug)}
+                     />
+                  </SwiperSlide>
+               ))}
+            </Swiper>
+            {/* Right Arrow to scroll the buttons */}
+            <div className="w-[120px] h-[52px] flex items-center justify-start">
+               <button className="ml-[25px] z-10" onClick={() => swiperRef.current?.slideNext()}>
+                  <CustomIcon name={"swipeController"} color={"fff"} className="rotate-180" />
+               </button>
+            </div>
          </div>
-      </div>
+         <div className="lg:hidden pl-[10px] py-[10px] bg-[#35a7e90d] flex items-center text-darkgray">
+            <Swiper
+               className="mySwiper"
+               modules={[Navigation]}
+               onBeforeInit={(swiper) => {
+                  swiperRef.current = swiper;
+               }}
+               draggable={false}
+               slidesPerView={"auto"}
+            >
+                <SwiperSlide style={{ width: "fit-content", paddingRight: "10px" }} key={1}>
+                  <ThemeSwitchButton />
+               </SwiperSlide>
+               <SwiperSlide style={{ width: "fit-content", paddingRight: "10px" }} key={2}>
+                  <RegionSelector />
+               </SwiperSlide>
+               {sections.map((section, index) => (
+                  <SwiperSlide style={{ width: "fit-content", paddingRight: "10px" }} key={index+2}>
+                     <SectionButton
+                        key={section.title}
+                        imgSrc={section.icon}
+                        name={section.title}
+                        link={section.link}
+                        slug={section.slug}
+                        isFavourite={session?.userFavourites?.includes(section.slug)}
+                     />
+                  </SwiperSlide>
+               ))}
+            </Swiper>
+         </div>
+      </>
+
    );
 }
 
-function RegionSelector({}) {
+function RegionSelector({ }) {
    const router = useRouter();
    return (
-      <div className="cursor-pointer flex flex-col mr-[40px] ml-[20px]">
+      <div className="cursor-pointer flex flex-col max-lg:mr-[20px] mr-[40px] ml-[20px]">
          <CustomIcon name={"location"} color={"#B3B3B3"} className="mx-auto w-full flex justify-center" />
          <Select
             placeholder="Select Region"

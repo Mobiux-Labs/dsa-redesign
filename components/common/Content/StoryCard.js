@@ -48,7 +48,7 @@ export default function StoryCard({
 
    return (
       <div
-         className={`content flex h-fit items-stretch w-full ${
+         className={`content flex max-lg:flex-col h-fit items-stretch w-full ${
             imagePosition == "right"
                ? "flex-row-reverse"
                : imagePosition == "left"
@@ -60,7 +60,7 @@ export default function StoryCard({
          {withImage ? (
             <Link
                href={trimUrl(story?.post_url)}
-               className={` ${imagePosition == "right" ? "ml-[60px]" : imagePosition == "left" ? "mr-[20px]" : ""}`}
+               className={` ${imagePosition == "right" ? "ml-[60px] max-lg:ml-[0px]" : imagePosition == "left" ? "mr-[20px]" : ""}`}
             >
                <div className={`${imagePosition == "right" ? "mb-[15px]" : ""} max-w-full`}>
                   <Image

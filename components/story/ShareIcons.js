@@ -58,7 +58,7 @@ export default function ShareIcons({ story, bookmarked }) {
    }, [bookmark]);
 
    return (
-      <div className="flex gap-[30px] align-center">
+      <div className="flex gap-[30px] align-center max-md:mt-[10px]">
          <LinkedinShareButton url={pageUrl}>
             <CustomIcon
                name={"linkedin"}

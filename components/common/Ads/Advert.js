@@ -60,7 +60,7 @@ export default function Advert({ withoutPadding = false, adLocation, type = "lea
    return type == "leaderboard" ? (
       <div
          className={`${className} bg-[#d5d5d519] ${
-            withoutPadding ? "py-0" : "py-[25px] mx-auto rounded-sm flex justify-center items-center"
+            withoutPadding ? "py-0" : "py-[5px] px-[5px] mx-auto rounded-sm flex justify-center items-center"
          }`}
       >
          {adLoaded ? (
@@ -71,6 +71,7 @@ export default function Advert({ withoutPadding = false, adLocation, type = "lea
                         style={{ objectFit: "cover" }}
                         width={931}
                         height={93}
+                        className = "max-w-fit"
                         autoPlay
                         loop
                         src={currentAd.image_url}
@@ -84,7 +85,7 @@ export default function Advert({ withoutPadding = false, adLocation, type = "lea
                      <img
                         src={currentAd.image_url + "?fit=931,93"}
                         alt=""
-                        className="h-[93px] w-[931px] rounded-md"
+                        className="h-[93px] w-[931px] rounded-md max-w-full"
                         onLoad={onImageLoad}
                      />
                   </Link>
