@@ -38,12 +38,12 @@ export default function Layout({ children, showSectionBar = true, session, withL
       <>
          {shouldReplaceDefaultPageTitle() ? <PageSEO title={shouldReplaceDefaultPageTitle()} /> : null}
          {withLeaderBoardAd ? <Advert adLocation={advertLocations.home_page_leader.name} /> : null}
-         <div className="sticky top-0 z-[100]">
+         <div className="sticky top-0 z-[600]">
             <Navbar intialSession={session} />
          </div>
          {showSectionBar && <SectionBar />}
          <motion.div {...motionOptions}>
-            <div className="py-[40px]">{children}</div>
+            <div className="py-[40px] max-lg:py-[0px]">{children}</div>
          </motion.div>
          <>
             <LoginModal />

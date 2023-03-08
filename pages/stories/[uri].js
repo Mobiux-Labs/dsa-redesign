@@ -59,7 +59,7 @@ export default function StoryPage(props) {
          <ArticleSEO article={story} />
          <ArticleJsonLdComponent article={story} />
          <BreadcrumbJsonLdComponent pageUrl={pageUrl} title={story?.post_title} />
-         <div className="w-[800px] mx-auto">
+         <div className="w-[800px] mx-auto max-lg:w-[85%]">
             {/* Advertisement */}
             <div className="mt-[10px] mb-[40px]">
                <Advert withoutPadding adLocation={advertLocations.bottom_article.name} />
@@ -67,7 +67,7 @@ export default function StoryPage(props) {
             <CategoryBadge category={story?.category} />
             <h1 className="text-heading font-bold text-3xl leading-[55px] mt-[5px]">{story?.post_title}</h1>
             {/* Author info and the share icons */}
-            <div className="flex justify-between py-[20px] items-center sticky bg-white top-[80px] z-[500]">
+            <div className="flex max-md:flex-col max-md:mb-[10px] justify-between py-[20px] items-center sticky bg-white top-[80px] z-[500]">
                <AuthorInfo story={story} />
                <ShareIcons story={story} bookmarked={props?.session?.bookmarked} />
             </div>
@@ -75,7 +75,7 @@ export default function StoryPage(props) {
             <p className="font-serif font-medium leading-[28px] text-content">{story?.post_excerpt}</p>
             {/* Image */}
             <Image
-               className="my-[30px] h-[488px] w-full object-cover rounded-md"
+               className="my-[30px] h-[488px] max-lg:h-[258px] w-full object-cover rounded-md"
                src={story?.image_url}
                width={1000}
                height={488}
@@ -109,7 +109,7 @@ export default function StoryPage(props) {
             </div>
          ) : null}
          {/* Favourites and popular reads */}
-         <div className="flex  px-[120px] my-[100px]">
+         <div className="flex  max-lg:mt-[60px] max-lg:flex-col max-lg:px-[30px] max-lg:my-[30px] px-[120px] my-[100px]">
             <FromFavourites stories={story?.trending} />
             <PopularReads stories={story?.trending} />
          </div>

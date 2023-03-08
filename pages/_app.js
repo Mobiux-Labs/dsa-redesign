@@ -38,6 +38,7 @@ function CustomHead() {
    return (
       <Head>
          <link rel="icon" type="image/x-icon" href={logoUrl} />
+         <meta name="viewport" content="width=device-width, initial-scale=1 ,user-scalable = no" />
          <link rel="preconnect" href="https://fonts.gstatic.com" />
          <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.5/dist/flowbite.min.css" />
          <script>window.dataLayer = window.dataLayer || [];</script>

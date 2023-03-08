@@ -8,22 +8,22 @@ export default function Footer({}) {
    const currentYear = new Date().getFullYear();
    return (
       <>
-         <div className="top-section text-center w-full bg-darkblue pt-[40px] pb-[45px]">
-            <div className="container mx-auto">
-               <p className={"uppercase text-lg text-white"}>
+         <div className="top-section  text-center w-full bg-darkblue pt-[40px] pb-[45px]">
+            <div className="container max-md:mx-[10px] mx-auto">
+               <p className={"uppercase text-lg max-md:text-base  text-white"}>
                   Unrivaled analysis & powerful stories
                </p>
-               <p className="text-white font-bold text-3xl mt-[20px] mb-[35px]">
+               <p className="text-white font-bold text-3xl max-md:text-2xl  mt-[20px] mb-[35px]">
                   Sign up to our newsletters for a daily dose of DealStreetAsia.
                </p>
                <NewsletterForm />
             </div>
          </div>
          <div className="bottom-section relative">
-            <div className="underlay-bg bg-darkblue h-[217px]"></div>
-            <div className="overlay absolute inset-0 bg-[#ffffffcc] px-[120px] py-[37px] flex items-center justify-between">
-               <div className="left flex items-center h-full">
-                  <div className="logo">
+            <div className="underlay-bg bg-darkblue h-[217px]  max-md:h-[220px]"></div>
+            <div className="overlay absolute inset-0 bg-[#ffffffcc] px-[120px] max-md:px-[20px] max-md:py-[20px] py-[37px] flex items-center justify-between">
+               <div className="left flex max-md:flex-col  items-center h-full w-full justify-between">
+                  <div className="logo  max-md:w-[60px] max-md:h-[100px]">
                      <Image
                         src={logoUrl}
                         alt="DealStreetAsia Logo"
@@ -39,43 +39,48 @@ export default function Footer({}) {
                         className="bg-blue mt-[3px] py-0.5 px-1"
                      />
                   </div>
-                  <div className="links flex text-darkblue gap-[45px] font-medium ml-[30px]">
-                     <Link href={"/about-us/"}>About Us</Link>
-                     <Link href={"/meet-the-team/"}>Team</Link>
-                     <Link href={"/advertise-with-us/"}>Advertise</Link>
-                     <Link href={"/careers/"}>Join us</Link>
-                     <Link href={"/contact-us/"}>Contact</Link>
-                     <Link href={"/blogs/"}>Blog</Link>
-                     <Link href={"/faq/"}>FAQ</Link>
+                  <div className="flex flex-col gap-[25px] place-items-center ">
+                     <div className="links w-full flex text-darkblue flex-wrap max-md:gap-[15px] gap-[45px] max-lg:text-base font-medium max-md:ml-[0px] ml-[30px">
+                        <Link href={"/about-us/"}>About Us</Link>
+                        <Link href={"/meet-the-team/"}>Team</Link>
+                        <Link href={"/advertise-with-us/"}>Advertise</Link>
+                        <Link href={"/careers/"}>Join us</Link>
+                        <Link href={"/contact-us/"}>Contact</Link>
+                        <Link href={"/blogs/"}>Blog</Link>
+                        <Link href={"/faq/"}>FAQ</Link>
+                     </div>
+                     <div className="right ">
+                        <div className="social-icons flex gap-[25px]">
+                           <CustomIcon
+                              name={"linkedin"}
+                              color={"#1C70B6"}
+                              height={14}
+                           />
+                           <CustomIcon
+                              name={"twitter"}
+                              color={"#1C70B6"}
+                              height={14}
+                           />
+                           <CustomIcon
+                              name={"facebook"}
+                              color={"#1C70B6"}
+                              height={14}
+                           />
+                           <CustomIcon
+                              name={"instagram"}
+                              color={"#1C70B6"}
+                              height={14}
+                     />
                   </div>
                </div>
-               <div className="right">
-                  <div className="social-icons flex gap-[25px]">
-                     <CustomIcon
-                        name={"linkedin"}
-                        color={"#1C70B6"}
-                        height={14}
-                     />
-                     <CustomIcon
-                        name={"twitter"}
-                        color={"#1C70B6"}
-                        height={14}
-                     />
-                     <CustomIcon
-                        name={"facebook"}
-                        color={"#1C70B6"}
-                        height={14}
-                     />
-                     <CustomIcon
-                        name={"instagram"}
-                        color={"#1C70B6"}
-                        height={14}
-                     />
+                 
                   </div>
                </div>
+             
             </div>
+           
          </div>
-         <div className="px-[120px] py-[18px] flex items-center justify-between">
+         <div className="px-[120px] max-lg:px-[20px] py-[18px] flex items-center justify-between">
             <div className="links text-darkblue text-sm">
                <Link href={""}>Privacy Policy</Link>
                {"  "}

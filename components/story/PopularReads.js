@@ -1,6 +1,6 @@
 export default function PopularReads({ stories }) {
    return (
-      <div className="px-[30px]">
+      <div className="px-[30px]  max-md:px-[0px] max-md:mt-[60px]">
          <h3 className="text-heading text-3xl font-bold mb-[45px]">
             Popular Reads
          </h3>

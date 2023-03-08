@@ -24,14 +24,14 @@ export default function NewsletterForm({ defaultEmail }) {
 
    return (
       <form
-         className="w-[593px] mx-auto flex h-[45px] newsletter-form-input"
+         className="w-[593px] w-full mx-auto flex h-[45px] newsletter-form-input justify-center"
          onSubmit={(e) => handleSubmit(e)}
       >
          <TextInput
             placeholder="Enter Your Email"
             styles={{ input: { fontFamily: "Montserrat" } }}
             height={46}
-            className={`placeholder:text-lg placeholder-lightgray w-[461px] newsletter-form-input`}
+            className={`placeholder:text-lg placeholder-lightgray w-[461px] max-md:w-[230px] newsletter-form-input`}
             value={email}
             onChange={(e) => setEmail(e.currentTarget.value)}
             required
@@ -40,7 +40,7 @@ export default function NewsletterForm({ defaultEmail }) {
          />
          <button
             type="submit"
-            className={`bg-blue text-white w-fit h-full text-base px-[12px]`}
+            className={`bg-blue text-white w-fit h-full text-base px-[10px]`}
             disabled={loading}
          >
             {success ? "Subscribed" : "Subscribe Now"}
