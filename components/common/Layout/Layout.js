@@ -8,12 +8,20 @@ import { motion } from "framer-motion";
 import SubscribeNlModal from "@/components/newsletter/SubscribeModa";
 import Advert from "../Ads/Advert";
 import { advertLocations } from "@/constants";
-import { useModal } from "@/utils/context";
+import { useModal, useToast, useSession } from "@/utils/context";
 import { getTitleForPage } from "@/utils/helper";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import BottomToast from "../Toast";
 
-export default function Layout({ children, showSectionBar = true, session, withLeaderBoardAd = true }) {
+export default function Layout({
+   children,
+   showSectionBar = true,
+   session: initialSession,
+   withLeaderBoardAd = true,
+   toast: intialToast,
+}) {
    let motionOptions = {
       initial: { y: 0, opacity: 0 },
       animate: { y: 0, opacity: 1 },
@@ -25,6 +33,8 @@ export default function Layout({ children, showSectionBar = true, session, withL
    };
 
    const [modal, setModal] = useModal();
+   const [toast, setToast] = useToast();
+   const [session, setSession] = useSession();
    const router = useRouter();
 
    const shouldReplaceDefaultPageTitle = () => {
@@ -34,6 +44,11 @@ export default function Layout({ children, showSectionBar = true, session, withL
       let title = getTitleForPage(hasQuery ? path : router.asPath);
       return title ? title : false;
    };
+
+   useEffect(() => {
+      if (intialToast) setToast(intialToast);
+      if (initialSession) setSession(initialSession);
+   }, []);
 
    return (
       <>
@@ -53,6 +68,7 @@ export default function Layout({ children, showSectionBar = true, session, withL
          </>
          <UnSubscribeNlModal />
          <SubscribeNlModal />
+         <BottomToast />
          <Footer />
       </>
    );

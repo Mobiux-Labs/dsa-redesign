@@ -2,7 +2,7 @@ import { logoUrl, gtmId } from "@/constants";
 import "@/styles/globals.css";
 import "@/styles/common.scss";
 import { useEffect, useState } from "react";
-import { ThemeContext, SessionContext, ModalContext } from "@/utils/context";
+import { ThemeContext, SessionContext, ModalContext, ToastContext } from "@/utils/context";
 import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
 import ProgressIndicator from "@/components/common/NProgress";
@@ -14,6 +14,7 @@ export default function App({ Component, pageProps }) {
    const [compactTheme, setCompactTheme] = useState(true);
    const [session, setSession] = useState({});
    const [modal, setModal] = useState();
+   const [toast, setToast] = useState();
    const router = useRouter();
 
    return (
@@ -22,12 +23,14 @@ export default function App({ Component, pageProps }) {
          <DefaultHead />
          <ThemeContext.Provider value={[compactTheme, setCompactTheme]}>
             <ModalContext.Provider value={[modal, setModal]}>
-               <SessionContext.Provider value={[session, setSession]}>
-                  <ProgressIndicator />
-                  <AnimatePresence mode="wait">
-                     <Component {...pageProps} key={router.asPath} />
-                  </AnimatePresence>
-               </SessionContext.Provider>
+               <ToastContext.Provider value={[toast, setToast]}>
+                  <SessionContext.Provider value={[session, setSession]}>
+                     <ProgressIndicator />
+                     <AnimatePresence mode="wait">
+                        <Component {...pageProps} key={router.asPath} />
+                     </AnimatePresence>
+                  </SessionContext.Provider>
+               </ToastContext.Provider>
             </ModalContext.Provider>
          </ThemeContext.Provider>
       </MantineProvider>

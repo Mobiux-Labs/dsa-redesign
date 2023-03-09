@@ -5,12 +5,12 @@ import Layout from "@/components/common/Layout/Layout";
 import ArticleJsonLdComponent from "@/components/common/SEO/ArticleJsonLd";
 import ArticleSEO from "@/components/common/SEO/ArticleSEO";
 import BreadcrumbJsonLdComponent from "@/components/common/SEO/BreadcrumbJsonLd";
+import ReportBlocker from "@/components/reports/Blocker";
 import AuthorInfo from "@/components/story/AuthorInfo";
-import Blocker from "@/components/story/Blocker";
 import ShareIcons from "@/components/story/ShareIcons";
 import { advertLocations, baseUrl } from "@/constants";
 import { getReport } from "@/utils/api-calls";
-import { isUserAuthorizedToViewReport } from "@/utils/article-helpers";
+import { getReportPurchaseToastMessage, isUserAuthorizedToViewReport } from "@/utils/article-helpers";
 import { getUserSession } from "@/utils/user";
 import { useRouter } from "next/router";
 import ReportFile from "./ReportFrame";
@@ -21,9 +21,10 @@ export default function Report(props) {
    let pageUrl = baseUrl + router.asPath;
    let loggedIntoWP = props?.session?.loggedIntoWP;
    let pdfUrl = story?.pdf_attachment_url;
+   console.log("Toast message", props.toastMessage);
 
    return (
-      <Layout session={props.session} withLeaderBoardAd={false}>
+      <Layout session={props.session} withLeaderBoardAd={false} toast={props.toastMessage}>
          <ArticleSEO article={story} />
          <ArticleJsonLdComponent article={story} />
          <BreadcrumbJsonLdComponent pageUrl={pageUrl} title={story?.post_title} />
@@ -47,7 +48,9 @@ export default function Report(props) {
                dangerouslySetInnerHTML={{ __html: story?.post_content }}
             />
             {/* Blocker if applicable */}
-            <div className="mt-[40px]">{props.showBlocker ? <Blocker /> : <ReportFile pdfUrl={pdfUrl} />}</div>
+            <div className="mt-[40px]">
+               {props.showBlocker ? <ReportBlocker report={story} /> : <ReportFile pdfUrl={pdfUrl} />}
+            </div>
             {/* Advertisement */}
             <div className="mt-[80px]">
                <Advert withoutPadding adLocation={advertLocations.bottom_article.name} />
@@ -61,7 +64,10 @@ export default function Report(props) {
 export async function getServerSideProps(context) {
    const session = await getUserSession(context.req);
    let { slug } = context.params;
+   let stripeSessionId = context.query["session-id"];
    let report = await getReport(context.req, slug);
+   let toastMessage = null;
+   if (stripeSessionId) toastMessage = await getReportPurchaseToastMessage(context.req, stripeSessionId);
    let contentProtections = report?.content_protection;
    let canView = await isUserAuthorizedToViewReport(
       context.req,
@@ -72,5 +78,5 @@ export async function getServerSideProps(context) {
    );
    if (!canView) report.pdf_attachment_url = null;
    let showBlocker = !canView;
-   return { props: { session, report, showBlocker } };
+   return { props: { session, report, showBlocker, toastMessage } };
 }

@@ -364,3 +364,31 @@ export async function getGiftKey(articleId) {
    let data = await res.json();
    return data;
 }
+
+export async function createCheckoutSessionForReportPurchase(report) {
+   let url = `/accounts/payment/report/create-checkout-session/`;
+   let body = {
+      report_id: report.id,
+      report_title: report.post_title,
+      redirect_url: report.link,
+      image_url: report.image_url.replace("1001", "300"),
+      // Size has been reducred so that the image loads faster on the stripe checkout screen
+   };
+   const res = await fetch(url, { headers: createHeader(), method: "POST", body: JSON.stringify(body) });
+   if (res.status === 302) {
+      const data = await res.json();
+      window.location.href = data.redirect_url;
+   }
+}
+
+export async function getStripeSessionData(req, sessionId) {
+   let url = `${baseUrl}/accounts/payment/validate-stripe-session/`;
+   const res = await fetch(url, {
+      headers: createHeader(req),
+      method: "POST",
+      body: JSON.stringify({ session_id: sessionId }),
+   });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}

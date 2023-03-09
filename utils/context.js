@@ -1,11 +1,4 @@
-import {
-   createContext,
-   useContext,
-   useReducer,
-   useState,
-   useEffect,
-   useMemo,
-} from "react";
+import { createContext, useContext, useReducer, useState, useEffect, useMemo } from "react";
 
 export const ThemeContext = createContext();
 export const useCompactTheme = () => {
@@ -20,4 +13,9 @@ export const useSession = () => {
 export const ModalContext = createContext();
 export const useModal = () => {
    return useContext(ModalContext);
+};
+
+export const ToastContext = createContext();
+export const useToast = () => {
+   return useContext(ToastContext);
 };

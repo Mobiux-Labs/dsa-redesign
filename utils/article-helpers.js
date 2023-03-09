@@ -1,5 +1,5 @@
 import { baseUrl } from "@/constants";
-import { anonymousStoriesViewed, purchasedOrHasAccessKey, storiesRead } from "./api-calls";
+import { anonymousStoriesViewed, getStripeSessionData, purchasedOrHasAccessKey, storiesRead } from "./api-calls";
 import { createHeader } from "./network";
 
 export async function addTablePressFeatures() {
@@ -157,4 +157,34 @@ export const isUserAuthorizedToViewReport = async (req, plan, contentProtections
    if (await purchasedOrHasAccessKey(req, reportId)) return true;
    // TODO: Do a check if the user has bought the report.
    return false;
+};
+
+export const getReportPurchaseToastMessage = async (req, stripeSessionId) => {
+   if (!stripeSessionId) return;
+   let stripeSession = await getStripeSessionData(req, stripeSessionId);
+   if (!stripeSession) return;
+   stripeSession = stripeSession.session;
+   let paymentStatus = stripeSession.payment_status;
+   let toastMessage = {
+      message: "Payment failed!",
+      description: "Looks like something went wrong while completing your payment. Please try again.",
+      type: "error",
+   };
+   let successfullPayment = paymentStatus == "paid";
+   let incompletePayment = paymentStatus == "unpaid";
+   if (successfullPayment) {
+      toastMessage = {
+         message: "Thank you for your purchase",
+         description: "Your report purchase was successful. An invoice would be sent to your email shortly.",
+         type: "success",
+      };
+   }
+   if (incompletePayment) {
+      toastMessage = {
+         message: "Payment incomplete",
+         description: "Looks like you haven't completed your payment yet. Please try again.",
+         type: "warning",
+      };
+   }
+   return toastMessage;
 };
