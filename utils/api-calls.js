@@ -392,3 +392,12 @@ export async function getStripeSessionData(req, sessionId) {
    const data = await res.json();
    return data;
 }
+
+export async function getStoriesForTag(req, tag, page = 1, numberOfPosts = 6) {
+   let base = `${req ? wpApiUrl : wpApiUrl.replace(baseUrl, "")}`;
+   let url = `${base}/tag?tag=${tag}&page=${page}&numberposts=${numberOfPosts}`;
+   const res = await fetch(url, { headers: createHeader(req) });
+   if (!res.ok) return null;
+   const data = await res.json();
+   return data;
+}
