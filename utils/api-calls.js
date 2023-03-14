@@ -63,7 +63,6 @@ export async function anonymousStoriesViewed(req) {
    });
    if (!res.ok) return null;
    res = await res.json();
-   console.log(res);
    return res["story_ids"].length;
 }
 

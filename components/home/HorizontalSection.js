@@ -11,12 +11,7 @@ import Image from "next/image";
 import { useCompactTheme } from "@/utils/context";
 import CustomIcon from "@/utils/icon-mapping";
 
-export default function HorizontalSection({
-   stories,
-   title,
-   imageOnEveryStory = false,
-   background = true,
-}) {
+export default function HorizontalSection({ stories, title, imageOnEveryStory = false, background = true }) {
    const swiperRef = useRef(null);
    const [compactTheme] = useCompactTheme();
    useEffect(() => {}, []);
@@ -27,7 +22,7 @@ export default function HorizontalSection({
          }`}
       >
          <h2
-            className={`px-[120px] mb-[45px] text-3xl font-bold ${
+            className={`px-[120px] max-limit:px-[80px] max-xl:px-[40px] mb-[45px] text-3xl font-bold ${
                background ? "text-white" : "text-heading"
             } capitalize`}
          >
@@ -35,7 +30,7 @@ export default function HorizontalSection({
          </h2>
          {/* Stories track */}
          <Swiper
-            className="mySwiper"
+            className="mySwiper horizontal-section-swiper"
             modules={[Navigation]}
             style={{ paddingLeft: "120px" }}
             onBeforeInit={(swiper) => {
@@ -73,10 +68,7 @@ export default function HorizontalSection({
          {/* Controller */}
          <div className="flex gap-[12px] absolute right-[120px] top-[100px]">
             <button onClick={() => swiperRef.current?.slidePrev()}>
-               <CustomIcon
-                  name={"swipeController"}
-                  color={background ? "#fff" : "#35A7DF"}
-               />
+               <CustomIcon name={"swipeController"} color={background ? "#fff" : "#35A7DF"} />
             </button>
             <button onClick={() => swiperRef.current?.slideNext()}>
                <CustomIcon

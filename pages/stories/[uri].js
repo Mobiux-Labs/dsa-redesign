@@ -70,7 +70,7 @@ export default function StoryPage(props) {
             <CategoryBadge category={story?.category} />
             <h1 className="text-heading font-bold text-3xl leading-[55px] mt-[5px]">{story?.post_title}</h1>
             {/* Author info and the share icons */}
-            <div className="flex max-md:flex-col max-md:mb-[10px] justify-between py-[20px] items-center sticky bg-white top-[80px] z-[500]">
+            <div className="flex max-md:flex-col max-md:mb-[10px] justify-between py-[20px] items-center sticky bg-white top-[80px] z-[500] max-md:items-start">
                <AuthorInfo story={story} />
                <ShareIcons story={story} bookmarked={props?.session?.bookmarked} />
             </div>
@@ -114,7 +114,7 @@ export default function StoryPage(props) {
             </div>
          ) : null}
          {/* Favourites and popular reads */}
-         <div className="flex  max-lg:mt-[60px] max-lg:flex-col max-lg:px-[30px] max-lg:my-[30px] px-[120px] my-[100px]">
+         <div className="flex max-xl:px-[40px] max-lg:mt-[60px] max-lg:flex-col max-lg:px-[30px] max-lg:my-[30px] px-[120px] my-[100px] max-lg:gap-[60px]">
             <FromFavourites stories={story?.trending} />
             <PopularReads stories={story?.trending} />
          </div>

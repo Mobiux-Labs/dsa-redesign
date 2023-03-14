@@ -22,7 +22,6 @@ export default function PricingTable({ data }) {
    const [activeTab, setActiveTab] = useState("1 year");
 
    function isMostPopular(plan) {
-      console.log(plan);
       return plan === "1 year";
    }
 

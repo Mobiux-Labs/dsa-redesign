@@ -21,7 +21,6 @@ export default function Report(props) {
    let pageUrl = baseUrl + router.asPath;
    let loggedIntoWP = props?.session?.loggedIntoWP;
    let pdfUrl = story?.pdf_attachment_url;
-   console.log("Toast message", props.toastMessage);
 
    return (
       <Layout session={props.session} withLeaderBoardAd={false} toast={props.toastMessage}>

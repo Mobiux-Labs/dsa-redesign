@@ -10,7 +10,6 @@ import MemberCard from "./MemeberCard";
 export default function TeamTab({ data }) {
    let teams = data.teams;
    let memebers = data.team_members;
-   console.log(memebers);
    const [activeTab, setActiveTab] = useState(teams[0]);
    return (
       <div className="w-[1200px] mt-[100px] mx-auto relative z-[10]">
@@ -27,9 +26,7 @@ export default function TeamTab({ data }) {
                   <Tabs.Panel value={team} key={index}>
                      <div className="grid grid-cols-3 gap-x-[30px] gap-y-[60px]">
                         {memebers.map((member, index) =>
-                           member.team.name === team ? (
-                              <MemberCard member={member} key={index} />
-                           ) : null
+                           member.team.name === team ? <MemberCard member={member} key={index} /> : null
                         )}
                      </div>
                   </Tabs.Panel>

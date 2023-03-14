@@ -325,3 +325,21 @@ button.expand-table-button {
    width: 800px;
    border-radius: 5px;
 }
+
+.horizontal-section-swiper {
+   @media (max-width: 1400px) {
+      padding-left: 80px !important;
+   }
+   @media (max-width: 1200px) {
+      padding-left: 40px !important;
+   }
+}
+
+.story-card {
+   @media (max-width: 576px) {
+      img {
+         width: 100% !important;
+         height: 100% !important;
+      }
+   }
+}

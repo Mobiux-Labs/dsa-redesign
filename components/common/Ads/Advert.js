@@ -71,7 +71,7 @@ export default function Advert({ withoutPadding = false, adLocation, type = "lea
                         style={{ objectFit: "cover" }}
                         width={931}
                         height={93}
-                        className = "max-w-fit"
+                        className="max-w-fit"
                         autoPlay
                         loop
                         src={currentAd.image_url}
@@ -85,20 +85,18 @@ export default function Advert({ withoutPadding = false, adLocation, type = "lea
                      <img
                         src={currentAd.image_url + "?fit=931,93"}
                         alt=""
-                        className="h-[93px] w-[931px] rounded-md max-w-full"
+                        className="w-[931px] rounded-md max-w-full"
                         onLoad={onImageLoad}
                      />
                   </Link>
                )}
             </MultipleObserver>
          ) : (
-            <div
-               className={`${withoutPadding ? "h-[93px]" : "h-[93px] w-[931px]"} bg-[#d5d5d519] mx-auto rounded-md`}
-            ></div>
+            <div className={`bg-[#d5d5d519] mx-auto rounded-md`}></div>
          )}
       </div>
    ) : (
-      <div className={`h-[250px] w-full bg-gray rounded-lg flex items-center justify-center text-white ${className}`}>
+      <div className={`w-full bg-gray rounded-lg flex items-center justify-center text-white ${className}`}>
          {" "}
          {adLoaded ? (
             <MultipleObserver>
@@ -121,7 +119,7 @@ export default function Advert({ withoutPadding = false, adLocation, type = "lea
                )}
             </MultipleObserver>
          ) : (
-            <div className="h-[250px] w-[250px] bg-[#d5d5d519] mx-auto"></div>
+            <div className="w-[250px] bg-[#d5d5d519] mx-auto"></div>
          )}
       </div>
    );

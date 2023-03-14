@@ -39,6 +39,7 @@ export default function StoryCard({
 
    const imageHeight = customImageHeight ? customImageHeight : heightSizes[imageSize];
    const imageWidth = customImageWidth ? customImageWidth : widthSizes[imageSize];
+   const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
 
    function getExcerpt(excerpt) {
       if (excerpt?.length > 150) {
@@ -49,11 +50,13 @@ export default function StoryCard({
 
    return (
       <div
-         className={`content flex max-lg:flex-col h-fit items-stretch w-full ${
+         className={`content flex h-fit story-card items-stretch w-full ${
             imagePosition == "right"
                ? "flex-row-reverse"
                : imagePosition == "left"
-               ? "flex-row justify-start"
+               ? windowWidth > 1024
+                  ? "flex-col justify-start"
+                  : "flex-row justify-start"
                : "flex-col justify-between"
          } ${customClass}`}
       >
@@ -71,7 +74,9 @@ export default function StoryCard({
                      alt={story?.post_title}
                      height={imageHeight}
                      width={imageWidth}
-                     className={`rounded-md object-center object-cover ${imagePosition == "right" ? "max-w-fit" : ""}`}
+                     className={`rounded-md object-center object-cover ${
+                        imagePosition == "right" ? "max-w-fit" : ""
+                     } max-sm:w-[100%]`}
                      style={{
                         height: imageHeight,
                         width: imageWidth,
