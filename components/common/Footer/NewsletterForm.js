@@ -24,7 +24,7 @@ export default function NewsletterForm({ defaultEmail }) {
 
    return (
       <form
-         className="w-[593px] w-full mx-auto flex h-[45px] newsletter-form-input justify-center"
+         className="w-[593px] max-sm:w-full mx-auto flex h-[45px] newsletter-form-input justify-center"
          onSubmit={(e) => handleSubmit(e)}
       >
          <TextInput
@@ -38,11 +38,7 @@ export default function NewsletterForm({ defaultEmail }) {
             error={error}
             disabled={loading}
          />
-         <button
-            type="submit"
-            className={`bg-blue text-white w-fit h-full text-base px-[10px]`}
-            disabled={loading}
-         >
+         <button type="submit" className={`bg-blue text-white w-fit h-full text-base px-[10px]`} disabled={loading}>
             {success ? "Subscribed" : "Subscribe Now"}
          </button>
       </form>

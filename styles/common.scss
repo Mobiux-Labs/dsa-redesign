@@ -343,3 +343,9 @@ button.expand-table-button {
       }
    }
 }
+
+@media (max-width: 576px) {
+   .nav-links {
+      font-weight: 500;
+   }
+}

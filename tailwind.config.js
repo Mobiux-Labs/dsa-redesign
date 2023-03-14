@@ -88,6 +88,7 @@ module.exports = {
          outfit: ["Outfit", "sans-serif"],
       },
       fontSize: {
+         xs: "10px",
          sm: "12px",
          base: "14px",
          lg: "16px",

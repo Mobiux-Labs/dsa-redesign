@@ -37,6 +37,7 @@ import { plant } from "@/components/icons/plant";
 import { job } from "@/components/icons/job";
 import { share } from "@/components/icons/share";
 import { copy } from "@/components/icons/copy";
+import { hamburger } from "@/components/icons/hamburger";
 
 const icons = {
    arrow: arrow,
@@ -78,6 +79,7 @@ const icons = {
    job: job,
    share: share,
    copy: copy,
+   hamburger: hamburger,
 };
 
 function replaceFillAndStroke(svgCode, color, dontReplaceColor = false) {

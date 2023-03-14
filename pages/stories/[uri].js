@@ -68,9 +68,11 @@ export default function StoryPage(props) {
                <Advert withoutPadding adLocation={advertLocations.bottom_article.name} />
             </div>
             <CategoryBadge category={story?.category} />
-            <h1 className="text-heading font-bold text-3xl leading-[55px] mt-[5px]">{story?.post_title}</h1>
+            <h1 className="text-heading font-bold text-3xl leading-[55px] mt-[5px] max-sm:leading-[45px]">
+               {story?.post_title}
+            </h1>
             {/* Author info and the share icons */}
-            <div className="flex max-md:flex-col max-md:mb-[10px] justify-between py-[20px] items-center sticky bg-white top-[80px] z-[500] max-md:items-start">
+            <div className="flex max-md:flex-col max-md:mb-[10px] justify-between py-[20px] items-center sticky bg-white top-[80px] z-[500] max-md:items-start max-md:top-[60px]">
                <AuthorInfo story={story} />
                <ShareIcons story={story} bookmarked={props?.session?.bookmarked} />
             </div>

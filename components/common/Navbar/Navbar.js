@@ -45,7 +45,7 @@ export default function Navbar({ intialSession }) {
 
    return (
       <>
-         <div className="px-[120px] shadow-3xl max-lg:hidden flex items-center h-[80px] bg-white z-[10000]">
+         <nav className="px-[120px] shadow-3xl max-lg:hidden flex items-center h-[80px] bg-white z-[10000]">
             <div className="logo mr-[30px]">
                <Image
                   src={logoUrl}
@@ -128,34 +128,37 @@ export default function Navbar({ intialSession }) {
                   </Link>
                ) : null}
             </div>
-         </div>
-         <nav className="bg-white lg:hidden px-2 sm:px-4 py-2.5 dark:bg-gray-900   w-full z-[10000] top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-            <div className="container flex flex-wrap items-center justify-between mx-auto">
+         </nav>
+         <nav className="bg-white lg:hidden sm:px-4 dark:bg-gray-900 w-full z-[10000] top-0 left-0 border-b border-gray-200 dark:border-gray-600 h-[60px] px-[30px] py-[10px] flex items-center justify-between max-sm:left-0 pl-[30px]">
+            <div className="container flex flex-wrap items-center justify-between mx-auto min-w-[100%]">
                <div className="logo mr-[30px]">
                   <Image
                      src={logoUrl}
                      alt="DealStreetAsia Logo"
                      layout="contain"
-                     width={57}
-                     height={43}
+                     width={40}
+                     height={42}
                      onClick={() => router.push("/")}
                      className="cursor-pointer"
                   />
                   <Image
                      src="https://media.dealstreetasia.com/uploads/2019/10/nikkei-group-transparent-logo.png"
-                     width={57}
+                     width={40}
                      height={7}
                      alt="Nikkei Logo"
                      className="bg-blue mt-[3px] py-0.5 px-1"
                   />
                </div>
                <div className="flex lg:order-2">
-                  <button
-                     type="button"
-                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 lg:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-                     Get started
-                  </button>
+                  {!session?.subscribed && (
+                     <Link
+                        type="button"
+                        href={"/pricing/"}
+                        className="mr-[15px] text-sm font-semibold bg-blue rounded-sm px-[8px] py-[6px] text-white"
+                     >
+                        Subscribe
+                     </Link>
+                  )}
                   <button
                      data-collapse-toggle="navbar-sticky"
                      type="button"
@@ -164,23 +167,11 @@ export default function Navbar({ intialSession }) {
                      aria-expanded="false"
                   >
                      <span className="sr-only">Open main menu</span>
-                     <svg
-                        className="w-6 h-6"
-                        aria-hidden="true"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                     >
-                        <path
-                           fillRule="evenodd"
-                           d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                           clipRule="evenodd"
-                        ></path>
-                     </svg>
+                     <CustomIcon name={"hamburger"} color="#B3B3B3" />
                   </button>
                </div>
                <div
-                  className="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1"
+                  className="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1 bg-white top-[60px] absolute"
                   id="navbar-sticky"
                >
                   <div className="flex flex-col justify-between w-full py-[32px]">
@@ -217,14 +208,14 @@ export default function Navbar({ intialSession }) {
                      </div>
                      <div className="search-icon flex flex-col ">
                         <Link href="/search/">
-                           <span className="flex">
+                           <span className="flex items-center">
                               Search <CustomIcon name={"search"} color="#B3B3B3" className="ml-[10px]" />
                            </span>
                         </Link>
                      </div>
                   </div>
 
-                  <div className="flex flex-col mb-[20px] ">
+                  <div className="flex flex-col mb-[20px] max-md:gap-[20px]">
                      {!session?.loggedIn ? (
                         <a
                            className="mb-[10px] text-blue font-semibold cursor-pointer"
@@ -241,14 +232,6 @@ export default function Navbar({ intialSession }) {
                            <CustomIcon name={"avatar"} color="#B3B3B3" />
                         </div>
                      )}
-                     {!session?.subscribed ? (
-                        <Link
-                           href="/plans"
-                           className="bg-blue text-white px-[15px] py-[10px] w-auto mr-auto rounded-sm"
-                        >
-                           Subscribe
-                        </Link>
-                     ) : null}
                   </div>
                </div>
             </div>

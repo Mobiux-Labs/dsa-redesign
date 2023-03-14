@@ -12,7 +12,7 @@ import { Select } from "@mantine/core";
 import { useRouter } from "next/router";
 import { getUserSession } from "@/utils/user";
 
-export default function SectionBar({ }) {
+export default function SectionBar({}) {
    const swiperRef = useRef(null);
    const [session, setSession] = useSession();
    const [refresh, setRefresh] = useState(0);
@@ -45,7 +45,7 @@ export default function SectionBar({ }) {
                slidesPerView={"auto"}
             >
                {sections.map((section, index) => (
-                  <SwiperSlide style={{ width: "fit-content", paddingRight: "40px" }} key={index}>
+                  <SwiperSlide style={{ width: "fit-content", paddingRight: "40px" }} key={index} className="">
                      <SectionButton
                         key={section.title}
                         imgSrc={section.icon}
@@ -64,7 +64,7 @@ export default function SectionBar({ }) {
                </button>
             </div>
          </div>
-         <div className="lg:hidden pl-[10px] py-[10px] bg-[#35a7e90d] flex items-center text-darkgray">
+         <div className="lg:hidden pl-[10px] py-[10px] bg-[#35a7e90d] flex items-center text-darkgray max-sm:pl-[40px] max-sm:py-[20px]">
             <Swiper
                className="mySwiper"
                modules={[Navigation]}
@@ -74,14 +74,14 @@ export default function SectionBar({ }) {
                draggable={false}
                slidesPerView={"auto"}
             >
-                <SwiperSlide style={{ width: "fit-content", paddingRight: "10px" }} key={1}>
+               <SwiperSlide style={{ width: "fit-content", paddingRight: "10px" }} key={1}>
                   <ThemeSwitchButton />
                </SwiperSlide>
                <SwiperSlide style={{ width: "fit-content", paddingRight: "10px" }} key={2}>
                   <RegionSelector />
                </SwiperSlide>
                {sections.map((section, index) => (
-                  <SwiperSlide style={{ width: "fit-content", paddingRight: "10px" }} key={index+2}>
+                  <SwiperSlide style={{ width: "fit-content", paddingRight: "10px" }} key={index + 2}>
                      <SectionButton
                         key={section.title}
                         imgSrc={section.icon}
@@ -95,14 +95,13 @@ export default function SectionBar({ }) {
             </Swiper>
          </div>
       </>
-
    );
 }
 
-function RegionSelector({ }) {
+function RegionSelector({}) {
    const router = useRouter();
    return (
-      <div className="cursor-pointer flex flex-col max-lg:mr-[20px] mr-[40px] ml-[20px]">
+      <div className="cursor-pointer flex flex-col max-lg:mr-[20px] mr-[40px] ml-[20px] max-sm:mx-[10px] max-sm:pr-0">
          <CustomIcon name={"location"} color={"#B3B3B3"} className="mx-auto w-full flex justify-center" />
          <Select
             placeholder="Select Region"
@@ -129,7 +128,7 @@ function SectionButton({ imgSrc, name, link, slug, isFavourite = false }) {
 
    return (
       <div
-         className="cursor-pointer h-full flex items-center justify-center flex-col"
+         className="cursor-pointer h-full flex items-center justify-center flex-col max-sm:pr-[20px]"
          onClick={() => handleCategoryClick(link)}
       >
          <CustomIcon name={imgSrc} alt={name} className="h-[16px]" color={isFavourite ? "#35a7df" : "#B3B3B3"} />
